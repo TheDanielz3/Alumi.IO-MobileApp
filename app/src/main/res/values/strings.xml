@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Alumio</string>
+    <string name="app_name">Alumi.io</string>
+    <string name="button">Button</string>
+    <string name="login">Login</string>
+    <string name="Alumi.IO">TextView</string>
+    <string name="alumi_io">Alumi.IO</string>
+    <string name="ver_tpc">Ver Tpc</string>
+    <string name="ver_recados">Ver Recados</string>
 </resources>

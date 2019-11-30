@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="amsi.estg.alumio">
+    package="com.example.alumiio">
 
     <application
         android:allowBackup="true"
@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecadosActivity"></activity>
-        <activity android:name=".AlunoActivity" />
-        <activity android:name=".TurmaActivity" />
+        <activity android:name=".ver_tpc"></activity>
+        <activity android:name=".ver_recados" />
+        <activity android:name=".ver_alunos" />
+        <activity android:name=".home_professor2" />
+        <activity android:name=".home_professor" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,14 +1,14 @@
-package amsi.estg.alumio;
+package com.example.alumiio;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RecadosActivity extends AppCompatActivity {
+public class ver_recados extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.alumiio.R.layout.activity_recados);
+        setContentView(R.layout.activity_ver_recados);
     }
 }

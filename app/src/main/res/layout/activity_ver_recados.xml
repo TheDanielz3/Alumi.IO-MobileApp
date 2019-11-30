@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ver_recados">
+
+    <TextView
+        android:id="@+id/textView6"
+
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="60dp"
+        android:layout_weight="0"
+        android:background="@drawable/oval_view"
+        android:gravity="center"
+        android:text="@string/alumi_io"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textColorHighlight="@android:color/background_light"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:id="@+id/button19"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:background="#F1F9F8"
+        android:text="RecadoXXX"
+        android:textColor="@android:color/holo_red_light" />
+</LinearLayout>

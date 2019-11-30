@@ -33,26 +33,26 @@
             android:layout_width="313dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:background="@drawable/plain_text"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@android:color/holo_red_light" />
+            android:text="" />
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="313dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_horizontal|center"
             android:layout_marginBottom="40dp"
             android:autofillHints=""
             android:background="@drawable/plain_text"
             android:ems="10"
             android:inputType="textPassword"
             android:text=""
-            android:textColor="@android:color/holo_red_light" />
+
+            />
 
         <Button
             android:id="@+id/button"
@@ -60,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/oval_btn"
-            android:onClick="onButtonClick"
             android:text="@string/login"
             android:textColor="@android:color/background_light"
             android:textSize="10sp" />
