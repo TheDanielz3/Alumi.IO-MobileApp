@@ -12,9 +12,9 @@
         android:layout_height="83dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
+        android:gravity="center"
         android:layout_weight="0"
         android:background="@drawable/oval_view"
-        android:gravity="center"
         android:text="@string/alumi_io"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
@@ -29,8 +29,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_weight="0"
-        android:text="TurmaXXX"
         android:textAlignment="center"
+        android:text="TurmaXXX"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20dp" />
 
@@ -41,8 +41,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:background="@drawable/oval_btn"
-        android:onClick="alunoclick"
         android:text="Ver Alunos"
+        android:onClick="alunoclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
     />
@@ -54,8 +54,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:background="@drawable/oval_btn"
-        android:onClick="recadosclick"
         android:text="@string/ver_recados"
+        android:onClick="recadosclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
     />
@@ -67,8 +67,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:background="@drawable/oval_btn"
-        android:onClick="tpcclick"
         android:text="@string/ver_tpc"
+        android:onClick="tpcclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
     />

@@ -12,9 +12,9 @@
         android:layout_height="83dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
+        android:gravity="center"
         android:layout_weight="0"
         android:background="@drawable/oval_view"
-        android:gravity="center"
         android:text="@string/alumi_io"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
@@ -26,8 +26,8 @@
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:layout_weight="0"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/search" />
 
     <Button
@@ -47,10 +47,10 @@
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:onClick="onclick"
         android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="#F1F9F8"
-        android:onClick="onclick"
         android:text="TurmaXXXX"
         android:textColor="@android:color/holo_red_light" />
 
@@ -58,11 +58,11 @@
         android:id="@+id/button4"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
+        android:onClick="onclick"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="#F1F9F8"
-        android:onClick="onclick"
         android:text="TurmaXXXX"
         android:textColor="@android:color/holo_red_light" />
 
@@ -70,11 +70,11 @@
         android:id="@+id/button5"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
+        android:onClick="onclick"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="#F1F9F8"
-        android:onClick="onclick"
         android:text="TurmaXXXX"
         android:textColor="@android:color/holo_red_light" />
 
@@ -82,11 +82,11 @@
         android:id="@+id/button6"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
+        android:onClick="onclick"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="#F1F9F8"
-        android:onClick="onclick"
         android:text="TurmaXXXX"
         android:textColor="@android:color/holo_red_light" />
 
@@ -94,11 +94,11 @@
         android:id="@+id/button7"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
+        android:onClick="onclick"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="#F1F9F8"
-        android:onClick="onclick"
         android:text="TurmaXXXX"
         android:textColor="@android:color/holo_red_light" />
 </LinearLayout>
