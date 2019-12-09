@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ver_tpc"></activity>
-        <activity android:name=".ver_recados" />
-        <activity android:name=".ver_alunos" />
-        <activity android:name=".home_professor2" />
-        <activity android:name=".home_professor" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Views.TpcActivity"></activity>
+        <activity android:name=".Views.RecadosActivity" />
+        <activity android:name=".Views.AlunosActivity" />
+        <activity android:name=".Views.TurmaActivity" />
+        <activity android:name=".Views.MainActivity" />
+        <activity android:name=".Views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
