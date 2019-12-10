@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class AlunoBDHelper extends SQLiteOpenHelper {
+public class RecadoBDHelper extends SQLiteOpenHelper {
+
     private static final String DB_NAME = "AlumioDB";
-    private static final String TABLE_NAME = "aluno";
+    private static final String TABLE_NAME = "recado";
     private static final int DB_VERSION = 1;
 
     //   private static final String BOOK_ID = "id";
@@ -18,7 +19,7 @@ public class AlunoBDHelper extends SQLiteOpenHelper {
 
     private final SQLiteDatabase database;
 
-    public AlunoBDHelper(Context context)
+    public RecadoBDHelper(Context context)
     {
         super(context, DB_NAME, null, DB_VERSION);
         this.database = this.getWritableDatabase();
@@ -26,7 +27,6 @@ public class AlunoBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
 
     }
 
