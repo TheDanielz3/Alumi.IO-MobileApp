@@ -2,7 +2,7 @@ package com.example.alumiio.models;
 
 public class Aluno {
 
-    public String Nome;
+    public String nome;
     public int numeroDeEstudante;
 
     public int getNumeroDeEstudante() {
@@ -14,10 +14,10 @@ public class Aluno {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 }

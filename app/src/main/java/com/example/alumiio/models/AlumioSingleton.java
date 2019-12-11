@@ -1,7 +1,5 @@
 package com.example.alumiio.models;
 
-import com.example.alumiio.listeners.ProfessorListener;
-
 import java.util.ArrayList;
 
 public class AlumioSingleton {
@@ -18,11 +16,10 @@ public class AlumioSingleton {
     private static final int EDIT_DB = 2;
     private static final int REMOVE_DB = 3;
     private static AlumioSingleton INSTANCE = null; // para garantir que é unica
-    private AlunoBDHelper alunoBDHelper;
+    private AlumioBDHelper alumioBDHelper;
 
     //Instanciar ArraysLists dos modelos
     private ArrayList<Aluno> alunos;
-    private ArrayList<EncarregadoEducacao> encarregadoEducacaos;
     private ArrayList<Professor> professors;
     private ArrayList<Recado> recados;
     private ArrayList<Tpc> tpcs;
