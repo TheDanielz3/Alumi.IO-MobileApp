@@ -139,6 +139,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     }
 
 
+    //Read
     public ArrayList<Tpc> getALLTpcDB()
     {
         ArrayList<Tpc> tpcs = new ArrayList<>(); // instanciada por isso nunca null
@@ -149,14 +150,29 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) { //saber se há algum
             do {
                 Tpc auxTpc = new Tpc(cursor.getLong(0),cursor.getString(1));
-                //auxBook.setID(cursor.getLong(0)); // we receive id
+                //auxTpc.setID(cursor.getLong(0)); // we receive id
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
         }
         return tpcs;
     }
 
+    public ArrayList<Recado> getAllRecadosDB()
+    {
+        ArrayList<Recado> recados = new ArrayList<>(); //instaciada por isso que nunca vai returnar null
 
+        //busca por querry ha base de dados
+        Cursor cursor = this.database.query(TABLE_RECADO, new String[]{RECADO_ID,RECADO_DESCRICAO,RECADO_ASSINADO},
+                null,null,null,null,null,null);
+        if (cursor.moveToFirst()){
+            do{
+                Recado auxRecado = new Recado(cursor.getLong(0),cursor.getString(1),cursor.getInt(2));
+                //auxRecado.setID(cursor.getLong(0)); // we receive id
+                recados.add(auxRecado);
+            }while (cursor.moveToNext());
+        }
+        return recados;
+    }
 
 
 
@@ -170,7 +186,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
         values.put(RECADO_DESCRICAO, recado.getDescricao());
-        values.put(RECADO_ASSINADO, recado.isAssinado());
+        values.put(RECADO_ASSINADO, recado.getAssinado());
         return values;
     }
 
