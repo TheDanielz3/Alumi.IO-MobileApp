@@ -195,6 +195,22 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     }
 
 
+    //A FAZER AGORA!!!!!
+    public ArrayList<Aluno> getAllAlunosDB()
+    {
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        //busca por querry ha base de dados
+        Cursor cursor = this.database.query(TABLE_ALUNO, new String[]{ALUNO_ID,ALUNO_NOME,ALUNO_NUM},
+                null,null,null,null,null,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Aluno auxAluno = new Aluno(cursor.getLong(0),cursor.getString(1),cursor.getInt(2));
+                //auxTeste.setID(cursor.getLong(0)); //we receive id
+                alunos.add(auxAluno);
+            } while (cursor.moveToNext());
+        }
+        return alunos;
+    }
 
 
 
