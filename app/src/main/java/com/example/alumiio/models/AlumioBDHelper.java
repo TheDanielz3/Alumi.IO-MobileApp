@@ -175,6 +175,25 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     }
 
 
+    //TODO: ver isto se tem os nomes dos corretos em comparação com a class
+    public ArrayList<Teste> getAllTestesDB()
+    {
+        ArrayList<Teste> testes = new ArrayList<>();
+
+        //busca por querry ha base de dados
+        Cursor cursor = this.database.query(TABLE_TESTE, new String[]{TESTE_ID,TESTE_DESCRICAO,TESTE_HORA,TESTE_DATA,TESTE_TURMA,TESTE_DISCIPLINA},
+                null,null,null,null,null,null);
+        if (cursor.moveToFirst()) {
+            do {
+                //TODO:Acabar isto
+                Teste auxTeste = new Teste();
+                //auxTeste.setID(cursor.getLong(0)); //we receive id
+                testes.add(auxTeste);
+            } while (cursor.moveToNext());
+        }
+        return testes;
+    }
+
 
 
 
