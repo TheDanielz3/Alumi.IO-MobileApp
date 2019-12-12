@@ -2,11 +2,29 @@ package com.example.alumiio.models;
 
 public class Teste {
 
+public long id;
 public int Data;
 public int Hora;
-public int Descricao;
+public String Descricao;
 public int Turma;
 public int Disciplina;
+
+    public Teste(long id, int data, int hora, String descricao, int turma, int disciplina) {
+        this.id = id;
+        Data = data;
+        Hora = hora;
+        Descricao = descricao;
+        Turma = turma;
+        Disciplina = disciplina;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int getHora() {
         return Hora;
@@ -24,11 +42,11 @@ public int Disciplina;
         Data = data;
     }
 
-    public int getDescricao() {
+    public String getDescricao() {
         return Descricao;
     }
 
-    public void setDescricao(int descricao) {
+    public void setDescricao(String descricao) {
         Descricao = descricao;
     }
 

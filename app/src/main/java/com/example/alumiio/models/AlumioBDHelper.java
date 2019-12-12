@@ -186,7 +186,8 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //TODO:Acabar isto
-                Teste auxTeste = new Teste();
+                Teste auxTeste = new Teste(cursor.getLong(0),cursor.getInt(1),cursor.getInt(2),cursor.getString(3),cursor.getInt(4),
+                        cursor.getInt(5));
                 //auxTeste.setID(cursor.getLong(0)); //we receive id
                 testes.add(auxTeste);
             } while (cursor.moveToNext());
@@ -195,7 +196,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     }
 
 
-    //A FAZER AGORA!!!!!
     public ArrayList<Aluno> getAllAlunosDB()
     {
         ArrayList<Aluno> alunos = new ArrayList<>();
@@ -212,11 +212,51 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         return alunos;
     }
 
+    // updates
 
+    public boolean updateRecadoDB(Recado recado)
+    {
+        ContentValues values = getValuesRecado(recado);
 
+        return
+                (this.database.update(TABLE_RECADO,values, "id=?", new String[]{ "" + recado.getId()}))
+                        >0 ;
 
+        // return true;
+    }
 
+    public boolean updateTpcDB(Tpc tpc)
+    {
+        ContentValues values = getValuesTpc(tpc);
 
+        return
+                (this.database.update(TABLE_TPC,values, "id=?", new String[]{ "" + tpc.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    public boolean updateTesteDB(Teste teste)
+    {
+        ContentValues values = getValuesTeste(teste);
+
+        return
+                (this.database.update(TABLE_TESTE,values, "id=?", new String[]{ "" + teste.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    public boolean updateAlunoDB(Aluno aluno)
+    {
+        ContentValues values = getValuesAluno(aluno);
+
+        return
+                (this.database.update(TABLE_ALUNO,values, "id=?", new String[]{ "" + aluno.getId()}))
+                        >0 ;
+
+        // return true;
+    }
 
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
