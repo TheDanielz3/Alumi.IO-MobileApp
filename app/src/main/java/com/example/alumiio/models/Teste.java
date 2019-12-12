@@ -3,9 +3,18 @@ package com.example.alumiio.models;
 public class Teste {
 
 public int Data;
+public int Hora;
 public int Descricao;
 public int Turma;
 public int Disciplina;
+
+    public int getHora() {
+        return Hora;
+    }
+
+    public void setHora(int hora) {
+        Hora = hora;
+    }
 
     public int getData() {
         return Data;

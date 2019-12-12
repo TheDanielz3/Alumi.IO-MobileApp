@@ -2,7 +2,21 @@ package com.example.alumiio.models;
 
 public class Tpc {
 
+    public long id;
     public String Descricao;
+
+    public Tpc(long id, String descricao) {
+        this.id = id;
+        Descricao = descricao;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getDescricao() {
         return Descricao;

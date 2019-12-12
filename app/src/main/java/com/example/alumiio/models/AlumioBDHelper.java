@@ -1,8 +1,12 @@
 package com.example.alumiio.models;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class AlumioBDHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "AlumioDB";
@@ -29,6 +33,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     private static final String TESTE_DISCIPLINA = "disciplina";
     private static final String TESTE_HORA = "hora";
     private static final String TESTE_TURMA = "turma";
+    private static final String TESTE_DESCRICAO = "descricao";
 
     private final SQLiteDatabase database;
 
@@ -80,11 +85,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
         //Creating table Teste
-        //TODO: Acabar isto
         String createTesteTable ="CREATE TABLE " + TABLE_TESTE + "" +
                 "("
                 + TESTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TESTE_DISCIPLINA + "INTEGER NOT NUll"
+                + TESTE_DESCRICAO + "TEXT NOT NULL,"
+                + TESTE_DISCIPLINA + "INTEGER NOT NUll,"
+                + TESTE_DATA + "INTEGER NOT NULL,"
+                + TESTE_HORA + "INTEGER NOT NULL,"
+                + TESTE_TURMA + "INTEGER NOT NULL"
                 + ");";
         db.execSQL(createTesteTable);
         System.out.println("-->  DB: Table created Teste");
@@ -92,6 +100,103 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TESTE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECADO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TPC);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ALUNO);
+        this.onCreate(db);
     }
+
+
+    //ADDing all stuff
+
+    public void addRecadoToDB(Recado recado)
+    {
+        ContentValues values = getValuesRecado(recado); // contentor de valores a manipular
+
+        this.database.insert(TABLE_RECADO, null, values);
+    }
+
+    public void addTpcToDB(Tpc tpc)
+    {
+        ContentValues values = getValuesTpc(tpc);
+
+        this.database.insert(TABLE_TPC, null,values);
+    }
+
+    public void addAlunoToDB(Aluno aluno)
+    {
+        ContentValues values = getValuesAluno(aluno);
+
+        this.database.insert(TABLE_ALUNO,null,values);
+    }
+
+    public void addTesteToDB(Teste teste)
+    {
+        ContentValues values = getValuesTeste(teste);
+
+        this.database.insert(TABLE_TESTE,null,values);
+    }
+
+
+    public ArrayList<Tpc> getALLTpcDB()
+    {
+        ArrayList<Tpc> tpcs = new ArrayList<>(); // instanciada por isso nunca null
+
+        //Busca por querry ha base de dados
+        Cursor cursor = this.database.query(TABLE_TPC, new String[]{TPC_ID,TPC_DESCRICAO},
+                null, null, null, null, null, null);
+        if (cursor.moveToFirst()) { //saber se há algum
+            do {
+                Tpc auxTpc = new Tpc(cursor.getLong(0),cursor.getString(1));
+                //auxBook.setID(cursor.getLong(0)); // we receive id
+                tpcs.add(auxTpc);
+            } while (cursor.moveToNext());
+        }
+        return tpcs;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    private ContentValues getValuesRecado(Recado recado) {
+        ContentValues values = new ContentValues();
+        values.put(RECADO_DESCRICAO, recado.getDescricao());
+        values.put(RECADO_ASSINADO, recado.isAssinado());
+        return values;
+    }
+
+    private ContentValues getValuesTpc(Tpc tpc){
+        ContentValues values = new ContentValues();
+        values.put(TPC_DESCRICAO, tpc.getDescricao());
+        return  values;
+    }
+
+    private ContentValues getValuesAluno(Aluno aluno){
+        ContentValues values = new ContentValues();
+        values.put(ALUNO_NOME,aluno.getNome());
+        values.put(ALUNO_NUM,aluno.getNumeroDeEstudante());
+        return values;
+    }
+
+
+    //TODO: VERIFICAR ISTO
+    private ContentValues getValuesTeste(Teste teste){
+        ContentValues values = new ContentValues();
+        values.put(TESTE_DATA,teste.getData());
+        values.put(TESTE_HORA,teste.getHora());
+        values.put(TESTE_DESCRICAO, teste.getDescricao());
+        values.put(TESTE_DISCIPLINA,teste.getDisciplina());
+        values.put(TESTE_TURMA,teste.getTurma());
+        return values;
+    }
+
 }

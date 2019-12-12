@@ -3,7 +3,7 @@ package com.example.alumiio.models;
 public class Recado {
 
     public String descricao;
-    public boolean assinado = false;
+    public boolean assinado;
 
     public String getDescricao() {
         return descricao;
