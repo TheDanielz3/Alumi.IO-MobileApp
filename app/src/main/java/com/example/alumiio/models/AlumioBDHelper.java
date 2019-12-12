@@ -258,6 +258,49 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         // return true;
     }
 
+    // delete Recados
+    public boolean deleteRecadoDB(long recadoId)
+    {
+        return (this.database.delete(TABLE_RECADO,"id=?", new String[]{ "" + recadoId})
+        )==1 ;
+    }
+
+    public void deleteAllRecadosDB() {
+        this.database.delete(TABLE_RECADO, null, null);
+    }
+
+
+
+    //deleteTpcs
+    public boolean deleteTpcDB(long tpcId)
+    {
+        return (this.database.delete(TABLE_TPC,"id=?", new String[]{ "" + tpcId})
+        )==1 ;
+    }
+
+    public void deleteAllTpcDB() { this.database.delete(TABLE_TPC, null, null); }
+
+
+    //delete testes
+    public boolean deleteTesteDB(long testeId)
+    {
+        return (this.database.delete(TABLE_TESTE,"id=?", new String[]{ "" + testeId})
+        )==1 ;
+    }
+
+    public void deleteAllTestesDB() { this.database.delete(TABLE_TESTE, null, null); }
+
+
+
+    //delete Alunos
+    public boolean deleteAlunoDB(long alunoId)
+    {
+        return (this.database.delete(TABLE_ALUNO,"id=?", new String[]{ "" + alunoId})
+        )==1 ;
+    }
+
+    public void deleteAllAlunosDB() { this.database.delete(TABLE_ALUNO, null, null); }
+
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
         values.put(RECADO_DESCRICAO, recado.getDescricao());
@@ -277,7 +320,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         values.put(ALUNO_NUM,aluno.getNumeroDeEstudante());
         return values;
     }
-
 
     //TODO: VERIFICAR ISTO
     private ContentValues getValuesTeste(Teste teste){
