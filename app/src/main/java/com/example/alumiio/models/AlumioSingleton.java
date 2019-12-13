@@ -24,6 +24,7 @@ public class AlumioSingleton {
     private ArrayList<Professor> professors;
     private ArrayList<Recado> recados;
     private ArrayList<Tpc> tpcs;
+    private ArrayList<Teste> testes;
 
 
     //Acesso API
@@ -66,4 +67,27 @@ public class AlumioSingleton {
     public void setTpcListener(TpcListener tpcListener) { this.tpcListener = tpcListener; }
 
     public void setTesteListener(TesteListener testeListener) { this.testeListener = testeListener; }
+
+    public ArrayList<Aluno> getAlunosBD()
+    {
+        alunos = alumioBDHelper.getAllAlunosDB();
+        return alunos;
+    }
+
+    public ArrayList<Recado> getRecadosBD()
+    {
+        recados = alumioBDHelper.getAllRecadosDB();
+        return recados;
+    }
+
+    public ArrayList<Tpc> getTpcsBD()
+    {
+        tpcs = alumioBDHelper.getALLTpcDB();
+        return tpcs;
+    }
+    public ArrayList<Teste> getTesteBD()
+    {
+        testes = alumioBDHelper.getAllTestesDB();
+        return testes;
+    }
 }
