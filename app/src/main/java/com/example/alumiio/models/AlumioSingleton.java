@@ -85,9 +85,65 @@ public class AlumioSingleton {
         tpcs = alumioBDHelper.getALLTpcDB();
         return tpcs;
     }
-    public ArrayList<Teste> getTesteBD()
+    public ArrayList<Teste> getTestesBD()
     {
         testes = alumioBDHelper.getAllTestesDB();
         return testes;
     }
+
+    public Aluno getAlunoById(long id)
+    {
+        for(Aluno aluno: alunos)
+        {
+            if (aluno.getId() == id)
+            {
+                return aluno;
+            }
+        }
+
+        return null;
+    }
+
+    public Recado getRecadoById(long id)
+    {
+        for(Recado recado: recados)
+        {
+            if (recado.getId() == id)
+            {
+                return recado;
+            }
+        }
+
+        return null;
+    }
+
+    public Tpc getTpcById(long id)
+    {
+        for (Tpc tpc: tpcs)
+        {
+            if (tpc.getId() == id)
+            {
+                return tpc;
+            }
+        }
+        return null;
+    }
+
+    public Teste getTesteById(long id)
+    {
+        for (Teste teste: testes)
+        {
+            if (teste.getId() == id)
+            {
+                return teste;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
 }
