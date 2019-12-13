@@ -162,6 +162,29 @@ public class AlumioSingleton {
         alumioBDHelper.addTpcToDB(tpc);
     }
 
+    public void removeAlunoDB(long alunoId)
+    {
+        if(alumioBDHelper.deleteAlunoDB(alunoId))
+        {
+            Aluno aluno = getAlunoById(alunoId);
+            alunos.remove(aluno);
+        }
+    }
 
-
+    public void removeRecadoDB(long recadoId)
+    {
+        if(alumioBDHelper.deleteRecadoDB(recadoId))
+        {
+            Recado recado = getRecadoById(recadoId);
+            recados.remove(recado);
+        }
+    }
+    public void removeTesteDB(long testeId)
+    {
+        if(alumioBDHelper.deleteTesteDB(testeId))
+        {
+            Teste teste = getTesteById(testeId);
+            testes.remove(teste);
+        }
+    }
 }
