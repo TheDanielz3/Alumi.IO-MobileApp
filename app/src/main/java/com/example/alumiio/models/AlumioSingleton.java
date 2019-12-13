@@ -141,8 +141,26 @@ public class AlumioSingleton {
         return null;
     }
 
+    public void addAlunoDB (Aluno aluno)
+    {
+        // add to DB
+        alumioBDHelper.addAlunoToDB(aluno);
+    }
 
+    public void addRecadoDB (Recado recado)
+    {
+        alumioBDHelper.addRecadoToDB(recado);
+    }
 
+    public void addTesteDB (Teste teste)
+    {
+        alumioBDHelper.addTesteToDB(teste);
+    }
+
+    public void addTpcDB (Tpc tpc)
+    {
+        alumioBDHelper.addTpcToDB(tpc);
+    }
 
 
 
