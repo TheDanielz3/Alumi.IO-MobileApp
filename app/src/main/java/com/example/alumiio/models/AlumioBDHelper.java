@@ -186,7 +186,8 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //TODO:Acabar isto
-                Teste auxTeste = new Teste();
+                Teste auxTeste = new Teste(cursor.getLong(0),cursor.getInt(1),cursor.getInt(2),cursor.getString(3),cursor.getInt(4),
+                        cursor.getInt(5));
                 //auxTeste.setID(cursor.getLong(0)); //we receive id
                 testes.add(auxTeste);
             } while (cursor.moveToNext());
@@ -195,12 +196,110 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Aluno> getAllAlunosDB()
+    {
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        //busca por querry ha base de dados
+        Cursor cursor = this.database.query(TABLE_ALUNO, new String[]{ALUNO_ID,ALUNO_NOME,ALUNO_NUM},
+                null,null,null,null,null,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Aluno auxAluno = new Aluno(cursor.getLong(0),cursor.getString(1),cursor.getInt(2));
+                //auxTeste.setID(cursor.getLong(0)); //we receive id
+                alunos.add(auxAluno);
+            } while (cursor.moveToNext());
+        }
+        return alunos;
+    }
+
+    // updates
+
+    public boolean updateRecadoDB(Recado recado)
+    {
+        ContentValues values = getValuesRecado(recado);
+
+        return
+                (this.database.update(TABLE_RECADO,values, "id=?", new String[]{ "" + recado.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    public boolean updateTpcDB(Tpc tpc)
+    {
+        ContentValues values = getValuesTpc(tpc);
+
+        return
+                (this.database.update(TABLE_TPC,values, "id=?", new String[]{ "" + tpc.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    public boolean updateTesteDB(Teste teste)
+    {
+        ContentValues values = getValuesTeste(teste);
+
+        return
+                (this.database.update(TABLE_TESTE,values, "id=?", new String[]{ "" + teste.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    public boolean updateAlunoDB(Aluno aluno)
+    {
+        ContentValues values = getValuesAluno(aluno);
+
+        return
+                (this.database.update(TABLE_ALUNO,values, "id=?", new String[]{ "" + aluno.getId()}))
+                        >0 ;
+
+        // return true;
+    }
+
+    // delete Recados
+    public boolean deleteRecadoDB(long recadoId)
+    {
+        return (this.database.delete(TABLE_RECADO,"id=?", new String[]{ "" + recadoId})
+        )==1 ;
+    }
+
+    public void deleteAllRecadosDB() {
+        this.database.delete(TABLE_RECADO, null, null);
+    }
 
 
 
+    //deleteTpcs
+    public boolean deleteTpcDB(long tpcId)
+    {
+        return (this.database.delete(TABLE_TPC,"id=?", new String[]{ "" + tpcId})
+        )==1 ;
+    }
+
+    public void deleteAllTpcDB() { this.database.delete(TABLE_TPC, null, null); }
+
+
+    //delete testes
+    public boolean deleteTesteDB(long testeId)
+    {
+        return (this.database.delete(TABLE_TESTE,"id=?", new String[]{ "" + testeId})
+        )==1 ;
+    }
+
+    public void deleteAllTestesDB() { this.database.delete(TABLE_TESTE, null, null); }
 
 
 
+    //delete Alunos
+    public boolean deleteAlunoDB(long alunoId)
+    {
+        return (this.database.delete(TABLE_ALUNO,"id=?", new String[]{ "" + alunoId})
+        )==1 ;
+    }
+
+    public void deleteAllAlunosDB() { this.database.delete(TABLE_ALUNO, null, null); }
 
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
@@ -221,7 +320,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         values.put(ALUNO_NUM,aluno.getNumeroDeEstudante());
         return values;
     }
-
 
     //TODO: VERIFICAR ISTO
     private ContentValues getValuesTeste(Teste teste){
