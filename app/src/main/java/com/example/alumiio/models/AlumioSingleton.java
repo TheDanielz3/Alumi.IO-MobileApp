@@ -2,7 +2,11 @@ package com.example.alumiio.models;
 
 import android.content.Context;
 
+import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.listeners.ProfessorListener;
+import com.example.alumiio.listeners.RecadoListener;
+import com.example.alumiio.listeners.TesteListener;
+import com.example.alumiio.listeners.TpcListener;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,10 @@ public class AlumioSingleton {
 //    private String tokenAPI = "AMSI-TOKEN";
 
     private ProfessorListener professorListener;
+    private AlunoListener alunoListener;
+    private RecadoListener recadoListener;
+    private TpcListener tpcListener;
+    private TesteListener testeListener;
 
     private AlumioSingleton(Context context) {
         alunos = new ArrayList<>();
@@ -36,9 +44,6 @@ public class AlumioSingleton {
         tpcs = new ArrayList<>();
         alumioBDHelper = new AlumioBDHelper(context);
         //generateFakeData();
-    }
-    public void setProfessorListener(ProfessorListener ProfessorListener) {
-        this.professorListener = ProfessorListener;
     }
 
     //Funcao para ir buscar a Instancia
@@ -52,6 +57,13 @@ public class AlumioSingleton {
         return INSTANCE;
     }
 
+    public void setAlunoListener(AlunoListener alunoListener) { this.alunoListener = alunoListener; }
 
+    public void setProfessorListener(ProfessorListener professorListener) { this.professorListener = professorListener;}
 
+    public void setRecadoListener(RecadoListener recadoListener){ this.recadoListener = recadoListener; }
+
+    public void setTpcListener(TpcListener tpcListener) { this.tpcListener = tpcListener; }
+
+    public void setTesteListener(TesteListener testeListener) { this.testeListener = testeListener; }
 }
