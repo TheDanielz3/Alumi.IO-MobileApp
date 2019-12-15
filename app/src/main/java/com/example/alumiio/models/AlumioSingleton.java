@@ -187,4 +187,30 @@ public class AlumioSingleton {
             testes.remove(teste);
         }
     }
+
+    public void editAlunoDB(Aluno aluno){
+        if (!alunos.contains(aluno))
+        {
+            return;
+        }
+
+        Aluno auxAluno = getAlunoById(aluno.getId());
+        auxAluno.setNome(aluno.getNome());
+        auxAluno.setNumeroDeEstudante(aluno.getNumeroDeEstudante());
+
+        alumioBDHelper.updateAlunoDB(auxAluno);
+    }
+
+    public void editRecadoDB(Recado recado){
+        if (!recados.contains(recado))
+        {
+            return;
+        }
+
+        Recado auxRecado = getRecadoById(recado.getId());
+        auxRecado.setDescricao(recado.getDescricao());
+        auxRecado.setAssinado(recado.getAssinado());
+
+        alumioBDHelper.updateRecadoDB(auxRecado);
+    }
 }
