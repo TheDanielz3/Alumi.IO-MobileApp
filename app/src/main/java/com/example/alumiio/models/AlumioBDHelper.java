@@ -311,6 +311,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     public void deleteAllAlunosDB() { this.database.delete(TABLE_ALUNO, null, null); }
 
+
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
         values.put(RECADO_ID, recado.getId());

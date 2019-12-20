@@ -2,6 +2,7 @@ package com.example.alumiio.models;
 
 import android.content.Context;
 
+import com.android.volley.RequestQueue;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.listeners.ProfessorListener;
 import com.example.alumiio.listeners.RecadoListener;
@@ -28,9 +29,9 @@ public class AlumioSingleton {
 
 
     //Acesso API
-//    private static RequestQueue volleyQueue = null;
-//    private String myURLAPILIVROS = "http://amsi.dei.estg.ipleiria.pt/api/livros";
-//    private String tokenAPI = "AMSI-TOKEN";
+    private static RequestQueue volleyQueue = null;
+    private String myURLAPILIVROS = "http://amsi.dei.estg.ipleiria.pt/api/livros"; //Por aqui o IP da maquina
+    private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
     private AlunoListener alunoListener;
