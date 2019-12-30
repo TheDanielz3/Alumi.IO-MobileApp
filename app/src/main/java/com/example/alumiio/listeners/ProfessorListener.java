@@ -8,5 +8,5 @@ public interface ProfessorListener {
 
     void onRefreshProfessorList(ArrayList<Professor> professorList);
 
-    void onUpdateProfessorlist(Professor professor, int operation);
+    //void onUpdateProfessorlist(Professor professor, int operation);
 }

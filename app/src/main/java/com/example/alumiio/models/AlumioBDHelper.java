@@ -23,10 +23,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private static final String ALUNO_NOME = "nome";
     private static final String ALUNO_NUM = "numero_estudante";
+    private static final String ALUNO_TURMA = "aluno_turma";
+    private static final String ALUNO_ANO = "aluno_ano";
 
     private static final String TPC_DESCRICAO = "descricao";
 
     private static final String RECADO_DESCRICAO = "descricao";
+    private static final String RECADO_DATA_CREATED = "criado_em";
+    private static final String RECADO_DATA_ASSINADO = "assinado_em";
     private static final String RECADO_ASSINADO = "assinado";
 
     private static final String TESTE_DATA = "data";
@@ -51,7 +55,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 "("
                 + ALUNO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ALUNO_NUM + " INTEGER NOT NULL, "
-                + ALUNO_NOME + " TEXT NOT NULL "
+                + ALUNO_NOME + " TEXT NOT NULL, "
+                + ALUNO_ANO + " INTEGER NOT NULL, "
+                + ALUNO_TURMA + " TEXT NOT NULL"
                 + ");";
 
         db.execSQL(createAlunoTable);
@@ -59,7 +65,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
 
-        //Creating table TPC
+        //Creating table TPC: turma,disciplina
         String createTpcTable = "CREATE TABLE " + TABLE_TPC + "" +
                 "("
                 + TPC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -71,11 +77,13 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
 
-        //Creating table Recado
+        //Creating table Recado: falta a FK para o aluno
         String createRecadoTable = "CREATE TABLE " + TABLE_RECADO + "" +
                 "("
                 + RECADO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + RECADO_DESCRICAO + " TEXT NOT NULL,"
+                + RECADO_DESCRICAO + " TEXT NOT NULL, "
+                + RECADO_DATA_CREATED + " TEXT NOT NULL, "
+                + RECADO_DATA_ASSINADO + " TEXT, "
                 + RECADO_ASSINADO + " INTEGER NOT NULL "
                 + ");";
 
@@ -88,11 +96,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         String createTesteTable ="CREATE TABLE " + TABLE_TESTE + "" +
                 "("
                 + TESTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TESTE_DESCRICAO + "TEXT NOT NULL,"
-                + TESTE_DISCIPLINA + "INTEGER NOT NUll,"
-                + TESTE_DATA + "INTEGER NOT NULL,"
-                + TESTE_HORA + "INTEGER NOT NULL,"
-                + TESTE_TURMA + "INTEGER NOT NULL"
+                + TESTE_DESCRICAO + "TEXT NOT NULL, "
+                + TESTE_DISCIPLINA + "INTEGER NOT NUll, "
+                + TESTE_DATA + " INTEGER NOT NULL, "
+                + TESTE_HORA + " INTEGER NOT NULL, "
+                + TESTE_TURMA + " INTEGER NOT NULL "
                 + ");";
         db.execSQL(createTesteTable);
         System.out.println("-->  DB: Table created Teste");
@@ -154,6 +162,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return tpcs;
     }
 
@@ -192,6 +201,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 testes.add(auxTeste);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return testes;
     }
 
@@ -301,8 +311,10 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     public void deleteAllAlunosDB() { this.database.delete(TABLE_ALUNO, null, null); }
 
+
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
+        values.put(RECADO_ID, recado.getId());
         values.put(RECADO_DESCRICAO, recado.getDescricao());
         values.put(RECADO_ASSINADO, recado.getAssinado());
         return values;
@@ -310,12 +322,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private ContentValues getValuesTpc(Tpc tpc){
         ContentValues values = new ContentValues();
+        values.put(TPC_ID, tpc.getId());
         values.put(TPC_DESCRICAO, tpc.getDescricao());
         return  values;
     }
 
     private ContentValues getValuesAluno(Aluno aluno){
         ContentValues values = new ContentValues();
+        values.put(ALUNO_ID, aluno.getId());
         values.put(ALUNO_NOME,aluno.getNome());
         values.put(ALUNO_NUM,aluno.getNumeroDeEstudante());
         return values;
@@ -324,6 +338,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     //TODO: VERIFICAR ISTO
     private ContentValues getValuesTeste(Teste teste){
         ContentValues values = new ContentValues();
+        values.put(TESTE_ID , teste.getId());
         values.put(TESTE_DATA,teste.getData());
         values.put(TESTE_HORA,teste.getHora());
         values.put(TESTE_DESCRICAO, teste.getDescricao());
