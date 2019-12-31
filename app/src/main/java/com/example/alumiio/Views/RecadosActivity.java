@@ -13,4 +13,33 @@ public class RecadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recados);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("--> Activity Recados on Start");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("--> Activity Recados on Stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("--> Activity Recados on Destroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("--> Activity Recados on Pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("--> Activity Recados on Resume");
+    }
 }

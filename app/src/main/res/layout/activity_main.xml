@@ -30,6 +30,14 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/search" />
 
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.alumiio.Views.ui.turmaactivity2.TurmaActivity2Fragment"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="338dp"
