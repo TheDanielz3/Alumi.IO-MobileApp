@@ -32,80 +32,8 @@
 
     </SearchView>
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    <Button
-        android:id="@+id/button13"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button14"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button15"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="AlunoXXX"
-        android:textColor="@android:color/holo_red_light" />
 </LinearLayout>

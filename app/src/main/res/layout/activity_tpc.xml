@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="5dp"
         android:layout_weight="0"
         android:background="@drawable/oval_view"
         android:text="@string/alumi_io"
@@ -19,83 +19,19 @@
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@android:color/background_light"
-        android:textSize="40sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/button24"
+      android:textSize="40sp"
+      android:textStyle="bold" />
+    <SearchView
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
+        android:background="@drawable/search"/>
 
-    <Button
-        android:id="@+id/button25"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
 
-    <Button
-        android:id="@+id/button26"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button27"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button28"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button29"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button30"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="Tpc XXX"
-        android:textColor="@android:color/holo_red_light" />
+    <fragment
+        android:id="@+id/fragmentList"
+        android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
 </LinearLayout>
