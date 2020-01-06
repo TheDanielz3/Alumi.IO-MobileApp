@@ -2,12 +2,21 @@ package com.example.alumiio.models;
 
 import android.content.Context;
 
+
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.listeners.ProfessorListener;
 import com.example.alumiio.listeners.RecadoListener;
 import com.example.alumiio.listeners.TesteListener;
 import com.example.alumiio.listeners.TpcListener;
+import com.example.alumiio.listeners.TurmaListener;
+import com.example.alumiio.utils.AlunoJsonParser;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -26,11 +35,12 @@ public class AlumioSingleton {
     private ArrayList<Recado> recados;
     private ArrayList<Tpc> tpcs;
     private ArrayList<Teste> testes;
+    private ArrayList<Turma> turmas;
 
 
     //Acesso API
     private static RequestQueue volleyQueue = null;
-    private String myURLAPILIVROS = "http://amsi.dei.estg.ipleiria.pt/api/livros"; //Por aqui o IP da maquina
+    private String myURLAPIALUNOS = "http://amsi.dei.estg.ipleiria.pt/api/livros"; //Por aqui o IP da maquina
     private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
@@ -38,6 +48,7 @@ public class AlumioSingleton {
     private RecadoListener recadoListener;
     private TpcListener tpcListener;
     private TesteListener testeListener;
+    private TurmaListener turmaListener;
 
     private AlumioSingleton(Context context) {
         alunos = new ArrayList<>();
@@ -45,8 +56,8 @@ public class AlumioSingleton {
         recados = new ArrayList<>();
         tpcs = new ArrayList<>();
         alumioBDHelper = new AlumioBDHelper(context);
-        //generateFakeData();
     }
+
 
     //Funcao para ir buscar a Instancia
     public static synchronized AlumioSingleton getInstance(Context context) {
@@ -214,4 +225,46 @@ public class AlumioSingleton {
 
         alumioBDHelper.updateRecadoDB(auxRecado);
     }
+
+    //TODO: Acabar a parte da API
+
+    public void getAllAlunosAPI(final Context context,boolean isConnected)
+    {
+        if(!isConnected)
+        {
+            //no access ->get books from DB
+            alunos = alumioBDHelper.getAllAlunosDB();
+            if (alunoListener != null){
+                alunoListener.onRefreshAlunoList(alunos);
+            }
+            else {
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, myURLAPIALUNOS, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        alunos = AlunoJsonParser.parserJsonAlunos(response, context);
+                        System.out.println("--> Resposta:" + alunos);
+                        //TODO: FAzer o metodo addAlunosDB
+                        addAlunosDB(alunos);
+
+                        if (alunoListener != null) {
+                            alunoListener.onRefreshAlunoList(alunos);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("--> Error Get AllAlunosAPI "+ error.getMessage());
+                    }
+                });
+
+                volleyQueue.add(request);
+            }
+        }
+    }
+
+    private void addAlunosDB(ArrayList<Aluno> alunos) {
+
+    }
+
+
 }

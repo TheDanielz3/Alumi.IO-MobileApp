@@ -5,7 +5,7 @@ import com.example.alumiio.models.Turma;
 import java.util.ArrayList;
 
 public interface TurmaListener {
-    void onRefreshTpcList(ArrayList<Turma> turmaList);
+    void onRefreshTurmaList(ArrayList<Turma> turmaList);
 
-    void onUpdateTpclist(Turma turma, int operation);
+    void onUpdateTurmalist(Turma turma, int operation);
 }

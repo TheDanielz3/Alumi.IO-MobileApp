@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.models.AlumioSingleton;
+
 import java.util.Objects;
 
 
@@ -26,22 +29,25 @@ public class FragmentList extends Fragment {
 
     ArrayAdapter<String> adapter;
 
+    private AlunoListener alunoListener;
+
     String[] data = {"sou algo",
                      "Sou nada",
                     "Sou uma algo",
     };
 
-
     public FragmentList() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+
+        AlumioSingleton.getInstance(getContext()).getAlunosBD();
 
         View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
 

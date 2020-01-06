@@ -28,9 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_weight="0"
-        android:background="@drawable/search">
-
-    </SearchView>
+        android:background="@drawable/search"/>
 
     <fragment
         android:layout_width="match_parent"

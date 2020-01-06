@@ -106,6 +106,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         System.out.println("-->  DB: Table created Teste");
     }
 
+
+        //Creating table Turma
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TESTE);

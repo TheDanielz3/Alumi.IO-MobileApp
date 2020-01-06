@@ -30,7 +30,7 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="0"
         android:textAlignment="center"
-        android:text="TurmaXXX"
+        android:text="@string/turma_sample_name"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20dp" />
 
@@ -41,11 +41,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:background="@drawable/oval_btn"
-        android:text="Ver Alunos"
+        android:text="@string/ver_alunos"
         android:onClick="alunoclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
-    />
 
     <Button
         android:id="@+id/button9"
@@ -58,7 +57,6 @@
         android:onClick="recadosclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
-    />
 
     <Button
         android:id="@+id/button10"
@@ -71,5 +69,5 @@
         android:onClick="tpcclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
-    />
+
 </LinearLayout>
