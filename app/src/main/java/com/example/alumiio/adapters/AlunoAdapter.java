@@ -1,10 +1,16 @@
 package com.example.alumiio.adapters;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public class AlunoAdapter extends BaseAdapter {
+
+    private Context context;
+    private LayoutInflater inflater;
+
     @Override
     public int getCount() {
         return 0;
