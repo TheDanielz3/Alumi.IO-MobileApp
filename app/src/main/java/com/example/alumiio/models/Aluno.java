@@ -5,6 +5,9 @@ public class Aluno {
     public long id;
     public String nome;
     public int numeroDeEstudante;
+    public int id_turma;
+
+
 
     public Aluno(long id, String nome, int numeroDeEstudante) {
         this.id = id;

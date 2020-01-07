@@ -40,7 +40,7 @@ public class AlumioSingleton {
 
     //Acesso API
     private static RequestQueue volleyQueue = null;
-    private String myURLAPIALUNOS = "http://amsi.dei.estg.ipleiria.pt/api/livros"; //Por aqui o IP da maquina
+    private String myURLAPIALUNOS = "http://192.168.1.1/advanced/web"; //Por aqui o IP da maquina
     private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
@@ -80,6 +80,8 @@ public class AlumioSingleton {
 
     public void setTesteListener(TesteListener testeListener) { this.testeListener = testeListener; }
 
+    public void setTurmaListener(TurmaListener turmaListener) {this.turmaListener = turmaListener; }
+
     public ArrayList<Aluno> getAlunosBD()
     {
         alunos = alumioBDHelper.getAllAlunosDB();
@@ -102,6 +104,13 @@ public class AlumioSingleton {
         testes = alumioBDHelper.getAllTestesDB();
         return testes;
     }
+
+    public ArrayList<Turma> getTurmasBD()
+    {
+        turmas = alumioBDHelper.getAllTurmasDB();
+        return turmas;
+    }
+
 
     public Aluno getAlunoById(long id)
     {
@@ -152,11 +161,22 @@ public class AlumioSingleton {
         }
         return null;
     }
+    public Turma getTurmaById(long id)
+    {
+        for (Turma turma:turmas)
+        {
+            if (turma.getId() == id)
+            {
+                return  turma;
+            }
+        }
+        return null;
+    }
 
-    public void addAlunoDB (Aluno aluno)
+    public long addAlunoDB (Aluno aluno)
     {
         // add to DB
-        alumioBDHelper.addAlunoToDB(aluno);
+         return alumioBDHelper.addAlunoToDB(aluno);
     }
 
     public void addRecadoDB (Recado recado)
@@ -172,6 +192,10 @@ public class AlumioSingleton {
     public void addTpcDB (Tpc tpc)
     {
         alumioBDHelper.addTpcToDB(tpc);
+    }
+    public void addTurmaDB(Turma turma)
+    {
+        alumioBDHelper.addTurmaToDB(turma);
     }
 
     public void removeAlunoDB(long alunoId)

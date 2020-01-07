@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.alumiio.R;
+import com.example.alumiio.models.AlumioBDHelper;
+import com.example.alumiio.models.AlumioSingleton;
+import com.example.alumiio.models.Aluno;
 
 import java.util.Currency;
 
@@ -20,9 +23,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
     }
 
     public void onButtonClick(View v) {
+        Aluno aluno = new Aluno(1,"ola",1231212);
+        long num = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+
+        System.out.println("--> Add Aluno" + num);
+
         System.out.println("--> Click on Button on Login Activity called Login");
         Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(myIntent);

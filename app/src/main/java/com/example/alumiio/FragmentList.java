@@ -16,9 +16,13 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
+import com.example.alumiio.adapters.AlunoAdapter;
+import com.example.alumiio.adapters.TurmaAdapter;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.models.AlumioSingleton;
+import com.example.alumiio.models.Aluno;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -33,7 +37,11 @@ public class FragmentList extends Fragment {
 
     ArrayAdapter<String> adapter;
 
+    private ArrayList<Aluno> alunos;
+
     private AlunoListener alunoListener;
+
+    private AlunoAdapter alunoAdapter;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -51,13 +59,19 @@ public class FragmentList extends Fragment {
 
         AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
 
-        AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+
+
+        //books = SingletonBookManager.getInstance(getApplicationContext()).getBooksDB();
+        //bookListAdapter = new BookListAdapter(this, books);
+        //listViewBookList.setAdapter(bookListAdapter);
 
         View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
 
             listView = (ListView) view.findViewById(R.id.idListview);
 
 
+        //Clicar na ListView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,6 +82,7 @@ public class FragmentList extends Fragment {
                                         });
 
         adapter = new ArrayAdapter<String> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_1,data);
+
         listView.setAdapter(adapter);
         return view;
     }

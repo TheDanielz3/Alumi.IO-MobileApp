@@ -14,12 +14,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     private static final String TABLE_TPC = "tpc";
     private static final String TABLE_RECADO = "recado";
     private static final String TABLE_TESTE = "teste";
+    private static final String TABLE_TURMA = "turma";
     private static final int DB_VERSION = 1;
 
     private static final String ALUNO_ID = "id";
     private static final String TPC_ID = "id";
     private static final String RECADO_ID = "id";
     private static final String TESTE_ID = "id";
+    private static final String TURMA_ID = "id";
 
     private static final String ALUNO_NOME = "nome";
     private static final String ALUNO_NUM = "numero_estudante";
@@ -35,9 +37,13 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private static final String TESTE_DATA = "data";
     private static final String TESTE_DISCIPLINA = "disciplina";
-    private static final String TESTE_HORA = "hora";
+    private static final String TESTE_HORA = "hora";//TODO:Juntar Data e Hora
     private static final String TESTE_TURMA = "turma";
     private static final String TESTE_DESCRICAO = "descricao";
+
+
+    private static final String TURMA_ANO = "ano";
+    private static final String TURMA_LETRA = "letra";
 
     private final SQLiteDatabase database;
 
@@ -51,13 +57,12 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //Creating table Aluno
-        String createAlunoTable = "CREATE TABLE " + TABLE_ALUNO + "" +
-                "("
-                + ALUNO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+        String createAlunoTable = "CREATE TABLE " + TABLE_ALUNO +
+                " (" + ALUNO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ALUNO_NUM + " INTEGER NOT NULL, "
-                + ALUNO_NOME + " TEXT NOT NULL, "
-                + ALUNO_ANO + " INTEGER NOT NULL, "
-                + ALUNO_TURMA + " TEXT NOT NULL"
+                + ALUNO_NOME + " TEXT NOT NULL "
+               // + ALUNO_ANO + " INTEGER NOT NULL, "
+              //  + ALUNO_TURMA + " TEXT NOT NULL"
                 + ");";
 
         db.execSQL(createAlunoTable);
@@ -66,8 +71,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
         //Creating table TPC: turma,disciplina
-        String createTpcTable = "CREATE TABLE " + TABLE_TPC + "" +
-                "("
+        String createTpcTable = "CREATE TABLE " + TABLE_TPC + " ("
                 + TPC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TPC_DESCRICAO + "TEXT NOT NULL"
                 + ");";
@@ -78,8 +82,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
         //Creating table Recado: falta a FK para o aluno
-        String createRecadoTable = "CREATE TABLE " + TABLE_RECADO + "" +
-                "("
+        String createRecadoTable = "CREATE TABLE " + TABLE_RECADO + " ("
                 + RECADO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + RECADO_DESCRICAO + " TEXT NOT NULL, "
                 + RECADO_DATA_CREATED + " TEXT NOT NULL, "
@@ -93,21 +96,30 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
         //Creating table Teste
-        String createTesteTable ="CREATE TABLE " + TABLE_TESTE + "" +
-                "("
-                + TESTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TESTE_DESCRICAO + "TEXT NOT NULL, "
-                + TESTE_DISCIPLINA + "INTEGER NOT NUll, "
+        String createTesteTable ="CREATE TABLE " + TABLE_TESTE +
+                " (" + TESTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + TESTE_DESCRICAO + " TEXT NOT NULL, "
+                + TESTE_DISCIPLINA + " INTEGER NOT NUll, "
                 + TESTE_DATA + " INTEGER NOT NULL, "
                 + TESTE_HORA + " INTEGER NOT NULL, "
                 + TESTE_TURMA + " INTEGER NOT NULL "
                 + ");";
         db.execSQL(createTesteTable);
         System.out.println("-->  DB: Table created Teste");
-    }
 
 
         //Creating table Turma
+        String createTurmaTable ="CREATE TABLE " + TABLE_TURMA + " ("
+                + TURMA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + TURMA_ANO + " INTEGER NOT NULL, "
+                + TABLE_TURMA + " TEXT NOT NULL "
+                + ");";
+        db.execSQL(createTurmaTable);
+        System.out.println("-->  DB: Table created Turma");
+    }
+
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -115,7 +127,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECADO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TPC);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ALUNO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TURMA);
         this.onCreate(db);
+        System.out.println("-->  DB: On Update Tables");
     }
 
 
@@ -135,11 +149,12 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         this.database.insert(TABLE_TPC, null,values);
     }
 
-    public void addAlunoToDB(Aluno aluno)
+    public long addAlunoToDB(Aluno aluno)
     {
         ContentValues values = getValuesAluno(aluno);
 
-        this.database.insert(TABLE_ALUNO,null,values);
+        return this.database.insert(TABLE_ALUNO,null,values);
+
     }
 
     public void addTesteToDB(Teste teste)
@@ -147,6 +162,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ContentValues values = getValuesTeste(teste);
 
         this.database.insert(TABLE_TESTE,null,values);
+    }
+    public void addTurmaToDB(Turma turma) {
+        ContentValues values = getValuesTurma(turma);
+
+        this.database.insert(TABLE_TURMA,null,values);
     }
 
 
@@ -225,6 +245,28 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         return alunos;
     }
 
+    public ArrayList<Turma> getAllTurmasDB() {
+
+        ArrayList<Turma> turmas = new ArrayList<>();
+
+        Cursor cursor = this.database.query(TABLE_TURMA,new String[]{TURMA_ID,TURMA_ANO,TURMA_LETRA},
+                null,null,null,null,null,null);
+        if (cursor.moveToFirst()){
+            do {
+                Turma auxTurma = new Turma(cursor.getLong(0),cursor.getInt(1),cursor.getString(2)) ;
+                 turmas.add(auxTurma);
+            }   while (cursor.moveToNext());
+
+        }
+
+
+        return turmas;
+    }
+
+
+
+
+
     // updates
 
     public boolean updateRecadoDB(Recado recado)
@@ -270,6 +312,21 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
         // return true;
     }
+
+    public boolean updateTurmaDB(Turma turma)
+    {
+        ContentValues values = getValuesTurma(turma);
+
+        return
+                (this.database.update(TABLE_TURMA,values,"id=?", new String[]{"" + turma.getId()}))
+                >0;
+
+    }
+
+
+
+
+    //DELETE
 
     // delete Recados
     public boolean deleteRecadoDB(long recadoId)
@@ -349,5 +406,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         values.put(TESTE_TURMA,teste.getTurma());
         return values;
     }
+
+    private ContentValues getValuesTurma(Turma turma) {
+        ContentValues values = new ContentValues();
+        values.put(TURMA_ID,turma.getId());
+        values.put(TURMA_ANO,turma.getAno());
+        values.put(TURMA_LETRA,turma.getLetra());
+        return values;
+    }
+
 
 }
