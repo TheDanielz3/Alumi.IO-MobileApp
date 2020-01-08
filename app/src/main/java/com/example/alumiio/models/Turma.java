@@ -7,7 +7,7 @@ public class Turma {
     public String letra;
 
     public Turma(long id, int ano, String letra) {
-        this.id = id;
+        this.id = 0;
         this.ano = ano;
         this.letra = letra;
     }

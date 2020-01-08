@@ -6,7 +6,7 @@ public class Tpc {
     public String Descricao;
 
     public Tpc(long id, String descricao) {
-        this.id = id;
+        this.id = 0;
         Descricao = descricao;
     }
 

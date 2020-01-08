@@ -153,7 +153,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     {
         ContentValues values = getValuesAluno(aluno);
 
-        return this.database.insert(TABLE_ALUNO,null,values);
+
+       return this.database.insert(TABLE_ALUNO,null,values);
+
 
     }
 

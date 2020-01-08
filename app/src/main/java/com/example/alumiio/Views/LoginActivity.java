@@ -29,10 +29,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void onButtonClick(View v) {
-        Aluno aluno = new Aluno(1,"ola",1231212);
-        long num = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+        Aluno aluno = new Aluno(0,"ola",1231212);
 
-        System.out.println("--> Add Aluno" + num);
+        long id = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+
+        aluno.setId(id);
+        System.out.println("--> Add Aluno" + id);
 
         System.out.println("--> Click on Button on Login Activity called Login");
         Intent myIntent = new Intent(getBaseContext(), MainActivity.class);

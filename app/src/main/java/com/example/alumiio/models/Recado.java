@@ -7,7 +7,7 @@ public class Recado {
     public int assinado;
 
     public Recado(long id, String descricao, int assinado) {
-        this.id = id;
+        this.id = 0;
         this.descricao = descricao;
         this.assinado = assinado;
     }

@@ -10,7 +10,7 @@ public int Turma;
 public int Disciplina;
 
     public Teste(long id, int data, int hora, String descricao, int turma, int disciplina) {
-        this.id = id;
+        this.id = 0;
         Data = data;
         Hora = hora;
         Descricao = descricao;

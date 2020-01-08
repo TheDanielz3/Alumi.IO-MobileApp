@@ -35,7 +35,7 @@ public class FragmentList extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<Aluno> adapter;
 
     private ArrayList<Aluno> alunos;
 
@@ -81,7 +81,7 @@ public class FragmentList extends Fragment {
                                             }
                                         });
 
-        adapter = new ArrayAdapter<String> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_1,data);
+        adapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_1,alunos);
 
         listView.setAdapter(adapter);
         return view;

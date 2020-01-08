@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.alumiio.R;
 import com.example.alumiio.models.Aluno;
 
 import java.util.ArrayList;
@@ -19,17 +20,17 @@ public class AlunoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return alunos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return alunos.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
