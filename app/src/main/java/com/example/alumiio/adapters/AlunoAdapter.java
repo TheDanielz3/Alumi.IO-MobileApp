@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.Aluno;
@@ -17,6 +19,7 @@ public class AlunoAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
     private ArrayList<Aluno> alunos;
+
 
     @Override
     public int getCount() {
@@ -35,6 +38,45 @@ public class AlunoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        if(inflater == null)
+        {
+            inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+
+        }
+        ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
+
+
+        if (viewHolderList == null){
+            viewHolderList = new ViewHolderList(convertView);
+            convertView.setTag(viewHolderList);
+        }
+        viewHolderList.update(alunos.get(position));
+        return convertView;
+    }
+
+    public void refresh(ArrayList<Aluno> alunos)
+    {
+        this.alunos = alunos;
+        notifyDataSetChanged();
+    }
+    private class ViewHolderList {// acesso aos componentes visuais
+
+        private TextView textView;
+
+
+        public ViewHolderList(View convertView) {
+
+
+        }
+        public void update(Aluno aluno)
+        {
+
+        }
+
+
     }
 }
