@@ -73,14 +73,6 @@ public class AlumioSingleton {
 
     private void generatefakedata()
     {
-     addAlunoDB(new Aluno(1,"daniel",123312));
-     addAlunoDB(new Aluno(2,"daniel",123312));
-     addAlunoDB(new Aluno(3,"daniel",123312));
-     addAlunoDB(new Aluno(4,"daniel",123312));
-     addAlunoDB(new Aluno(5,"daniel",123312));
-     addAlunoDB(new Aluno(6,"daniel",123312));
-     addAlunoDB(new Aluno(7,"daniel",123312));
-
     }
 
     public void setAlunoListener(AlunoListener alunoListener) { this.alunoListener = alunoListener; }

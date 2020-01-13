@@ -20,6 +20,10 @@ public class AlunoAdapter extends BaseAdapter {
 
     private ArrayList<Aluno> alunos;
 
+    public AlunoAdapter(Context context, ArrayList<Aluno> alunos) {
+        this.context = context;
+        this.alunos = alunos;
+    }
 
     @Override
     public int getCount() {
@@ -69,12 +73,12 @@ public class AlunoAdapter extends BaseAdapter {
 
 
         public ViewHolderList(View convertView) {
-
+            textView  = convertView.findViewById(R.id.textViewOnLV);
 
         }
         public void update(Aluno aluno)
         {
-
+            textView.setText(aluno.getNome());
         }
 
 

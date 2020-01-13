@@ -240,7 +240,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Aluno auxAluno = new Aluno(cursor.getLong(0),cursor.getString(1),cursor.getInt(2));
-                //auxTeste.setID(cursor.getLong(0)); //we receive id
+               // auxAluno.setId(cursor.getLong(0)); //we receive id
                 alunos.add(auxAluno);
             } while (cursor.moveToNext());
         }

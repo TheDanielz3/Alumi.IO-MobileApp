@@ -10,7 +10,7 @@ public class Aluno {
 
 
     public Aluno(long id, String nome, int numeroDeEstudante) {
-        this.id = 0;
+        this.id = id;
         this.nome = nome;
         this.numeroDeEstudante = numeroDeEstudante;
     }
