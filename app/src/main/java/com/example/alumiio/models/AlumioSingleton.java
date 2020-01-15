@@ -116,19 +116,19 @@ public class AlumioSingleton {
         return turmas;
     }
 
-
-    public Aluno getAlunoById(long id)
-    {
-        for(Aluno aluno: alunos)
-        {
-            if (aluno.getId() == id)
-            {
-                return aluno;
-            }
-        }
-
-        return null;
-    }
+//
+//    public Aluno getAlunoById(long id)
+//    {
+//        for(Aluno aluno: alunos)
+//        {
+//            if (aluno.getId() == id)
+//            {
+//                return aluno;
+//            }
+//        }
+//
+//        return null;
+//    }
 
     public Recado getRecadoById(long id)
     {
@@ -203,14 +203,14 @@ public class AlumioSingleton {
         alumioBDHelper.addTurmaToDB(turma);
     }
 
-    public void removeAlunoDB(long alunoId)
-    {
-        if(alumioBDHelper.deleteAlunoDB(alunoId))
-        {
-            Aluno aluno = getAlunoById(alunoId);
-            alunos.remove(aluno);
-        }
-    }
+//    public void removeAlunoDB(long alunoId)
+//    {
+//        if(alumioBDHelper.deleteAlunoDB(alunoId))
+//        {
+//            Aluno aluno = getAlunoById(alunoId);
+//            alunos.remove(aluno);
+//        }
+//    }
 
     public void removeRecadoDB(long recadoId)
     {
@@ -229,18 +229,18 @@ public class AlumioSingleton {
         }
     }
 
-    public void editAlunoDB(Aluno aluno){
-        if (!alunos.contains(aluno))
-        {
-            return;
-        }
-
-        Aluno auxAluno = getAlunoById(aluno.getId());
-        auxAluno.setNome(aluno.getNome());
-        auxAluno.setNumeroDeEstudante(aluno.getNumeroDeEstudante());
-
-        alumioBDHelper.updateAlunoDB(auxAluno);
-    }
+//    public void editAlunoDB(Aluno aluno){
+//        if (!alunos.contains(aluno))
+//        {
+//            return;
+//        }
+//
+//        Aluno auxAluno = getAlunoById(aluno.getId());
+//        auxAluno.setNome(aluno.getNome());
+//        auxAluno.setNumeroDeEstudante(aluno.getNumeroDeEstudante());
+//
+//        alumioBDHelper.updateAlunoDB(auxAluno);
+//    }
 
     public void editRecadoDB(Recado recado){
         if (!recados.contains(recado))

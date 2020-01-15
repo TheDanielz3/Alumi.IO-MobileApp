@@ -239,7 +239,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 null,null,null,null,null,null);
         if (cursor.moveToFirst()) {
             do {
-                Aluno auxAluno = new Aluno(cursor.getLong(0),cursor.getString(1),cursor.getInt(2));
+                Aluno auxAluno = new Aluno(cursor.getString(1),cursor.getInt(2));
                // auxAluno.setId(cursor.getLong(0)); //we receive id
                 alunos.add(auxAluno);
             } while (cursor.moveToNext());
@@ -264,6 +264,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
         return turmas;
     }
+
 
 
 
@@ -304,16 +305,16 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         // return true;
     }
 
-    public boolean updateAlunoDB(Aluno aluno)
-    {
-        ContentValues values = getValuesAluno(aluno);
-
-        return
-                (this.database.update(TABLE_ALUNO,values, "id=?", new String[]{ "" + aluno.getId()}))
-                        >0 ;
-
-        // return true;
-    }
+//    public boolean updateAlunoDB(Aluno aluno)
+//    {
+//        ContentValues values = getValuesAluno(aluno);
+//
+//        return
+//                (this.database.update(TABLE_ALUNO,values, "id=?", new String[]{ "" + aluno.getId()}))
+//                        >0 ;
+//
+//        // return true;
+//    }
 
     public boolean updateTurmaDB(Turma turma)
     {
@@ -324,6 +325,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 >0;
 
     }
+
+
+
 
 
 
@@ -391,7 +395,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private ContentValues getValuesAluno(Aluno aluno){
         ContentValues values = new ContentValues();
-        values.put(ALUNO_ID, aluno.getId());
+      //  values.put(ALUNO_ID, aluno.getId());
         values.put(ALUNO_NOME,aluno.getNome());
         values.put(ALUNO_NUM,aluno.getNumeroDeEstudante());
         return values;

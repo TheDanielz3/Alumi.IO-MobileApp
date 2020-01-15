@@ -81,7 +81,7 @@ public class FragmentList extends Fragment {
                                             }
                                         });
 
-        adapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_1,alunos);
+        adapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
 
         listView.setAdapter(new AlunoAdapter(getContext(),alunos));
         return view;

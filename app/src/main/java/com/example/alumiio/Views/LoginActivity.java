@@ -29,23 +29,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void onButtonClick(View v) {
-        Aluno aluno = new Aluno(0,"ola",1231212);
-
-        long id = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
-
-        aluno.setId(id);
-        System.out.println("--> Add Aluno: " + id);
+        Aluno aluno = new Aluno("ola",1231212);
+         AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+//        aluno.setId(id);
+//        System.out.println("--> Add Aluno: " + id);
 
 
-
-        aluno = new Aluno(0,"daniel1",1233214);
-
-        long id1 = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
-
-        aluno.setId(id1);
-        System.out.println("--> Add Aluno: " + id1);
-
-        System.out.println("--> Click on Button on Login Activity called Login");
+//        aluno = new Aluno(2,"daniel1",1233214);
+//        long id1 = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+//        aluno.setId(id1);
+//        System.out.println("--> Add Aluno: " + id1);
+//
+//        System.out.println("--> Click on Button on Login Activity called Login");
         Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(myIntent);
     }
