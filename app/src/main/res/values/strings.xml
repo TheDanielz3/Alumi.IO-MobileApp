@@ -11,4 +11,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="turma_sample_name">Turma_Sample_Name</string>
     <string name="ver_alunos">Ver Alunos</string>
+    <string name="create_recado">Create Recado</string>
+    <string name="submeter">Submeter</string>
+    <string name="descricao">Descricao</string>
+    <string name="topico">Topico</string>
 </resources>

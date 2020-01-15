@@ -1,6 +1,8 @@
 package com.example.alumiio.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.alumiio.R;
 
@@ -41,5 +43,12 @@ public class RecadosActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         System.out.println("--> Activity Recados on Resume");
+    }
+
+    public void criarRecadoClick(View view) {
+        System.out.println("--> Clicar no butao de Criar");
+
+        Intent myIntent = new Intent(getBaseContext(), CreateRecadoActivity.class);
+        startActivity(myIntent);
     }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,7 +16,6 @@ import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
 import com.example.alumiio.adapters.AlunoAdapter;
-import com.example.alumiio.adapters.TurmaAdapter;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
@@ -29,26 +27,24 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentList extends Fragment {
+public class FragmentListAlunos extends Fragment {
 
     ListView listView;
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> adapter;
+    ArrayAdapter<Aluno> alunoArrayAdapter;
 
     private ArrayList<Aluno> alunos;
 
     private AlunoListener alunoListener;
-
-    private AlunoAdapter alunoAdapter;
 
     String[] data = {"sou algo",
                      "Sou nada",
                     "Sou uma algo",
     };
 
-    public FragmentList() {
+    public FragmentListAlunos() {
         // Required empty public constructor
     }
 
@@ -61,14 +57,9 @@ public class FragmentList extends Fragment {
 
         alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
 
-
-        //books = SingletonBookManager.getInstance(getApplicationContext()).getBooksDB();
-        //bookListAdapter = new BookListAdapter(this, books);
-        //listViewBookList.setAdapter(bookListAdapter);
-
         View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
 
-            listView = (ListView) view.findViewById(R.id.idListview);
+        listView = (ListView) view.findViewById(R.id.idListview);
 
 
         //Clicar na ListView
@@ -79,9 +70,9 @@ public class FragmentList extends Fragment {
                                                 Intent intent = new Intent(getContext(), TurmaActivity.class);
                                                 startActivity(intent);
                                             }
-                                        });
+        });
 
-        adapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
 
         listView.setAdapter(new AlunoAdapter(getContext(),alunos));
         return view;

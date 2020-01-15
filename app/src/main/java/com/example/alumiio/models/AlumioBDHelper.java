@@ -81,6 +81,8 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
 
+
+        //TODO: Ver as coisas que faltam
         //Creating table Recado: falta a FK para o aluno
         String createRecadoTable = "CREATE TABLE " + TABLE_RECADO + " ("
                 + RECADO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -264,10 +266,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
         return turmas;
     }
-
-
-
-
 
 
     // updates
