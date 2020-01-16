@@ -13,9 +13,11 @@ import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
 import com.example.alumiio.adapters.AlunoAdapter;
+import com.example.alumiio.adapters.RecadoAdapter;
 import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.listeners.RecadoListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Recado;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +34,13 @@ public class FragmentListRecados extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> alunoArrayAdapter;
+    ArrayAdapter<Recado> recadoArrayAdapter;
 
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Recado> recados;
 
     private AlunoListener alunoListener;
+
+    private RecadoListener recadoListener;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -52,13 +56,13 @@ public class FragmentListRecados extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+        AlumioSingleton.getInstance(getContext()).setRecadoListener(recadoListener);
 
-        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        recados = AlumioSingleton.getInstance(getContext()).getRecadosBD();
 
         View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
 
-        listView = (ListView) view.findViewById(R.id.idListview);
+        listView = view.findViewById(R.id.idListview);
 
 
         //Clicar na ListView
@@ -71,9 +75,11 @@ public class FragmentListRecados extends Fragment {
                                             }
         });
 
-        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        recadoArrayAdapter = new ArrayAdapter<Recado> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, recados);
 
-        listView.setAdapter(new AlunoAdapter(getContext(),alunos));
+
+        //TODO: ATERAR O ID DO FRAGMENTO
+        listView.setAdapter(new RecadoAdapter(getContext(), recados));
         return view;
     }
 

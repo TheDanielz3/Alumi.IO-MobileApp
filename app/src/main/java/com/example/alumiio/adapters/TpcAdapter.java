@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.alumiio.R;
 import com.example.alumiio.models.Tpc;
 
 import java.util.ArrayList;
@@ -35,6 +36,42 @@ public class TpcAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        if(inflater == null)
+        {
+            inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+
+        }
+        ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
+
+
+        if (viewHolderList == null){
+            viewHolderList = new ViewHolderList(convertView);
+            convertView.setTag(viewHolderList);
+        }
+        viewHolderList.update(tpcs.get(position));
+        return convertView;
+
+
+    }
+    public void refresh()
+    {
+
+    }
+    private class ViewHolderList{ //Dar acesso aos Componetes Visuais
+
+
+
+        public ViewHolderList(View convertView)
+        {
+
+        }
+        public void update(Tpc tpc)
+        {
+
+        }
     }
 }

@@ -69,6 +69,7 @@ public class DisciplinaTurmaAdapter extends BaseAdapter {
     }
     private class ViewHolderList {// acesso aos componentes visuais
 
+        //Ver isto
         private TextView textView;
 
 

@@ -13,9 +13,9 @@ import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
 import com.example.alumiio.adapters.AlunoAdapter;
-import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.listeners.TurmaListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Turma;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +32,11 @@ public class FragmentListTurma extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> alunoArrayAdapter;
+    ArrayAdapter<Turma> turmaArrayAdapter;
 
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Turma> turmas;
 
-    private AlunoListener alunoListener;
+    private TurmaListener turmaListener;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -52,9 +52,9 @@ public class FragmentListTurma extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+        AlumioSingleton.getInstance(getContext()).setTurmaListener(turmaListener);
 
-        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        turmas = AlumioSingleton.getInstance(getContext()).getTurmasBD();
 
         View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
 
@@ -71,9 +71,11 @@ public class FragmentListTurma extends Fragment {
                                             }
         });
 
-        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        turmaArrayAdapter = new ArrayAdapter<Turma> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, turmas);
 
-        listView.setAdapter(new AlunoAdapter(getContext(),alunos));
+
+        //TODO: ATERAR O ID DO FRAGMENTO
+        listView.setAdapter(new AlunoAdapter(getContext(), turmas));
         return view;
     }
 
