@@ -5,8 +5,8 @@ public class Tpc {
     public long id;
     public String Descricao;
 
-    public Tpc(long id, String descricao) {
-        this.id = id;
+    public Tpc(String descricao) {
+        //this.id = 0;
         Descricao = descricao;
     }
 

@@ -60,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/oval_btn"
-            android:text="@string/login"
             android:onClick="onButtonClick"
+            android:text="@string/login"
             android:textColor="@android:color/background_light"
             android:textSize="10sp" />
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Views.AlunosActivity">
+    tools:context=".Views.CreateTpcActivity">
 
     <TextView
         android:id="@+id/textView5"
@@ -22,17 +23,26 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
-    <SearchView
+    <EditText
+        android:id="@+id/editTextDescricaoTPC"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="@string/descricao_do_tpc"
+        android:inputType="textLongMessage" />
+
+    <Spinner
+        android:id="@+id/spinnerDisciplinaTurma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="0"
-        android:background="@drawable/search"/>
+        android:layout_weight="0" />
 
-    <fragment
-        android:id="@+id/fragmentList"
+    <Button
+        android:id="@+id/buttonSubmeterTPC"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:onClick="SubmeterTPConCLick"
+        android:text="@string/submeter" />
 </LinearLayout>

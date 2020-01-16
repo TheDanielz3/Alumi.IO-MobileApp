@@ -23,82 +23,18 @@
         android:textStyle="bold" />
 
     <SearchView
-        android:layout_width="338dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0"
         android:layout_marginBottom="10dp"
         android:background="@drawable/search" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:onClick="onclick"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
+    <fragment
+        android:id="@+id/fragmentList"
+        android:name="com.example.alumiio.FragmentListAlunos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onclick"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0"
-        android:background="#F1F9F8"
-        android:text="TurmaXXXX"
-        android:textColor="@android:color/holo_red_light" />
 </LinearLayout>

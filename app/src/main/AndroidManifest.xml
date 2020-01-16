@@ -3,6 +3,7 @@
     package="com.example.alumiio">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.TpcActivity"></activity>
+        <activity android:name=".Views.CreateTpcActivity"></activity>
+        <activity android:name=".Views.CreateRecadoActivity" />
+        <activity android:name=".Views.TpcActivity" />
         <activity android:name=".Views.RecadosActivity" />
         <activity android:name=".Views.AlunosActivity" />
         <activity android:name=".Views.TurmaActivity" />

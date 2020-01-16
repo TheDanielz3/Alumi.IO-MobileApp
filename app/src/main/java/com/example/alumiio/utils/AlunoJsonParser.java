@@ -25,9 +25,6 @@ public class AlunoJsonParser {
                 String nome = aluno.getString("nome");
 
 
-
-
-
             }
         } catch (JSONException e) {
             e.printStackTrace();

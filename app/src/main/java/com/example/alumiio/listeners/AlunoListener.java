@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public interface AlunoListener {
 
-    void onRefreshTpcList(ArrayList<Aluno> alunoList);
+    void onRefreshAlunoList(ArrayList<Aluno> alunoList);
 
-    void onUpdateTpclist(Aluno aluno, int operation);
+    void onUpdateAlunolist(Aluno aluno, int operation);
 
 }

@@ -5,9 +5,9 @@ public class Professor {
     public String Nome;
     public int id;
 
-    public Professor(String nome, int id) {
+    public Professor(int id ,String nome) {
         Nome = nome;
-        this.id = id;
+        this.id = 0;
     }
 
     public String getNome() {

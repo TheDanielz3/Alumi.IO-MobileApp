@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
-import com.example.alumiio.models.Tpc;
+import com.example.alumiio.models.Turma;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,22 +13,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class TpcJsonParser {
-    public static ArrayList<Tpc> parserJsonTpcs(JSONArray response, Context context){
+public class TurmaJsonParser {
+    public static ArrayList<Turma> parserJsonTpcs(JSONArray response, Context context){
 
-        ArrayList<Tpc> tempTpc = new ArrayList<>();
+        ArrayList<Turma> tempTurma = new ArrayList<>();
 
         try {
             for (int i= 0; i< response.length();i++) {
-                JSONObject tpc = (JSONObject) response.get(i);
-                int tpcID = tpc.getInt("id");
-                //TODO: Ver se descricao é com letra pequena
-                String tpcDESCRICAO = tpc.optString("descricao");
+                JSONObject turma = (JSONObject) response.get(i);
+                int turmaID = turma.getInt("id");
+                int turmaANO = turma.getInt("ano");
+                String turmaLETRA = turma.getString("letra");
 
 
-                Tpc auxTpc = new Tpc(tpcDESCRICAO);
+                Turma auxTurma = new Turma(turmaID,turmaANO,turmaLETRA);
 
-                tempTpc.add(auxTpc);
+                tempTurma.add(auxTurma);
             }
 
         }catch (JSONException e)
@@ -37,26 +37,27 @@ public class TpcJsonParser {
             Toast.makeText(context, "Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
 
         }
-        return tempTpc;
+        return tempTurma;
     }
-    public static Tpc parserJsonTpc(String response,Context context)
+    public static Turma parserJsonTpc(String response,Context context)
     {
-        Tpc tempTPC = null;
+        Turma tempTurma = null;
 
         try {
-            JSONObject tpc = new JSONObject(response);
+            JSONObject turma = new JSONObject(response);
 
-            int tpcID = tpc.getInt("id");
-            //TODO: Ver se descricao é com letra pequena
-            String tpcDESCRICAO = tpc.optString("descricao");
+            int turmaID = turma.getInt("id");
+            int turmaANO = turma.getInt("ano");
+            String turmaLETRA = turma.getString("letra");
 
-            Tpc auxTpc = new Tpc(tpcDESCRICAO);
+
+            tempTurma = new Turma(turmaID,turmaANO,turmaLETRA);
 
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
         }
-        return tempTPC;
+        return tempTurma;
     }
 
     public static boolean isConnectionInternet(Context context){

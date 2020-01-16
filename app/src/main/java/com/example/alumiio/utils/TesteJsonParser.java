@@ -48,7 +48,7 @@ public class TesteJsonParser {
 
     public static  Teste parserJsonTpc(String response,Context context)
     {
-        Teste tempTeste = null;
+        Teste auxTeste = null;
 
         try {
             JSONObject teste = new JSONObject(response);
@@ -60,7 +60,7 @@ public class TesteJsonParser {
             int testeTURMA = teste.getInt("turma");
             int testeDISCIPLINA = teste.getInt("disciplina");
 
-            Teste auxTeste = new Teste(testeID,testeDATA,testeHORA,testeDESCRICAO,testeTURMA,testeDISCIPLINA);
+             auxTeste = new Teste(testeID,testeDATA,testeHORA,testeDESCRICAO,testeTURMA,testeDISCIPLINA);
 
 
         }
@@ -68,7 +68,7 @@ public class TesteJsonParser {
             e.printStackTrace();
             Toast.makeText(context, "Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
         }
-        return tempTeste;
+        return auxTeste;
     }
 
     public static boolean isConnectionInternet(Context context){
