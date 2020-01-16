@@ -33,8 +33,10 @@ public class CreateRecadoActivity extends AppCompatActivity {
     }
 
     public void SubmeterRecadoClick(View view) {
-
+    System.out.println("--> Butao em criar recado");
     Recado recado = new Recado(0,editTextTopico.getText().toString(), editTextDescricao.getText().toString(),0,123,321,951,159);
 
+
+    System.out.println("--> Recado: " + recado.getDescricao());
     }
 }
