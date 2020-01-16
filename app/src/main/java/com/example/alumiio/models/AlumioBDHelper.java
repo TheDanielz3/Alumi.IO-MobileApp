@@ -35,7 +35,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     private static final String RECADO_DATA_ASSINADO = "assinado_em";
     private static final String RECADO_ASSINADO = "assinado";
 
-    private static final String TESTE_DATA = "data";
+    private static final String TESTE_DATAHORA = "data";
     private static final String TESTE_DISCIPLINA = "disciplina";
     private static final String TESTE_HORA = "hora";//TODO:Juntar Data e Hora
     private static final String TESTE_TURMA = "turma";
@@ -87,8 +87,8 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         String createRecadoTable = "CREATE TABLE " + TABLE_RECADO + " ("
                 + RECADO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + RECADO_DESCRICAO + " TEXT NOT NULL, "
-                + RECADO_DATA_CREATED + " TEXT NOT NULL, "
-                + RECADO_DATA_ASSINADO + " TEXT, "
+                + RECADO_DATA_CREATED + " INTEGER NOT NULL, "
+                + RECADO_DATA_ASSINADO + " INTEGER, "
                 + RECADO_ASSINADO + " INTEGER NOT NULL "
                 + ");";
 
@@ -102,8 +102,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 " (" + TESTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TESTE_DESCRICAO + " TEXT NOT NULL, "
                 + TESTE_DISCIPLINA + " INTEGER NOT NUll, "
-                + TESTE_DATA + " INTEGER NOT NULL, "
-                + TESTE_HORA + " INTEGER NOT NULL, "
+                + TESTE_DATAHORA + " INTEGER NOT NULL, "
                 + TESTE_TURMA + " INTEGER NOT NULL "
                 + ");";
         db.execSQL(createTesteTable);
@@ -217,7 +216,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ArrayList<Teste> testes = new ArrayList<>();
 
         //busca por querry ha base de dados
-        Cursor cursor = this.database.query(TABLE_TESTE, new String[]{TESTE_ID,TESTE_DESCRICAO,TESTE_HORA,TESTE_DATA,TESTE_TURMA,TESTE_DISCIPLINA},
+        Cursor cursor = this.database.query(TABLE_TESTE, new String[]{TESTE_ID,TESTE_DESCRICAO,TESTE_HORA, TESTE_DATAHORA,TESTE_TURMA,TESTE_DISCIPLINA},
                 null,null,null,null,null,null);
         if (cursor.moveToFirst()) {
             do {
@@ -403,7 +402,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     private ContentValues getValuesTeste(Teste teste){
         ContentValues values = new ContentValues();
         values.put(TESTE_ID , teste.getId());
-        values.put(TESTE_DATA,teste.getData());
+        values.put(TESTE_DATAHORA,teste.getData());
         values.put(TESTE_HORA,teste.getHora());
         values.put(TESTE_DESCRICAO, teste.getDescricao());
         values.put(TESTE_DISCIPLINA,teste.getDisciplina());
