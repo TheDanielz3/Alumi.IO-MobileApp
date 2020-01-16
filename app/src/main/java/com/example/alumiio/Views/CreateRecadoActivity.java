@@ -28,8 +28,6 @@ public class CreateRecadoActivity extends AppCompatActivity {
         spinnerAluno = findViewById(R.id.spinnerAlunos);
         spinnerTurma = findViewById(R.id.spinnerDisciplinaTurma);
 
-
-
     }
 
     public void SubmeterRecadoClick(View view) {

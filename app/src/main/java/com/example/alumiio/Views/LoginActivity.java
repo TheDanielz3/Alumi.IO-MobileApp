@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         EditText editName  = (EditText) findViewById(R.id.editText);
         EditText editPassword  = (EditText) findViewById(R.id.editText2);
 
@@ -39,10 +38,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             startActivity(myIntent);
         }
 
+
     }
 
     public void onButtonClick(View v) {
-
+        Aluno aluno = new Aluno(0,123,321,"ola",1231212);
+         AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
         EditText editName  = (EditText) findViewById(R.id.editText);
         String name = editName.getText().toString();
 
@@ -55,9 +56,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         editor.putString("password", password);
         editor.apply();
 
-
-        Aluno aluno = new Aluno(0, 123, 321, "ola", 1231212);
-        AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
 //        aluno.setId(id);
 //        System.out.println("--> Add Aluno: " + id);
 
