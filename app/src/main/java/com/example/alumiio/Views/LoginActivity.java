@@ -2,9 +2,12 @@ package com.example.alumiio.Views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioBDHelper;
@@ -23,7 +26,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        EditText editName  = (EditText) findViewById(R.id.editText);
+        EditText editPassword  = (EditText) findViewById(R.id.editText2);
 
+        SharedPreferences prefs = getSharedPreferences("userLogedIn", MODE_PRIVATE);
+        editName.setText(prefs.getString("username", ""));
+        editPassword.setText(prefs.getString("password", ""));
+
+        if ((!TextUtils.isEmpty(editName.getText())) && (!TextUtils.isEmpty(editPassword.getText()))){
+            Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(myIntent);
+        }
 
 
     }
@@ -31,6 +44,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     public void onButtonClick(View v) {
         Aluno aluno = new Aluno(0,123,321,"ola",1231212);
          AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+        EditText editName  = (EditText) findViewById(R.id.editText);
+        String name = editName.getText().toString();
+
+        EditText editPassword  = (EditText) findViewById(R.id.editText2);
+        String password = editName.getText().toString();
+
+
+        SharedPreferences.Editor editor = getSharedPreferences("userLogedIn", MODE_PRIVATE).edit();
+        editor.putString("username", name);
+        editor.putString("password", password);
+        editor.apply();
+
 //        aluno.setId(id);
 //        System.out.println("--> Add Aluno: " + id);
 
