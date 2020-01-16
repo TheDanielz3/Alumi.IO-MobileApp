@@ -22,11 +22,11 @@ public class TurmaJsonParser {
             for (int i= 0; i< response.length();i++) {
                 JSONObject turma = (JSONObject) response.get(i);
                 int turmaID = turma.getInt("id");
-                int turmaANO = turma.getInt("ano");
-                String turmaLETRA = turma.getString("letra");
+                int turmaAno = turma.getInt("ano");
+                String turmaLetra = turma.getString("letra");
 
 
-                Turma auxTurma = new Turma(turmaID,turmaANO,turmaLETRA);
+                Turma auxTurma = new Turma(turmaID,turmaAno,turmaLetra);
 
                 tempTurma.add(auxTurma);
             }
@@ -47,11 +47,11 @@ public class TurmaJsonParser {
             JSONObject turma = new JSONObject(response);
 
             int turmaID = turma.getInt("id");
-            int turmaANO = turma.getInt("ano");
-            String turmaLETRA = turma.getString("letra");
+            int turmaAno = turma.getInt("ano");
+            String turmaLetra = turma.getString("letra");
 
 
-            tempTurma = new Turma(turmaID,turmaANO,turmaLETRA);
+            tempTurma = new Turma(turmaID,turmaAno,turmaLetra);
 
         } catch (JSONException e) {
             e.printStackTrace();

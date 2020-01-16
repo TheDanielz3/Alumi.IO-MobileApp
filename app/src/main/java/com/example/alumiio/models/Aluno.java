@@ -2,33 +2,42 @@ package com.example.alumiio.models;
 
 public class Aluno {
 
-  //  public long id;
-    public String nome;
-    public int numeroDeEstudante;
-    public int id_turma;
+    private int id;
+    private int id_encarregado_de_educacao;
+    private int id_turma;
+    private String nome;
+    private int numeroDeEstudante;
 
-
-
-    public Aluno( String nome, int numeroDeEstudante) {
-     //   this.id = id;
+    public Aluno(int id, int id_encarregado_de_educacao, int id_turma, String nome, int numeroDeEstudante) {
+        this.id = id;
+        this.id_encarregado_de_educacao = id_encarregado_de_educacao;
+        this.id_turma = id_turma;
         this.nome = nome;
         this.numeroDeEstudante = numeroDeEstudante;
     }
 
- //   public long getId() {
-     //   return id;
-   // }
-
-   // public void setId(long id) {
-     //   this.id = id;
-   // }
-
-    public int getNumeroDeEstudante() {
-        return numeroDeEstudante;
+    public int getId() {
+        return id;
     }
 
-    public void setNumeroDeEstudante(int numeroDeEstudante) {
-        this.numeroDeEstudante = numeroDeEstudante;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId_encarregado_de_educacao() {
+        return id_encarregado_de_educacao;
+    }
+
+    public void setId_encarregado_de_educacao(int id_encarregado_de_educacao) {
+        this.id_encarregado_de_educacao = id_encarregado_de_educacao;
+    }
+
+    public int getId_turma() {
+        return id_turma;
+    }
+
+    public void setId_turma(int id_turma) {
+        this.id_turma = id_turma;
     }
 
     public String getNome() {
@@ -37,5 +46,13 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getNumeroDeEstudante() {
+        return numeroDeEstudante;
+    }
+
+    public void setNumeroDeEstudante(int numeroDeEstudante) {
+        this.numeroDeEstudante = numeroDeEstudante;
     }
 }

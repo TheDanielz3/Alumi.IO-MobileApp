@@ -2,67 +2,57 @@ package com.example.alumiio.models;
 
 public class Teste {
 
-public long id;
-public int Data;
-public int Hora;
-public String Descricao;
-public int Turma;
-public int Disciplina;
+    private int id;
+    private String descricao;
+    private int data_hora;
+    private int id_disciplina_turma;
+    private int id_professor;
 
-    public Teste(long id, int data, int hora, String descricao, int turma, int disciplina) {
-        this.id = 0;
-        Data = data;
-        Hora = hora;
-        Descricao = descricao;
-        Turma = turma;
-        Disciplina = disciplina;
+    public Teste(int id, String descricao, int data_hora, int id_disciplina_turma, int id_professor) {
+        this.id = id;
+        this.descricao = descricao;
+        this.data_hora = data_hora;
+        this.id_disciplina_turma = id_disciplina_turma;
+        this.id_professor = id_professor;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getHora() {
-        return Hora;
-    }
-
-    public void setHora(int hora) {
-        Hora = hora;
-    }
-
-    public int getData() {
-        return Data;
-    }
-
-    public void setData(int data) {
-        Data = data;
-    }
-
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
+        this.descricao = descricao;
     }
 
-    public int getTurma() {
-        return Turma;
+    public int getData_hora() {
+        return data_hora;
     }
 
-    public void setTurma(int turma) {
-        Turma = turma;
+    public void setData_hora(int data_hora) {
+        this.data_hora = data_hora;
     }
 
-    public int getDisciplina() {
-        return Disciplina;
+    public int getId_disciplina_turma() {
+        return id_disciplina_turma;
     }
 
-    public void setDisciplina(int disciplina) {
-        Disciplina = disciplina;
+    public void setId_disciplina_turma(int id_disciplina_turma) {
+        this.id_disciplina_turma = id_disciplina_turma;
+    }
+
+    public int getId_professor() {
+        return id_professor;
+    }
+
+    public void setId_professor(int id_professor) {
+        this.id_professor = id_professor;
     }
 }

@@ -59,7 +59,7 @@ public class CreateTpcActivity extends AppCompatActivity {
     //Todo:Fazer Proteções
     public void SubmeterTPConCLick(View view) {
 
-        Tpc tpc = new Tpc(textViewDescricao.getText().toString());
+        Tpc tpc = new Tpc(0,textViewDescricao.getText().toString(),123,321);
         AlumioSingleton.getInstance(getApplicationContext()).addTpcDB(tpc);
         //finish();
     }

@@ -2,21 +2,21 @@ package com.example.alumiio.models;
 
 public class Turma {
 
-    public long id;
-    public int ano;
-    public String letra;
+    private int id;
+    private int ano;
+    private String letra;
 
-    public Turma(long id, int ano, String letra) {
-        this.id = 0;
+    public Turma(int id, int ano, String letra) {
+        this.id = id;
         this.ano = ano;
         this.letra = letra;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

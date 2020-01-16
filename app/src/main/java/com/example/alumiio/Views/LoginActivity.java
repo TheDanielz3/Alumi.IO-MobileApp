@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void onButtonClick(View v) {
-        Aluno aluno = new Aluno("ola",1231212);
+        Aluno aluno = new Aluno(0,123,321,"ola",1231212);
          AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
 //        aluno.setId(id);
 //        System.out.println("--> Add Aluno: " + id);

@@ -22,9 +22,10 @@ public class AlunoJsonParser {
             for (int i = 0; i < response.length(); i++){
                 JSONObject aluno = (JSONObject) response.get(i);
                 int alunoID = aluno.getInt("id");
-                String nome = aluno.getString("nome");
-
-
+                int alunoID_EncarregadoDeEducacao = aluno.getInt("id_encarregado_de_educacao");
+                int alunoID_Turma = aluno.getInt("id_turma");
+                String alunoNome = aluno.getString("nome");
+                int alunoNumeroEstudante = aluno.getInt("numero_estudante");
             }
         } catch (JSONException e) {
             e.printStackTrace();

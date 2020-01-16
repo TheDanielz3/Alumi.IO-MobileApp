@@ -2,19 +2,11 @@ package com.example.alumiio.models;
 
 public class Professor {
 
-    public String Nome;
-    public int id;
+    private int id;
+    private String Nome;
 
-    public Professor(int id ,String nome) {
-        Nome = nome;
-        this.id = 0;
-    }
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public void setNome(String nome) {
+    public Professor(int id, String nome) {
+        this.id = id;
         Nome = nome;
     }
 
@@ -25,4 +17,13 @@ public class Professor {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
 }

@@ -22,14 +22,17 @@ public class RecadoJsonParser {
         try {
             for (int i = 0; i < response.length(); i++)
             {
-
-
                 JSONObject recado = (JSONObject) response.get(i);
                 int recadoID = recado.getInt("id");
-                String recadoDESCRICAO = recado.getString("descricao");
-                int recadoASSINADO = recado.getInt("assinado");
+                String recadoTopico = recado.getString("topico");
+                String recadoDescricao = recado.getString("descricao");
+                int recadoAssinado = recado.getInt("assinado");
+                int recadoDataHora = recado.getInt("data_hora");
+                int recadoID_DisciplinaTurma = recado.getInt("id_disciplina_turma");
+                int recadoID_Aluno = recado.getInt("id_aluno");
+                int recadoID_Professor = recado.getInt("id_professor");
 
-                Recado auxRecado = new Recado(recadoID,recadoDESCRICAO,recadoASSINADO);
+                Recado auxRecado = new Recado(recadoID,recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
 
                 tempRecadoList.add(auxRecado);
             }
@@ -50,10 +53,15 @@ public class RecadoJsonParser {
         try {
             JSONObject recado = new JSONObject(response);
             int recadoID = recado.getInt("id");
-            String recadoDESCRICAO = recado.getString("descricao");
-            int recadoASSINADO = recado.getInt("assinado");
+            String recadoTopico = recado.getString("topico");
+            String recadoDescricao = recado.getString("descricao");
+            int recadoAssinado = recado.getInt("assinado");
+            int recadoDataHora = recado.getInt("data_hora");
+            int recadoID_DisciplinaTurma = recado.getInt("id_disciplina_turma");
+            int recadoID_Aluno = recado.getInt("id_aluno");
+            int recadoID_Professor = recado.getInt("id_professor");
 
-            Recado auxRecado = new Recado(recadoID,recadoDESCRICAO,recadoASSINADO);
+            Recado auxRecado = new Recado(recadoID,recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
 
         } catch (JSONException e) {
             e.printStackTrace();

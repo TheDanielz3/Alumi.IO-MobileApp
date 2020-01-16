@@ -22,11 +22,13 @@ public class TpcJsonParser {
             for (int i= 0; i< response.length();i++) {
                 JSONObject tpc = (JSONObject) response.get(i);
                 int tpcID = tpc.getInt("id");
-                //TODO: Ver se descricao é com letra pequena
-                String tpcDESCRICAO = tpc.optString("descricao");
+                String tpcDescricao = tpc.optString("descricao");
+                int tpcID_DisciplinaTurma = tpc.getInt("id_disciplina_turma");
+                int tpcID_Professor = tpc.getInt("id_professor");
 
 
-                Tpc auxTpc = new Tpc(tpcDESCRICAO);
+
+                Tpc auxTpc = new Tpc(tpcID,tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
 
                 tempTpc.add(auxTpc);
             }
@@ -47,10 +49,11 @@ public class TpcJsonParser {
             JSONObject tpc = new JSONObject(response);
 
             int tpcID = tpc.getInt("id");
-            //TODO: Ver se descricao é com letra pequena
-            String tpcDESCRICAO = tpc.optString("descricao");
+            String tpcDescricao = tpc.optString("descricao");
+            int tpcID_DisciplinaTurma = tpc.getInt("id_disciplina_turma");
+            int tpcID_Professor = tpc.getInt("id_professor");
 
-            Tpc auxTpc = new Tpc(tpcDESCRICAO);
+            Tpc auxTpc = new Tpc(tpcID,tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
 
         } catch (JSONException e) {
             e.printStackTrace();

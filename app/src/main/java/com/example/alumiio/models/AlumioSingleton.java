@@ -1,6 +1,7 @@
 package com.example.alumiio.models;
 
 import android.content.Context;
+import android.view.Display;
 
 
 import com.android.volley.Request;
@@ -9,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.listeners.DisciplinaTurmaListener;
 import com.example.alumiio.listeners.ProfessorListener;
 import com.example.alumiio.listeners.RecadoListener;
 import com.example.alumiio.listeners.TesteListener;
@@ -36,6 +38,7 @@ public class AlumioSingleton {
     private ArrayList<Tpc> tpcs;
     private ArrayList<Teste> testes;
     private ArrayList<Turma> turmas;
+    private ArrayList<Disciplina_Turma> disciplinaTurmas;
 
 
     //Acesso API
@@ -49,6 +52,7 @@ public class AlumioSingleton {
     private TpcListener tpcListener;
     private TesteListener testeListener;
     private TurmaListener turmaListener;
+    private DisciplinaTurmaListener disciplinaTurmaListener;
 
     private AlumioSingleton(Context context) {
         alunos = new ArrayList<>();
@@ -87,6 +91,8 @@ public class AlumioSingleton {
 
     public void setTurmaListener(TurmaListener turmaListener) {this.turmaListener = turmaListener; }
 
+    public void setDisciplinaTurmaListener(DisciplinaTurmaListener disciplinaTurmaListener) {this.disciplinaTurmaListener = disciplinaTurmaListener; }
+
     public ArrayList<Aluno> getAlunosBD()
     {
         alunos = alumioBDHelper.getAllAlunosDB();
@@ -114,6 +120,12 @@ public class AlumioSingleton {
     {
         turmas = alumioBDHelper.getAllTurmasDB();
         return turmas;
+    }
+
+    public ArrayList<Disciplina_Turma> getDisciplinaTurmasBD()
+    {
+        disciplinaTurmas = alumioBDHelper.getAllDisciplinaTurmasDB();
+        return disciplinaTurmas;
     }
 
 //
@@ -178,6 +190,18 @@ public class AlumioSingleton {
         return null;
     }
 
+//    public Disciplina_Turma getDisciplinaTurmaById(long id)
+//    {
+//        for (Disciplina_Turma disciplinaTurma:disciplinaTurmas)
+//        {
+//            if (disciplinaTurma.getId() == id)
+//            {
+//                return  disciplinaTurma;
+//            }
+//        }
+//        return null;
+//    }
+
     public long addAlunoDB (Aluno aluno)
     {
         // add to DB
@@ -201,6 +225,10 @@ public class AlumioSingleton {
     public void addTurmaDB(Turma turma)
     {
         alumioBDHelper.addTurmaToDB(turma);
+    }
+    public void addDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
+    {
+        alumioBDHelper.addDisciplinaTurmaToDB(disciplinaTurma);
     }
 
 //    public void removeAlunoDB(long alunoId)
@@ -229,6 +257,15 @@ public class AlumioSingleton {
         }
     }
 
+//    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
+//    {
+//        if(alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId))
+//        {
+//            Disciplina_Turma disciplinaTurma = getDisciplinaTurmaById(disciplinaTurmaId);
+//            disciplinaTurmas.remove(disciplinaTurma);
+//        }
+//    }
+
 //    public void editAlunoDB(Aluno aluno){
 //        if (!alunos.contains(aluno))
 //        {
@@ -254,6 +291,20 @@ public class AlumioSingleton {
 
         alumioBDHelper.updateRecadoDB(auxRecado);
     }
+
+//    public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma){
+//        if (!disciplinaTurmas.contains(disciplinaTurma))
+//        {
+//            return;
+//        }
+//
+//        Disciplina_Turma auxDisciplinaTurma = getDisciplinaTurmaById(disciplinaTurma.getId());
+//        auxDisciplinaTurma.setId_disciplina(disciplinaTurma.getId_disciplina());
+//        auxDisciplinaTurma.setId_turma(disciplinaTurma.getId_turma());
+//        auxDisciplinaTurma.setId_professor(disciplinaTurma.getId_professor());
+//
+//        alumioBDHelper.updateDisciplinaTurmaDB(auxDisciplinaTurma);
+//    }
 
     //TODO: Acabar a parte da API
 

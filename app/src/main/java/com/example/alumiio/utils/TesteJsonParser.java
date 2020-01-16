@@ -24,13 +24,12 @@ public class TesteJsonParser {
             {
                 JSONObject teste = (JSONObject) response.get(i);
                 int testeID = teste.getInt("id");
-                int testeHORA = teste.getInt("hora");
-                int testeDATA = teste.getInt("data");
-                String testeDESCRICAO = teste.getString("descricao");
-                int testeTURMA = teste.getInt("turma");
-                int testeDISCIPLINA = teste.getInt("disciplina");
+                String testeDescricao = teste.getString("descricao");
+                int testeDataHora = teste.getInt("data_hora");
+                int testeID_DisciplinaTurma = teste.getInt("id_disciplina_turma");
+                int testeID_Professor = teste.getInt("id_professor");
 
-                Teste auxTeste = new Teste(testeID,testeDATA,testeHORA,testeDESCRICAO,testeTURMA,testeDISCIPLINA);
+                Teste auxTeste = new Teste(testeID,testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
 
                 tempTeste.add(auxTeste);
             }
@@ -54,13 +53,12 @@ public class TesteJsonParser {
             JSONObject teste = new JSONObject(response);
 
             int testeID = teste.getInt("id");
-            int testeHORA = teste.getInt("hora");
-            int testeDATA = teste.getInt("data");
-            String testeDESCRICAO = teste.getString("descricao");
-            int testeTURMA = teste.getInt("turma");
-            int testeDISCIPLINA = teste.getInt("disciplina");
+            String testeDescricao = teste.getString("descricao");
+            int testeDataHora = teste.getInt("data_hora");
+            int testeID_DisciplinaTurma = teste.getInt("id_disciplina_turma");
+            int testeID_Professor = teste.getInt("id_professor");
 
-             auxTeste = new Teste(testeID,testeDATA,testeHORA,testeDESCRICAO,testeTURMA,testeDISCIPLINA);
+             auxTeste = new Teste(testeID,testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
 
 
         }
