@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         EditText editPassword  = (EditText) findViewById(R.id.editText2);
         String password = editName.getText().toString();
 
+
         SharedPreferences.Editor editor = getSharedPreferences("userLogedIn", MODE_PRIVATE).edit();
         editor.putString("username", name);
         editor.putString("password", password);
