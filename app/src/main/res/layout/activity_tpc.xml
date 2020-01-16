@@ -21,17 +21,18 @@
         android:textColorHighlight="@android:color/background_light"
       android:textSize="40sp"
       android:textStyle="bold" />
-    <SearchView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="0"
-        android:background="@drawable/search"/>
+        android:text="Create TPC"
+        android:onClick="criarTPCClick"
+        android:layout_weight="0"/>
 
 
     <fragment
         android:id="@+id/fragmentList"
+        android:name="com.example.alumiio.FragmentListAlunos"
         android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

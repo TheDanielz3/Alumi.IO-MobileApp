@@ -26,7 +26,7 @@ public class TpcJsonParser {
                 String tpcDESCRICAO = tpc.optString("descricao");
 
 
-                Tpc auxTpc = new Tpc(tpcID,tpcDESCRICAO);
+                Tpc auxTpc = new Tpc(tpcDESCRICAO);
 
                 tempTpc.add(auxTpc);
             }
@@ -50,7 +50,7 @@ public class TpcJsonParser {
             //TODO: Ver se descricao é com letra pequena
             String tpcDESCRICAO = tpc.optString("descricao");
 
-            Tpc auxTpc = new Tpc(tpcID,tpcDESCRICAO);
+            Tpc auxTpc = new Tpc(tpcDESCRICAO);
 
         } catch (JSONException e) {
             e.printStackTrace();

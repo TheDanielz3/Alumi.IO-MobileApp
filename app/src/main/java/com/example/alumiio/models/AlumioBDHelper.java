@@ -73,7 +73,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         //Creating table TPC: turma,disciplina
         String createTpcTable = "CREATE TABLE " + TABLE_TPC + " ("
                 + TPC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TPC_DESCRICAO + "TEXT NOT NULL"
+                + TPC_DESCRICAO + " TEXT NOT NULL"
                 + ");";
 
         db.execSQL(createTpcTable);
@@ -183,7 +183,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) { //saber se há algum
             do {
-                Tpc auxTpc = new Tpc(cursor.getLong(0),cursor.getString(1));
+                Tpc auxTpc = new Tpc(cursor.getString(0));
                 //auxTpc.setID(cursor.getLong(0)); // we receive id
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
@@ -326,9 +326,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
 
 
-
-
-
     //DELETE
 
     // delete Recados
@@ -377,7 +374,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
-        values.put(RECADO_ID, recado.getId());
+       // values.put(RECADO_ID, recado.getId());
         values.put(RECADO_DESCRICAO, recado.getDescricao());
         values.put(RECADO_ASSINADO, recado.getAssinado());
         return values;
@@ -385,7 +382,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private ContentValues getValuesTpc(Tpc tpc){
         ContentValues values = new ContentValues();
-        values.put(TPC_ID, tpc.getId());
+       // values.put(TPC_ID, tpc.getId());
         values.put(TPC_DESCRICAO, tpc.getDescricao());
         return  values;
     }
@@ -401,7 +398,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     //TODO: VERIFICAR ISTO
     private ContentValues getValuesTeste(Teste teste){
         ContentValues values = new ContentValues();
-        values.put(TESTE_ID , teste.getId());
+      //  values.put(TESTE_ID , teste.getId());
         values.put(TESTE_DATAHORA,teste.getData());
         values.put(TESTE_HORA,teste.getHora());
         values.put(TESTE_DESCRICAO, teste.getDescricao());
@@ -412,7 +409,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     private ContentValues getValuesTurma(Turma turma) {
         ContentValues values = new ContentValues();
-        values.put(TURMA_ID,turma.getId());
+       // values.put(TURMA_ID,turma.getId());
         values.put(TURMA_ANO,turma.getAno());
         values.put(TURMA_LETRA,turma.getLetra());
         return values;

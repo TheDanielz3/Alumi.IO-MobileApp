@@ -1,6 +1,8 @@
 package com.example.alumiio.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.alumiio.R;
 
@@ -41,5 +43,12 @@ public class TpcActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         System.out.println("--> Activity tpc on Resume");
+    }
+
+    public void criarTPCClick(View view) {
+
+        Intent intent = new Intent(getApplicationContext(),CreateTpcActivity.class);
+
+        startActivity(intent);
     }
 }
