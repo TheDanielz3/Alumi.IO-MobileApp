@@ -43,9 +43,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void onButtonClick(View v) {
-        Aluno aluno = new Aluno(0,123,321,"ola",1231212);
-         AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
-
+        Aluno aluno = new Aluno(1,12,"nome",232323);
+        long id_a_meter  = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+        aluno.setId(id_a_meter);
 
         Turma turma = new Turma(2,"L");
         AlumioSingleton.getInstance(getApplicationContext()).addTurmaDB(turma);

@@ -2,7 +2,7 @@ package com.example.alumiio.models;
 
 public class Recado {
 
-    private int id;
+    private long id;
     private String topico;
     private String descricao;
     private int assinado;
@@ -11,8 +11,7 @@ public class Recado {
     private int id_aluno;
     private int id_professor;
 
-    public Recado(int id, String topico, String descricao, int assinado, int data_hora, int id_disciplina_turma, int id_aluno, int id_professor) {
-        this.id = id;
+    public Recado(String topico, String descricao, int assinado, int data_hora, int id_disciplina_turma, int id_aluno, int id_professor) {
         this.topico = topico;
         this.descricao = descricao;
         this.assinado = assinado;
@@ -22,11 +21,11 @@ public class Recado {
         this.id_professor = id_professor;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

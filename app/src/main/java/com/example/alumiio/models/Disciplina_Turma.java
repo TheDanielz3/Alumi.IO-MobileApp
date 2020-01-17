@@ -2,25 +2,25 @@ package com.example.alumiio.models;
 
 public class Disciplina_Turma {
 
-    //private int id;
+    private long id;
     private int id_disciplina;
     private int id_turma;
     private int id_professor;
 
-    public Disciplina_Turma(/*int id,*/ int id_disciplina, int id_turma, int id_professor) {
+    public Disciplina_Turma(int id, int id_disciplina, int id_turma, int id_professor) {
         //this.id = id;
         this.id_disciplina = id_disciplina;
         this.id_turma = id_turma;
         this.id_professor = id_professor;
     }
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int getId_disciplina() {
         return id_disciplina;

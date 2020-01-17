@@ -48,7 +48,7 @@ public class TesteAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list_alunos,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_testes,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();

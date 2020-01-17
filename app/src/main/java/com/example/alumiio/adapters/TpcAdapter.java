@@ -46,7 +46,7 @@ public class TpcAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list_alunos,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_tpcs,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -71,7 +71,7 @@ public class TpcAdapter extends BaseAdapter {
 
         public ViewHolderList(View convertView)
         {
-            textView = convertView.findViewById(R.id.textViewOnLV_tpc_descricao);
+            textView = convertView.findViewById(R.id.textViewOnLV_tpc_topico);
         }
         public void update(Tpc tpc)
         {

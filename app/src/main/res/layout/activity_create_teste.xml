@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Views.RecadosActivity">
-
+    tools:context=".Views.CreateTesteActivity">
     <TextView
-        android:id="@+id/textView6"
-
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_gravity="center_horizontal"
@@ -22,17 +21,23 @@
         android:textColorHighlight="@android:color/background_light"
         android:textSize="40sp"
         android:textStyle="bold" />
+    <EditText
+        android:id="@+id/editTextDescricaoTeste"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="@string/descricao_teste"
+        android:inputType="textLongMessage" />
+
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/create_recado"
-        android:onClick="criarRecadoClick"
-        android:layout_weight="0"/>
-    <fragment
-        android:id="@+id/fragmentListRecado"
-        android:name="com.example.alumiio.FragmentListRecados"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_weight="0"
+        android:onClick="criarTesteonClick"
+        android:text="@string/submeter" />
+
+
 </LinearLayout>

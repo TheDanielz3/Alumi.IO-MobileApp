@@ -41,6 +41,12 @@ public class TurmaActivity extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    public void testClick(View view) {
+        Intent myIntent = new Intent(getApplicationContext(),TestesActivity.class);
+        startActivity(myIntent);
+    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -70,4 +76,6 @@ public class TurmaActivity extends AppCompatActivity {
         super.onResume();
         System.out.println("--> Activity Turma on Resume");
     }
+
+
 }

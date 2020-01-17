@@ -40,7 +40,8 @@ public class AlunoAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
         if(inflater == null)
         {
             inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -75,7 +76,6 @@ public class AlunoAdapter extends BaseAdapter {
 
         public ViewHolderList(View convertView) {
             textView  = convertView.findViewById(R.id.textViewOnLV_aluno_nome);
-
         }
         public void update(Aluno aluno)
         {

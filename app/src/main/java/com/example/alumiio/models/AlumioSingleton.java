@@ -205,19 +205,19 @@ public class AlumioSingleton {
          return alumioBDHelper.addAlunoToDB(aluno);
     }
 
-    public void addRecadoDB (Recado recado)
+    public long addRecadoDB (Recado recado)
     {
-        alumioBDHelper.addRecadoToDB(recado);
+       return alumioBDHelper.addRecadoToDB(recado);
     }
 
-    public void addTesteDB (Teste teste)
+    public long addTesteDB (Teste teste)
     {
-        alumioBDHelper.addTesteToDB(teste);
+       return alumioBDHelper.addTesteToDB(teste);
     }
 
-    public void addTpcDB (Tpc tpc)
+    public long addTpcDB (Tpc tpc)
     {
-        alumioBDHelper.addTpcToDB(tpc);
+      return   alumioBDHelper.addTpcToDB(tpc);
     }
     public void addTurmaDB(Turma turma)
     {

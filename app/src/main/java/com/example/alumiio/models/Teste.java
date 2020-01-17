@@ -2,25 +2,25 @@ package com.example.alumiio.models;
 
 public class Teste {
 
-    private int id;
+    private long id;
     private String descricao;
     private int data_hora;
     private int id_disciplina_turma;
     private int id_professor;
 
-    public Teste(int id, String descricao, int data_hora, int id_disciplina_turma, int id_professor) {
-        this.id = id;
+    public Teste(/*int id,*/ String descricao, int data_hora, int id_disciplina_turma, int id_professor) {
+      //  this.id = id;
         this.descricao = descricao;
         this.data_hora = data_hora;
         this.id_disciplina_turma = id_disciplina_turma;
         this.id_professor = id_professor;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
