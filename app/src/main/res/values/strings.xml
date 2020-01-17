@@ -16,4 +16,7 @@
     <string name="descricao">Descricao</string>
     <string name="topico">Topico</string>
     <string name="descricao_do_tpc">Descricao do tpc</string>
+    <string name="create_a_teste">Create a Teste</string>
+    <string name="ver_testes">Ver Testes</string>
+    <string name="descricao_teste">Descricao Teste</string>
 </resources>

@@ -28,7 +28,7 @@ public class TpcJsonParser {
 
 
 
-                Tpc auxTpc = new Tpc(tpcID,tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
+                Tpc auxTpc = new Tpc(tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
 
                 tempTpc.add(auxTpc);
             }
@@ -53,7 +53,7 @@ public class TpcJsonParser {
             int tpcID_DisciplinaTurma = tpc.getInt("id_disciplina_turma");
             int tpcID_Professor = tpc.getInt("id_professor");
 
-            Tpc auxTpc = new Tpc(tpcID,tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
+            Tpc auxTpc = new Tpc(tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
 
         } catch (JSONException e) {
             e.printStackTrace();

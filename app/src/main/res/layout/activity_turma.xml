@@ -23,7 +23,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewLabelTurma"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -69,5 +69,17 @@
         android:onClick="tpcclick"
         android:textColor="@android:color/background_light"
         android:textSize="10sp" />
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_btn"
+        android:text="@string/ver_testes"
+        android:onClick="testClick"
+        android:textColor="@android:color/background_light"
+        android:textSize="10sp" />
+
 
 </LinearLayout>

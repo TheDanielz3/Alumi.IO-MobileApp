@@ -2,19 +2,18 @@ package com.example.alumiio.models;
 
 public class Professor {
 
-    private int id;
+    private long id;
     private String Nome;
 
-    public Professor(int id, String nome) {
-        this.id = id;
+    public Professor(String nome) {
         Nome = nome;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

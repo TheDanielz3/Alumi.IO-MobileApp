@@ -12,10 +12,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
-import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.adapters.TesteAdapter;
+import com.example.alumiio.listeners.TesteListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Teste;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +32,11 @@ public class FragmentListTestes extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> alunoArrayAdapter;
+    ArrayAdapter<Teste> testeArrayAdapter;
 
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Teste> testes;
 
-    private AlunoListener alunoListener;
+    private TesteListener testeListener;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -52,11 +52,11 @@ public class FragmentListTestes extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+        AlumioSingleton.getInstance(getContext()).setTesteListener(testeListener);
 
-        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        testes = AlumioSingleton.getInstance(getContext()).getTestesBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_testes, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -71,9 +71,11 @@ public class FragmentListTestes extends Fragment {
                                             }
         });
 
-        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        testeArrayAdapter = new ArrayAdapter<Teste> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, testes);
 
-        listView.setAdapter(new AlunoAdapter(getContext(),alunos));
+
+        //TODO: ATERAR O ID DO FRAGMENTO
+        listView.setAdapter(new TesteAdapter(getContext(), testes));
         return view;
     }
 
