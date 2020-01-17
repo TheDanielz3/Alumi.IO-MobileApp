@@ -12,10 +12,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
-import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.adapters.TpcAdapter;
+import com.example.alumiio.listeners.TpcListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Tpc;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +32,11 @@ public class FragmentListTpc extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> alunoArrayAdapter;
+    ArrayAdapter<Tpc> tpcArrayAdapter;
 
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Tpc> tpcs;
 
-    private AlunoListener alunoListener;
+    private TpcListener tpcListener;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -52,11 +52,11 @@ public class FragmentListTpc extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+        AlumioSingleton.getInstance(getContext()).setTpcListener(tpcListener);
 
-        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        tpcs = AlumioSingleton.getInstance(getContext()).getTpcsBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_tpcs, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -71,9 +71,10 @@ public class FragmentListTpc extends Fragment {
                                             }
         });
 
-        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        tpcArrayAdapter = new ArrayAdapter<Tpc> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, tpcs);
 
-        listView.setAdapter(new AlunoAdapter(getContext(),alunos));
+        //TODO: ATERAR O ID DO FRAGMENTO
+        listView.setAdapter(new TpcAdapter(getContext(), tpcs));
         return view;
     }
 

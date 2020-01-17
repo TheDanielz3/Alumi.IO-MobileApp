@@ -26,9 +26,9 @@ public class TurmaJsonParser {
                 String turmaLetra = turma.getString("letra");
 
 
-                Turma auxTurma = new Turma(turmaID,turmaAno,turmaLetra);
+             //   Turma auxTurma = new Turma(turmaID,turmaAno,turmaLetra);
 
-                tempTurma.add(auxTurma);
+             //   tempTurma.add(auxTurma);
             }
 
         }catch (JSONException e)
@@ -51,7 +51,7 @@ public class TurmaJsonParser {
             String turmaLetra = turma.getString("letra");
 
 
-            tempTurma = new Turma(turmaID,turmaAno,turmaLetra);
+        //    tempTurma = new Turma(turmaID,turmaAno,turmaLetra);
 
         } catch (JSONException e) {
             e.printStackTrace();

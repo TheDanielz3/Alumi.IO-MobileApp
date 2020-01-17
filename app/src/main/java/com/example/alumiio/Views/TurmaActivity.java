@@ -3,6 +3,7 @@ package com.example.alumiio.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 
@@ -10,10 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TurmaActivity extends AppCompatActivity {
 
+   String letra;
+    TextView turmaTextview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turma);
+
+        letra = getIntent().getStringExtra("VALOR_LETRA");
+        System.out.println("-->:" + letra);
+
+        turmaTextview = findViewById(R.id.textViewLabelTurma);
+
+        turmaTextview.setText(letra);
     }
 
     public void alunoclick(View v) {
@@ -30,6 +40,12 @@ public class TurmaActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getBaseContext(), TpcActivity.class);
         startActivity(myIntent);
     }
+
+    public void testClick(View view) {
+        Intent myIntent = new Intent(getApplicationContext(),TestesActivity.class);
+        startActivity(myIntent);
+    }
+
 
     @Override
     protected void onStart() {
@@ -60,4 +76,6 @@ public class TurmaActivity extends AppCompatActivity {
         super.onResume();
         System.out.println("--> Activity Turma on Resume");
     }
+
+
 }

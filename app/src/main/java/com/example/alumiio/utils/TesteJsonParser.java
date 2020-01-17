@@ -29,7 +29,7 @@ public class TesteJsonParser {
                 int testeID_DisciplinaTurma = teste.getInt("id_disciplina_turma");
                 int testeID_Professor = teste.getInt("id_professor");
 
-                Teste auxTeste = new Teste(testeID,testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
+                Teste auxTeste = new Teste(/*testeID,*/testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
 
                 tempTeste.add(auxTeste);
             }
@@ -58,7 +58,7 @@ public class TesteJsonParser {
             int testeID_DisciplinaTurma = teste.getInt("id_disciplina_turma");
             int testeID_Professor = teste.getInt("id_professor");
 
-             auxTeste = new Teste(testeID,testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
+             auxTeste = new Teste(/*testeID,*/testeDescricao,testeDataHora,testeID_DisciplinaTurma,testeID_Professor);
 
 
         }

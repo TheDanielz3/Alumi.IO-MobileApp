@@ -2,23 +2,23 @@ package com.example.alumiio.models;
 
 public class Tpc {
 
-    private int id;
+    private long id;
     private String descricao;
     private int id_disciplina_turma;
     private int id_professor;
 
-    public Tpc(int id, String descricao, int id_disciplina_turma, int id_professor) {
-        this.id = id;
+    public Tpc( String descricao, int id_disciplina_turma, int id_professor)
+    {
         this.descricao = descricao;
         this.id_disciplina_turma = id_disciplina_turma;
         this.id_professor = id_professor;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

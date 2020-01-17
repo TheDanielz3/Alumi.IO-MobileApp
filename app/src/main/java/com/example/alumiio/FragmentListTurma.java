@@ -12,10 +12,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
-import com.example.alumiio.listeners.AlunoListener;
+import com.example.alumiio.adapters.TurmaAdapter;
+import com.example.alumiio.listeners.TurmaListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Turma;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +32,11 @@ public class FragmentListTurma extends Fragment {
 
     SearchView searchView;
 
-    ArrayAdapter<Aluno> alunoArrayAdapter;
+    ArrayAdapter<Turma> turmaArrayAdapter;
 
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Turma> turmas;
 
-    private AlunoListener alunoListener;
+    private TurmaListener turmaListener;
 
     String[] data = {"sou algo",
                      "Sou nada",
@@ -52,11 +52,11 @@ public class FragmentListTurma extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(alunoListener);
+        AlumioSingleton.getInstance(getContext()).setTurmaListener(turmaListener);
 
-        alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        turmas = AlumioSingleton.getInstance(getContext()).getTurmasBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_turmas, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -65,15 +65,20 @@ public class FragmentListTurma extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                                                Turma valor_Listview = (Turma) listView.getItemAtPosition(position);
                                                 Intent intent = new Intent(getContext(), TurmaActivity.class);
+                                                intent.putExtra("VALOR_LETRA",valor_Listview.getLetra());
                                                 startActivity(intent);
+
+                                             //   System.out.println("-->" + valor_Listview.getLetra());
                                             }
         });
 
-        alunoArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2,alunos);
+        turmaArrayAdapter = new ArrayAdapter<Turma> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, turmas);
 
-        listView.setAdapter(new AlunoAdapter(getContext(),alunos));
+
+        //TODO: ATERAR O ID DO FRAGMENTO
+        listView.setAdapter(new TurmaAdapter(getContext(), turmas));
         return view;
     }
 

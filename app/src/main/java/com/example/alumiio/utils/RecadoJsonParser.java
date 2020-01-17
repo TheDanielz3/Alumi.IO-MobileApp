@@ -32,7 +32,7 @@ public class RecadoJsonParser {
                 int recadoID_Aluno = recado.getInt("id_aluno");
                 int recadoID_Professor = recado.getInt("id_professor");
 
-                Recado auxRecado = new Recado(recadoID,recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
+                Recado auxRecado = new Recado(recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
 
                 tempRecadoList.add(auxRecado);
             }
@@ -61,7 +61,7 @@ public class RecadoJsonParser {
             int recadoID_Aluno = recado.getInt("id_aluno");
             int recadoID_Professor = recado.getInt("id_professor");
 
-            Recado auxRecado = new Recado(recadoID,recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
+            Recado auxRecado = new Recado(recadoTopico,recadoDescricao,recadoAssinado,recadoDataHora,recadoID_DisciplinaTurma,recadoID_Aluno,recadoID_Professor);
 
         } catch (JSONException e) {
             e.printStackTrace();
