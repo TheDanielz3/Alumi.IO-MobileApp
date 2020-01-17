@@ -123,7 +123,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         String createTurmaTable = "CREATE TABLE " + TABLE_TURMA + " ("
                 + TURMA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TURMA_ANO + " INTEGER NOT NULL, "
-                + TABLE_TURMA + " TEXT NOT NULL "
+                + TURMA_LETRA + " TEXT NOT NULL "
                 + ");";
         db.execSQL(createTurmaTable);
         System.out.println("-->  DB: Table created Turma");
@@ -274,7 +274,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Turma auxTurma = new Turma(cursor.getInt(0), cursor.getInt(1), cursor.getString(2));
+                Turma auxTurma = new Turma(/*cursor.getInt(0),*/ cursor.getInt(1), cursor.getString(2));
                 turmas.add(auxTurma);
             } while (cursor.moveToNext());
 

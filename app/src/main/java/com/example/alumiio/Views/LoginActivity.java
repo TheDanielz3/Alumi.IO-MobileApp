@@ -13,6 +13,7 @@ import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioBDHelper;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Turma;
 
 import java.util.Currency;
 
@@ -44,6 +45,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     public void onButtonClick(View v) {
         Aluno aluno = new Aluno(0,123,321,"ola",1231212);
          AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
+
+
+        Turma turma = new Turma(2,"L");
+        AlumioSingleton.getInstance(getApplicationContext()).addTurmaDB(turma);
+
         EditText editName  = (EditText) findViewById(R.id.editText);
         String name = editName.getText().toString();
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.Recado;
@@ -15,8 +16,13 @@ public class RecadoAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-
     private ArrayList<Recado> recados;
+
+    public RecadoAdapter(Context context, ArrayList<Recado> recados) {
+        this.context = context;
+        this.recados = recados;
+    }
+
     @Override
     public int getCount() {
         return recados.size();
@@ -41,7 +47,7 @@ public class RecadoAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_recados,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -60,16 +66,17 @@ public class RecadoAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
     private class ViewHolderList{ //Dar acesso aos Componetes Visuais
-    
+
+        private TextView textView;
 
 
         public ViewHolderList(View convertView)
         {
-
+            textView = convertView.findViewById(R.id.textViewOnLV_recados_topico);
         }
         public void update(Recado recado)
         {
-
+            textView.setText(recado.getTopico());
         }
     }
 

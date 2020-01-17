@@ -12,10 +12,9 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
+import com.example.alumiio.adapters.TesteAdapter;
 import com.example.alumiio.listeners.TesteListener;
 import com.example.alumiio.models.AlumioSingleton;
-import com.example.alumiio.models.Aluno;
 import com.example.alumiio.models.Teste;
 
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class FragmentListTestes extends Fragment {
 
         testes = AlumioSingleton.getInstance(getContext()).getTestesBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_testes, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -76,7 +75,7 @@ public class FragmentListTestes extends Fragment {
 
 
         //TODO: ATERAR O ID DO FRAGMENTO
-        listView.setAdapter(new AlunoAdapter(getContext(), testes));
+        listView.setAdapter(new TesteAdapter(getContext(), testes));
         return view;
     }
 

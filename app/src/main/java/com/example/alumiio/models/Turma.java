@@ -6,8 +6,8 @@ public class Turma {
     private int ano;
     private String letra;
 
-    public Turma(int id, int ano, String letra) {
-        this.id = id;
+    public Turma(/*int id,*/ int ano, String letra) {
+      //  this.id = id;
         this.ano = ano;
         this.letra = letra;
     }

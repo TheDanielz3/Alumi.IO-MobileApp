@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.Tpc;
@@ -15,9 +16,12 @@ public class TpcAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-
     private ArrayList<Tpc> tpcs;
 
+    public TpcAdapter(Context context, ArrayList<Tpc> tpcs) {
+        this.context = context;
+        this.tpcs = tpcs;
+    }
 
     @Override
     public int getCount() {
@@ -42,7 +46,7 @@ public class TpcAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_alunos,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -63,15 +67,15 @@ public class TpcAdapter extends BaseAdapter {
     }
     private class ViewHolderList{ //Dar acesso aos Componetes Visuais
 
-
+    private TextView textView;
 
         public ViewHolderList(View convertView)
         {
-
+            textView = convertView.findViewById(R.id.textViewOnLV_tpc_descricao);
         }
         public void update(Tpc tpc)
         {
-
+            textView.setText(tpc.getDescricao());
         }
     }
 }

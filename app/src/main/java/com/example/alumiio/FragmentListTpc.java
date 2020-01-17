@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
+import com.example.alumiio.adapters.TpcAdapter;
 import com.example.alumiio.listeners.TpcListener;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Tpc;
@@ -52,11 +52,11 @@ public class FragmentListTpc extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        AlumioSingleton.getInstance(getContext()).setAlunoListener(tpcListener);
+        AlumioSingleton.getInstance(getContext()).setTpcListener(tpcListener);
 
-        tpcs = AlumioSingleton.getInstance(getContext()).getAlunosBD();
+        tpcs = AlumioSingleton.getInstance(getContext()).getTpcsBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_tpcs, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -71,10 +71,10 @@ public class FragmentListTpc extends Fragment {
                                             }
         });
 
-        tpcArrayAdapter = new ArrayAdapter<Aluno> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, tpcs);
+        tpcArrayAdapter = new ArrayAdapter<Tpc> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, tpcs);
 
         //TODO: ATERAR O ID DO FRAGMENTO
-        listView.setAdapter(new AlunoAdapter(getContext(), tpcs));
+        listView.setAdapter(new TpcAdapter(getContext(), tpcs));
         return view;
     }
 

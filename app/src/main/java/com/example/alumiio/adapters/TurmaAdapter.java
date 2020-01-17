@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.Turma;
@@ -15,8 +16,12 @@ public class TurmaAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-
     private ArrayList<Turma> turmas;
+
+    public TurmaAdapter(Context context, ArrayList<Turma> turmas) {
+        this.context = context;
+        this.turmas = turmas;
+    }
 
     @Override
     public int getCount() {
@@ -41,7 +46,7 @@ public class TurmaAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_turmas,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -56,15 +61,15 @@ public class TurmaAdapter extends BaseAdapter {
     }
     private class ViewHolderList{ //Dar acesso aos Componetes Visuais
 
-
+    private TextView textView;
 
         public ViewHolderList(View convertView)
         {
-
+            textView = convertView.findViewById(R.id.textViewOnLV_turmas_Letra);
         }
         public void update(Turma turma)
         {
-
+            textView.setText(turma.getLetra());
         }
     }
 }

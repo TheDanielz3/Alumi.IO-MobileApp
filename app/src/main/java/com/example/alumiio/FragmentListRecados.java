@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
 import com.example.alumiio.adapters.RecadoAdapter;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.listeners.RecadoListener;
@@ -60,7 +59,7 @@ public class FragmentListRecados extends Fragment {
 
         recados = AlumioSingleton.getInstance(getContext()).getRecadosBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_recados, container, false);
 
         listView = view.findViewById(R.id.idListview);
 

@@ -57,7 +57,7 @@ public class FragmentListAlunos extends Fragment {
 
         alunos = AlumioSingleton.getInstance(getContext()).getAlunosBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_alunos, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 

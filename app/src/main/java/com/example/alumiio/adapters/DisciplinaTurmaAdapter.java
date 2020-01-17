@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.alumiio.R;
-import com.example.alumiio.models.Aluno;
 import com.example.alumiio.models.Disciplina_Turma;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class DisciplinaTurmaAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_alunos,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -73,13 +72,14 @@ public class DisciplinaTurmaAdapter extends BaseAdapter {
         private TextView textView;
 
 
+        //TODO: NAO TA A FUNCIONAR
         public ViewHolderList(View convertView) {
-            textView  = convertView.findViewById(R.id.textViewOnLV);
+           // textView  = convertView.findViewById(R.id.textViewOnLV_turmas_Letra);
 
         }
         public void update(Disciplina_Turma disciplinaTurma)
         {
-            textView.setText(disciplinaTurma.getId_professor());
+          //  textView.setText(disciplinaTurma.getId_professor());
         }
 
 

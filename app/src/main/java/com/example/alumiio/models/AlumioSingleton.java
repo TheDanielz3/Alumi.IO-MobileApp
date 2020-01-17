@@ -60,7 +60,6 @@ public class AlumioSingleton {
         recados = new ArrayList<>();
         tpcs = new ArrayList<>();
         alumioBDHelper = new AlumioBDHelper(context);
-        generatefakedata();
     }
 
 
@@ -75,9 +74,7 @@ public class AlumioSingleton {
         return INSTANCE;
     }
 
-    private void generatefakedata()
-    {
-    }
+
 
     public void setAlunoListener(AlunoListener alunoListener) { this.alunoListener = alunoListener; }
 

@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
-import com.example.alumiio.adapters.AlunoAdapter;
+import com.example.alumiio.adapters.TurmaAdapter;
 import com.example.alumiio.listeners.TurmaListener;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Turma;
@@ -56,7 +56,7 @@ public class FragmentListTurma extends Fragment {
 
         turmas = AlumioSingleton.getInstance(getContext()).getTurmasBD();
 
-        View view = inflater.inflate(R.layout.fragment_fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_list_turmas, container, false);
 
         listView = (ListView) view.findViewById(R.id.idListview);
 
@@ -65,9 +65,12 @@ public class FragmentListTurma extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                                                Turma valor_Listview = (Turma) listView.getItemAtPosition(position);
                                                 Intent intent = new Intent(getContext(), TurmaActivity.class);
+                                                intent.putExtra("VALOR_LETRA",valor_Listview.getLetra());
                                                 startActivity(intent);
+
+                                             //   System.out.println("-->" + valor_Listview.getLetra());
                                             }
         });
 
@@ -75,7 +78,7 @@ public class FragmentListTurma extends Fragment {
 
 
         //TODO: ATERAR O ID DO FRAGMENTO
-        listView.setAdapter(new AlunoAdapter(getContext(), turmas));
+        listView.setAdapter(new TurmaAdapter(getContext(), turmas));
         return view;
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.alumiio.R;
 import com.example.alumiio.models.Teste;
@@ -15,9 +16,13 @@ public class TesteAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-
     private ArrayList<Teste> testes;
 
+
+    public TesteAdapter(Context context, ArrayList<Teste> testes) {
+        this.context = context;
+        this.testes = testes;
+    }
 
     @Override
     public int getCount() {
@@ -43,7 +48,7 @@ public class TesteAdapter extends BaseAdapter {
         }
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.fragment_fragment_list,null);
+            convertView = inflater.inflate(R.layout.fragment_fragment_list_alunos,null);
 
         }
         ViewHolderList viewHolderList = (ViewHolderList) convertView.getTag();
@@ -63,15 +68,16 @@ public class TesteAdapter extends BaseAdapter {
 
     private class ViewHolderList{ //Dar acesso aos Componetes Visuais
 
+        private TextView textView;
 
 
         public ViewHolderList(View convertView)
         {
-
+            textView = convertView.findViewById(R.id.textViewOnLV_teste_descicao);
         }
         public void update(Teste teste)
         {
-
+            textView.setText(teste.getDescricao());
         }
     }
 }
