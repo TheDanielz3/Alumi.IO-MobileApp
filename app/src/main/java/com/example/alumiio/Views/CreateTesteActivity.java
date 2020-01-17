@@ -28,6 +28,6 @@ public class CreateTesteActivity extends AppCompatActivity {
 
         long id = AlumioSingleton.getInstance(getApplicationContext()).addTesteDB(teste);
         teste.setId(id);
-
+        finish();
     }
 }

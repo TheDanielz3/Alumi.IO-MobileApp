@@ -24,6 +24,7 @@ import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioBDHelper;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Disciplina_Turma;
 import com.example.alumiio.models.Turma;
 
 import java.util.Currency;
@@ -84,6 +85,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         Turma turma = new Turma(2,"L");
         AlumioSingleton.getInstance(getApplicationContext()).addTurmaDB(turma);
+
+        Disciplina_Turma disciplina_turma = new Disciplina_Turma(1,2,2,2);
+        AlumioSingleton.getInstance(getApplicationContext()).addDisciplinaTurmaDB(disciplina_turma);
 
         EditText editName  = (EditText) findViewById(R.id.editText);
         String name = editName.getText().toString();

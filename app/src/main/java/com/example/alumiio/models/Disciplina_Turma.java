@@ -45,4 +45,13 @@ public class Disciplina_Turma {
     public void setId_professor(int id_professor) {
         this.id_professor = id_professor;
     }
+
+    @Override
+    public String toString() {
+        return "Disciplina_Turma{" +
+                "id=" + id +
+                ", id_disciplina=" + id_disciplina +
+                ", id_turma=" + id_turma +
+                '}';
+    }
 }

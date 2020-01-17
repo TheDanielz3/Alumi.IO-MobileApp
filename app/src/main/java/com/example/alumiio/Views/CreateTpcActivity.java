@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Disciplina_Turma;
 import com.example.alumiio.models.Tpc;
 import com.example.alumiio.models.Turma;
 
@@ -24,8 +25,10 @@ public class CreateTpcActivity extends AppCompatActivity {
             "Sou uma algo",
     };
 
-
     private TextView textViewDescricao;
+
+    private ArrayList<Disciplina_Turma> disciplina_turmas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,26 +36,22 @@ public class CreateTpcActivity extends AppCompatActivity {
 
         textViewDescricao = findViewById(R.id.editTextDescricaoTPC);
 
+        disciplina_turmas = AlumioSingleton.getInstance(getApplicationContext()).getDisciplinaTurmasBD();
 
-        //TODO: Addicionar o foreach para dar populate no spinner
-//        List<String> spinnerArray =  new ArrayList<String>();
-//        spinnerArray.add("item1");
-//        spinnerArray.add("item2");
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this, android.R.layout.simple_spinner_item, spinnerArray);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Spinner sItems = (Spinner) findViewById(R.id.spinnerDisciplinaTurma);
-//        sItems.setAdapter(adapter);
+        ArrayAdapter<Disciplina_Turma> adapter = new ArrayAdapter<Disciplina_Turma>(
+                this, android.R.layout.simple_spinner_item, disciplina_turmas);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) findViewById(R.id.spinnerDisciplinaTurma);
+        sItems.setAdapter(adapter);
 
 
-        String[] data= {"Grid view","chart view"};
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerDisciplinaTurma);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,data);
 
-        spinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+       // Spinner spinner = (Spinner) findViewById(R.id.spinnerDisciplinaTurma);
+       // ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,data);
+
+  //      spinner.setAdapter(adapter);
+    //    adapter.notifyDataSetChanged();
     }
 
 
@@ -62,6 +61,6 @@ public class CreateTpcActivity extends AppCompatActivity {
         Tpc tpc = new Tpc(textViewDescricao.getText().toString(),123,321);
        long id = AlumioSingleton.getInstance(getApplicationContext()).addTpcDB(tpc);
        tpc.setId(id);
-        //finish();
+       finish();
     }
 }
