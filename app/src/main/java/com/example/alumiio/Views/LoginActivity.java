@@ -1,14 +1,25 @@
 package com.example.alumiio.Views;
 
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Authenticator;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioBDHelper;
 import com.example.alumiio.models.AlumioSingleton;
@@ -16,10 +27,14 @@ import com.example.alumiio.models.Aluno;
 import com.example.alumiio.models.Turma;
 
 import java.util.Currency;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -27,6 +42,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        String URL = "http://192.168.1.20:80/Alumi.IO-WebApp/api/web/v1/recado";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this );
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("REST RESPONSE", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("REST ERROR", error.toString());
+            }
+        });
+
+        requestQueue.add(objectRequest);
+
         EditText editName  = (EditText) findViewById(R.id.editText);
         EditText editPassword  = (EditText) findViewById(R.id.editText2);
 
