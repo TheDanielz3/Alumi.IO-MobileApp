@@ -32,6 +32,8 @@ public class ViewDetailsTpcActivity extends AppCompatActivity {
 
     public void eliminarOnClick(View view) {
 
+        AlumioSingleton.getInstance(getApplicationContext()).removeTpcDB(id);
+        finish();
 
     }
 }

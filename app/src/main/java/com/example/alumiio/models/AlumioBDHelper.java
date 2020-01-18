@@ -352,15 +352,15 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     }
 
-//    public boolean updateDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
-//    {
-//        ContentValues values = getValuesDisciplinaTurma(disciplinaTurma);
-//
-//        return
-//                (this.database.update(TABLE_DISCIPLINE_TURMA,values,"id=?", new String[]{"" + disciplinaTurma.getId()}))
-//                        >0;
-//
-//    }
+    public boolean updateDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
+    {
+        ContentValues values = getValuesDisciplinaTurma(disciplinaTurma);
+
+        return
+                (this.database.update(TABLE_DISCIPLINE_TURMA,values,"id=?", new String[]{"" + disciplinaTurma.getId()}))
+                        >0;
+
+    }
 
 
     //DELETE
