@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.alumiio.Views.TurmaActivity;
+import com.example.alumiio.Views.ViewDetailsTpcActivity;
 import com.example.alumiio.adapters.TpcAdapter;
 import com.example.alumiio.listeners.TpcListener;
 import com.example.alumiio.models.AlumioSingleton;
@@ -66,7 +67,10 @@ public class FragmentListTpc extends Fragment {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                                Intent intent = new Intent(getContext(), TurmaActivity.class);
+                                                Tpc tpc;
+                                                 tpc = (Tpc) parent.getAdapter().getItem(position);
+                                                Intent intent = new Intent(getContext(), ViewDetailsTpcActivity.class);
+                                                intent.putExtra("ID_DO_TPC",tpc.getId());
                                                 startActivity(intent);
                                             }
         });

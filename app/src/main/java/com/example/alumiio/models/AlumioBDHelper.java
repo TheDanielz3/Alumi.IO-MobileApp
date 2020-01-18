@@ -205,7 +205,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) { //saber se há algum
             do {
                 Tpc auxTpc = new Tpc(cursor.getString(1),cursor.getInt(2),cursor.getInt(3));
-                //auxTpc.setID(cursor.getLong(0)); // we receive id
+                auxTpc.setId(cursor.getLong(0)); // we receive id
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
         }

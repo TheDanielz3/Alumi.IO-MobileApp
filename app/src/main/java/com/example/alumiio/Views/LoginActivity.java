@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //        aluno.setId(id1);
 //        System.out.println("--> Add Aluno: " + id1);
 //
-//        System.out.println("--> Click on Button on Login Activity called Login");
+        System.out.println("--> Click on Button on Login Activity called Login");
         Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(myIntent);
     }
