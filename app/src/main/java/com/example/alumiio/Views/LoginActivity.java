@@ -28,6 +28,7 @@ import com.example.alumiio.models.AlumioBDHelper;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
 import com.example.alumiio.models.Turma;
+import com.example.alumiio.utils.RecadoJsonParser;
 
 import java.util.Currency;
 import java.util.HashMap;
@@ -46,37 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        String YourUrl = "http://192.168.1.20:80/Alumi.IO-WebApp/api/web/v1/recado";
-
-        JsonObjectRequest jsonObejct = new JsonObjectRequest(Request.Method.GET, YourUrl, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e("On Response ", response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("On Error Response ", error.toString());
-            }
-        }) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("Authorization", "Bearer " + "professorToken");
-//                return params;
-//            }
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                String credentials = "prof1" + ":" + "123456";
-                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Basic " + base64EncodedCredentials);
-                return headers;
-            }
-        };
-
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        queue.add(jsonObejct);
+        AlumioSingleton.getInstance(getApplicationContext()).getAllRecados("prof1", "123456", getApplicationContext(), RecadoJsonParser.isConnectionInternet(getApplicationContext()));
 
         EditText editName = (EditText) findViewById(R.id.editText);
         EditText editPassword = (EditText) findViewById(R.id.editText2);

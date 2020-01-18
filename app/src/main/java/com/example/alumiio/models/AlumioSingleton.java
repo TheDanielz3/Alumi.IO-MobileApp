@@ -1,7 +1,10 @@
 package com.example.alumiio.models;
 
 import android.content.Context;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Display;
+import android.widget.Toast;
 
 
 import com.android.volley.Request;
@@ -9,6 +12,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alumiio.listeners.AlunoListener;
 import com.example.alumiio.listeners.DisciplinaTurmaListener;
 import com.example.alumiio.listeners.ProfessorListener;
@@ -17,10 +23,15 @@ import com.example.alumiio.listeners.TesteListener;
 import com.example.alumiio.listeners.TpcListener;
 import com.example.alumiio.listeners.TurmaListener;
 import com.example.alumiio.utils.AlunoJsonParser;
+import com.example.alumiio.utils.RecadoJsonParser;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlumioSingleton {
 
@@ -43,7 +54,8 @@ public class AlumioSingleton {
 
     //Acesso API
     private static RequestQueue volleyQueue = null;
-    private String myURLAPIALUNOS = "http://192.168.1.1/advanced/web"; //Por aqui o IP da maquina
+    private static String IP_API = "192.168.1.20";
+    private String URL_RECADOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/recado"; //Por aqui o IP da maquina
     private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
@@ -315,7 +327,7 @@ public class AlumioSingleton {
                 alunoListener.onRefreshAlunoList(alunos);
             }
             else {
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, myURLAPIALUNOS, null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URL_RECADOS, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         alunos = AlunoJsonParser.parserJsonAlunos(response, context);
@@ -341,6 +353,51 @@ public class AlumioSingleton {
 
     private void addAlunosDB(ArrayList<Aluno> alunos) {
 
+    }
+    public void getAllRecados(final String username, final String password, final Context context, final boolean isConnected) {
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_RECADOS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    ArrayList<Recado> recados = RecadoJsonParser.parserJsonRecados(response, context);
+                    for (Recado recado : recados) {
+                        addRecadoDB(recado);
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+        }
     }
 
 
