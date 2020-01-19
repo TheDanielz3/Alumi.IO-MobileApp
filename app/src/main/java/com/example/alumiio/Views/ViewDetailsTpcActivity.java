@@ -27,9 +27,9 @@ public class ViewDetailsTpcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_details_tpc);
 
-         id = getIntent().getLongExtra("ID_DO_TPC",0);
+        id = getIntent().getLongExtra("ID_DO_TPC", 0);
 
-       Tpc auxTpc = AlumioSingleton.getInstance(getApplicationContext()).getTpcById(id);
+        Tpc auxTpc = AlumioSingleton.getInstance(getApplicationContext()).getTpcById(id);
 
         editText = findViewById(R.id.editTextDescricaoTPC);
 
@@ -41,7 +41,7 @@ public class ViewDetailsTpcActivity extends AppCompatActivity {
 
     public void editarOnClick(View view) {
 
-        Tpc tpc = new Tpc(editText.getText().toString(),1,1);
+        Tpc tpc = new Tpc(editText.getText().toString(), 1, 1);
         tpc.setId(id);
         AlumioSingleton.getInstance(getApplicationContext()).editTpcDB(tpc);
         finish();

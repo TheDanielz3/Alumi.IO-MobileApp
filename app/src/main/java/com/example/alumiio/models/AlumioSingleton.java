@@ -1,21 +1,18 @@
 package com.example.alumiio.models;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Display;
 import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alumiio.listeners.AlunoListener;
@@ -32,12 +29,7 @@ import com.example.alumiio.utils.TesteJsonParser;
 import com.example.alumiio.utils.TpcJsonParser;
 import com.example.alumiio.utils.TurmaJsonParser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,8 +86,7 @@ public class AlumioSingleton {
 
     //Funcao para ir buscar a Instancia
     public static synchronized AlumioSingleton getInstance(Context context) {
-        if (INSTANCE == null)
-        {
+        if (INSTANCE == null) {
             INSTANCE = new AlumioSingleton(context);
             //volleyQueue = Volley.newRequestQueue(context);
         }
@@ -104,63 +95,68 @@ public class AlumioSingleton {
     }
 
 
+    public void setAlunoListener(AlunoListener alunoListener) {
+        this.alunoListener = alunoListener;
+    }
 
-    public void setAlunoListener(AlunoListener alunoListener) { this.alunoListener = alunoListener; }
+    public void setProfessorListener(ProfessorListener professorListener) {
+        this.professorListener = professorListener;
+    }
 
-    public void setProfessorListener(ProfessorListener professorListener) { this.professorListener = professorListener;}
+    public void setRecadoListener(RecadoListener recadoListener) {
+        this.recadoListener = recadoListener;
+    }
 
-    public void setRecadoListener(RecadoListener recadoListener){ this.recadoListener = recadoListener; }
+    public void setTpcListener(TpcListener tpcListener) {
+        this.tpcListener = tpcListener;
+    }
 
-    public void setTpcListener(TpcListener tpcListener) { this.tpcListener = tpcListener; }
+    public void setTesteListener(TesteListener testeListener) {
+        this.testeListener = testeListener;
+    }
 
-    public void setTesteListener(TesteListener testeListener) { this.testeListener = testeListener; }
+    public void setTurmaListener(TurmaListener turmaListener) {
+        this.turmaListener = turmaListener;
+    }
 
-    public void setTurmaListener(TurmaListener turmaListener) {this.turmaListener = turmaListener; }
+    public void setDisciplinaTurmaListener(DisciplinaTurmaListener disciplinaTurmaListener) {
+        this.disciplinaTurmaListener = disciplinaTurmaListener;
+    }
 
-    public void setDisciplinaTurmaListener(DisciplinaTurmaListener disciplinaTurmaListener) {this.disciplinaTurmaListener = disciplinaTurmaListener; }
-
-    public ArrayList<Aluno> getAlunosBD()
-    {
+    public ArrayList<Aluno> getAlunosBD() {
         alunos = alumioBDHelper.getAllAlunosDB();
         return alunos;
     }
 
-    public ArrayList<Recado> getRecadosBD()
-    {
+    public ArrayList<Recado> getRecadosBD() {
         recados = alumioBDHelper.getAllRecadosDB();
         return recados;
     }
 
-    public ArrayList<Tpc> getTpcsBD()
-    {
+    public ArrayList<Tpc> getTpcsBD() {
         tpcs = alumioBDHelper.getALLTpcDB();
         return tpcs;
     }
-    public ArrayList<Teste> getTestesBD()
-    {
+
+    public ArrayList<Teste> getTestesBD() {
         testes = alumioBDHelper.getAllTestesDB();
         return testes;
     }
 
-    public ArrayList<Turma> getTurmasBD()
-    {
+    public ArrayList<Turma> getTurmasBD() {
         turmas = alumioBDHelper.getAllTurmasDB();
         return turmas;
     }
 
-    public ArrayList<Disciplina_Turma> getDisciplinaTurmasBD()
-    {
+    public ArrayList<Disciplina_Turma> getDisciplinaTurmasBD() {
         disciplinaTurmas = alumioBDHelper.getAllDisciplinaTurmasDB();
         return disciplinaTurmas;
     }
 
 
-    public Aluno getAlunoById(long id)
-    {
-        for(Aluno aluno: alunos)
-        {
-            if (aluno.getId() == id)
-            {
+    public Aluno getAlunoById(long id) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getId() == id) {
                 return aluno;
             }
         }
@@ -168,12 +164,9 @@ public class AlumioSingleton {
         return null;
     }
 
-    public Recado getRecadoById(long id)
-    {
-        for(Recado recado: recados)
-        {
-            if (recado.getId() == id)
-            {
+    public Recado getRecadoById(long id) {
+        for (Recado recado : recados) {
+            if (recado.getId() == id) {
                 return recado;
             }
         }
@@ -181,126 +174,103 @@ public class AlumioSingleton {
         return null;
     }
 
-    public Tpc getTpcById(long id)
-    {
-        for (Tpc tpc: tpcs)
-        {
-            if (tpc.getId() == id)
-            {
+    public Tpc getTpcById(long id) {
+        for (Tpc tpc : tpcs) {
+            if (tpc.getId() == id) {
                 return tpc;
             }
         }
         return null;
     }
 
-    public Teste getTesteById(long id)
-    {
-        for (Teste teste: testes)
-        {
-            if (teste.getId() == id)
-            {
+    public Teste getTesteById(long id) {
+        for (Teste teste : testes) {
+            if (teste.getId() == id) {
                 return teste;
             }
         }
         return null;
     }
-    public Turma getTurmaById(long id)
-    {
-        for (Turma turma:turmas)
-        {
-            if (turma.getId() == id)
-            {
-                return  turma;
+
+    public Turma getTurmaById(long id) {
+        for (Turma turma : turmas) {
+            if (turma.getId() == id) {
+                return turma;
             }
         }
         return null;
     }
 
-    public Disciplina_Turma getDisciplinaTurmaById(long id)
-    {
-        for (Disciplina_Turma disciplinaTurma:disciplinaTurmas)
-        {
-            if (disciplinaTurma.getId() == id)
-            {
-                return  disciplinaTurma;
+    public Disciplina_Turma getDisciplinaTurmaById(long id) {
+        for (Disciplina_Turma disciplinaTurma : disciplinaTurmas) {
+            if (disciplinaTurma.getId() == id) {
+                return disciplinaTurma;
             }
         }
         return null;
     }
 
-    public long addAlunoDB (Aluno aluno)
-    {
-         return alumioBDHelper.addAlunoToDB(aluno);
+    public long addAlunoDB(Aluno aluno) {
+        return alumioBDHelper.addAlunoToDB(aluno);
     }
 
-    public long addRecadoDB (Recado recado)
-    {
-       return alumioBDHelper.addRecadoToDB(recado);
+    public long addRecadoDB(Recado recado) {
+        return alumioBDHelper.addRecadoToDB(recado);
     }
 
-    public long addTesteDB (Teste teste)
-    {
-       return alumioBDHelper.addTesteToDB(teste);
+    public long addTesteDB(Teste teste) {
+        return alumioBDHelper.addTesteToDB(teste);
     }
 
-    public long addTpcDB (Tpc tpc)
-    {
-      return   alumioBDHelper.addTpcToDB(tpc);
+    public long addTpcDB(Tpc tpc) {
+        return alumioBDHelper.addTpcToDB(tpc);
     }
-    public void addTurmaDB(Turma turma)
-    {
+
+    public void addTurmaDB(Turma turma) {
         alumioBDHelper.addTurmaToDB(turma);
     }
-    public void addDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
-    {
+
+    public void addDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma) {
         alumioBDHelper.addDisciplinaTurmaToDB(disciplinaTurma);
     }
 
-    public void removeAlunoDB(long alunoId)
-    {
-        if(alumioBDHelper.deleteAlunoDB(alunoId))
-        {
+    public void removeAlunoDB(long alunoId) {
+        if (alumioBDHelper.deleteAlunoDB(alunoId)) {
             Aluno aluno = getAlunoById(alunoId);
             alunos.remove(aluno);
         }
     }
 
-    public void removeRecadoDB (long recadoId)
-    {
-        if(alumioBDHelper.deleteRecadoDB(recadoId))
-        {
+    public void removeRecadoDB(long recadoId) {
+        if (alumioBDHelper.deleteRecadoDB(recadoId)) {
             Recado recado = getRecadoById(recadoId);
             recados.remove(recado);
         }
     }
-    public void removeTesteDB(long testeId)
-    {
-        if(alumioBDHelper.deleteTesteDB(testeId))
-        {
+
+    public void removeTesteDB(long testeId) {
+        if (alumioBDHelper.deleteTesteDB(testeId)) {
             Teste teste = getTesteById(testeId);
             testes.remove(teste);
         }
     }
-    public void removeTpcDB(long tpcId)
-    {
-        if(alumioBDHelper.deleteTpcDB(tpcId))
-        {
+
+    public void removeTpcDB(long tpcId) {
+        if (alumioBDHelper.deleteTpcDB(tpcId)) {
             Tpc tpc = getTpcById(tpcId);
             tpcs.remove(tpc);
         }
     }
 
-    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
-    {
-        if(alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId))
-        {
+    public void removeDisciplinaTurmaDB(long disciplinaTurmaId) {
+        if (alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId)) {
             Disciplina_Turma disciplinaTurma = getDisciplinaTurmaById(disciplinaTurmaId);
             disciplinaTurmas.remove(disciplinaTurma);
         }
     }
 
 
-//    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
+    //    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
 //    {
 //        if(alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId))
 //        {
@@ -308,9 +278,8 @@ public class AlumioSingleton {
 //            disciplinaTurmas.remove(disciplinaTurma);
 //        }
 //    }
-    public void editAlunoDB(Aluno aluno){
-        if (alunos.contains(aluno))
-        {
+    public void editAlunoDB(Aluno aluno) {
+        if (alunos.contains(aluno)) {
             return;
         }
 
@@ -321,9 +290,8 @@ public class AlumioSingleton {
         alumioBDHelper.updateAlunoDB(auxAluno);
     }
 
-    public void editRecadoDB(Recado recado){
-        if (recados.contains(recado))
-        {
+    public void editRecadoDB(Recado recado) {
+        if (recados.contains(recado)) {
             return;
         }
 
@@ -333,13 +301,13 @@ public class AlumioSingleton {
 
         alumioBDHelper.updateRecadoDB(auxRecado);
     }
+
     public void editTpcDB(Tpc tpc) {
-        if (tpcs.contains(tpc))
-        {
+        if (tpcs.contains(tpc)) {
             return;
         }
 
-        Tpc auxTpc  = getTpcById(tpc.getId());
+        Tpc auxTpc = getTpcById(tpc.getId());
         auxTpc.setDescricao(tpc.getDescricao());
         auxTpc.setId_disciplina_turma(tpc.getId_disciplina_turma());
         auxTpc.setId_professor(tpc.getId_professor());
@@ -347,9 +315,8 @@ public class AlumioSingleton {
         alumioBDHelper.updateTpcDB(auxTpc);
     }
 
-    public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma){
-        if (!disciplinaTurmas.contains(disciplinaTurma))
-        {
+    public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma) {
+        if (!disciplinaTurmas.contains(disciplinaTurma)) {
             return;
         }
 
@@ -365,50 +332,56 @@ public class AlumioSingleton {
         alumioBDHelper.deleteAllDisciplinaTurmaDB();
         try {
             disciplinaTurmas.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     public void removeAllTurmasDB() {
         alumioBDHelper.deleteAllTurmaDB();
         try {
             turmas.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     public void removeAllAlunosDB() {
         alumioBDHelper.deleteAllAlunosDB();
         try {
             alunos.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     public void removeAllRecadosDB() {
         alumioBDHelper.deleteAllRecadosDB();
         try {
             recados.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     public void removeAllTestesDB() {
         alumioBDHelper.deleteAllTestesDB();
         try {
             testes.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     public void removeAllTpcsDB() {
         alumioBDHelper.deleteAllTpcDB();
         try {
             tpcs.clear();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 
     //TODO: Acabar a parte da API
 
     public void getAllAlunosAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
-        Log.i("Username: ",username);
-        Log.i("Password: ",password);
+        Log.i("Username: ", username);
+        Log.i("Password: ", password);
 
         if (!isConnected) {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -417,12 +390,12 @@ public class AlumioSingleton {
                 @Override
                 public void onResponse(String response) {
                     Log.i("On Response: ", response.toString());
-                    if (!response.toString().equals("[]")){
+                    if (!response.toString().equals("[]")) {
                         ArrayList<Aluno> alunos = AlunoJsonParser.parserJsonAlunos(response, context);
                         for (Aluno aluno : alunos) {
                             addAlunoDB(aluno);
                         }
-                    }else{
+                    } else {
                         Toast.makeText(context, "Haha, vazio", Toast.LENGTH_SHORT).show();
                     }
 
@@ -446,7 +419,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -462,8 +435,8 @@ public class AlumioSingleton {
 
     public void getAllDisciplinaTurmasAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
-        Log.i("Username: ",username);
-        Log.i("Password: ",password);
+        Log.i("Username: ", username);
+        Log.i("Password: ", password);
 
         if (!isConnected) {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -472,12 +445,12 @@ public class AlumioSingleton {
                 @Override
                 public void onResponse(String response) {
                     Log.i("On Response: ", response.toString());
-                    if (!response.toString().equals("[]")){
+                    if (!response.toString().equals("[]")) {
                         ArrayList<Disciplina_Turma> disciplina_turmas = DisciplinaTurmaJsonParser.parserJsonDisciplinaTurma(response, context);
                         for (Disciplina_Turma disciplinaTurma : disciplina_turmas) {
                             addDisciplinaTurmaDB(disciplinaTurma);
                         }
-                    }else{
+                    } else {
                         Toast.makeText(context, "Haha, vazio", Toast.LENGTH_SHORT).show();
                     }
 
@@ -501,7 +474,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -548,7 +521,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -594,7 +567,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -616,7 +589,7 @@ public class AlumioSingleton {
                 public void onResponse(String response) {
                     Log.i("On Response: ", response.toString());
                     ArrayList<Tpc> tpcs = TpcJsonParser.parserJsonTpcs(response, context);
-                    for (Tpc tpc  : tpcs) {
+                    for (Tpc tpc : tpcs) {
                         addTpcDB(tpc);
                     }
 
@@ -640,7 +613,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -687,7 +660,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -702,8 +675,8 @@ public class AlumioSingleton {
 
     public void loginWithAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
-        Log.i("Username: ",username);
-        Log.i("Password: ",password);
+        Log.i("Username: ", username);
+        Log.i("Password: ", password);
 
         if (!isConnected) {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -712,10 +685,10 @@ public class AlumioSingleton {
                 @Override
                 public void onResponse(String response) {
                     Log.i("On Response: ", response.toString());
-                    if (!response.toString().equals("[]")){
+                    if (!response.toString().equals("[]")) {
                         context.getSharedPreferences("LoggedInUser", MODE_PRIVATE).edit().putString("username", username).apply();
                         context.getSharedPreferences("LoggedInUser", MODE_PRIVATE).edit().putString("password", password).apply();
-                    }else{
+                    } else {
                         Toast.makeText(context, "Esta conta não pode fazer login.", Toast.LENGTH_SHORT).show();
                     }
 
@@ -739,7 +712,7 @@ public class AlumioSingleton {
 //                return params;
 //            }
                 @Override
-                public Map<String, String> getHeaders(){
+                public Map<String, String> getHeaders() {
                     String credentials = username + ":" + password;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
                     HashMap<String, String> headers = new HashMap<>();
@@ -753,5 +726,64 @@ public class AlumioSingleton {
         }
     }
 
+    public void postTpcAPI(final String username, final String password, final Context context, final boolean isConnected
+            , final String descricao, final String id_disciplina_turma) {
+        //Log.e("desc:" ,descricao);
+        //Log.e("id_dis_turm:" ,id_disciplina_turma);
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.POST, URL_TPCS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded;";
+                }
 
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("descricao", descricao);
+                    params.put("id_disciplina_turma", id_disciplina_turma);
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() {
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+
+            };
+            RetryPolicy mRetryPolicy = new DefaultRetryPolicy(
+                    0,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+            request.setRetryPolicy(mRetryPolicy);
+
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+        }
+    }
 }
