@@ -1,6 +1,9 @@
 package com.example.alumiio.models;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
@@ -23,15 +26,22 @@ import com.example.alumiio.listeners.TesteListener;
 import com.example.alumiio.listeners.TpcListener;
 import com.example.alumiio.listeners.TurmaListener;
 import com.example.alumiio.utils.AlunoJsonParser;
+import com.example.alumiio.utils.DisciplinaTurmaJsonParser;
 import com.example.alumiio.utils.RecadoJsonParser;
+import com.example.alumiio.utils.TesteJsonParser;
+import com.example.alumiio.utils.TpcJsonParser;
+import com.example.alumiio.utils.TurmaJsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AlumioSingleton {
 
@@ -54,8 +64,15 @@ public class AlumioSingleton {
 
     //Acesso API
     private static RequestQueue volleyQueue = null;
-    private static String IP_API = "192.168.1.20";
-    private String URL_RECADOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/recado"; //Por aqui o IP da maquina
+    private static String IP_API = "192.168.1.20"; // Colocar Aqui o IP da Máquina
+    private String URL_ALUNOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/aluno";
+    private String URL_DISCIPLINA_TURMAS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/disciplinaturma";
+    private String URL_RECADOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/recado";
+    private String URL_TESTES = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/teste";
+    private String URL_TPCS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/tpc";
+    private String URL_TURMAS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/turma";
+
+    private String URL_LOGIN_CHECK = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/disciplinaturma/turmaspessoais";
     private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
@@ -213,7 +230,6 @@ public class AlumioSingleton {
 
     public long addAlunoDB (Aluno aluno)
     {
-        // add to DB
          return alumioBDHelper.addAlunoToDB(aluno);
     }
 
@@ -266,6 +282,7 @@ public class AlumioSingleton {
         }
     }
 
+
 //    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
 //    {
 //        if(alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId))
@@ -315,46 +332,161 @@ public class AlumioSingleton {
 //        alumioBDHelper.updateDisciplinaTurmaDB(auxDisciplinaTurma);
 //    }
 
+    public void removeAllDisciplinaTurmasDB() {
+        alumioBDHelper.deleteAllDisciplinaTurmaDB();
+        try {
+            disciplinaTurmas.clear();
+        }catch (Exception ignored){}
+    }
+
+    public void removeAllTurmasDB() {
+        alumioBDHelper.deleteAllTurmaDB();
+        try {
+            turmas.clear();
+        }catch (Exception ignored){}
+    }
+
+    public void removeAllAlunosDB() {
+        alumioBDHelper.deleteAllAlunosDB();
+        try {
+            alunos.clear();
+        }catch (Exception ignored){}
+    }
+
+    public void removeAllRecadosDB() {
+        alumioBDHelper.deleteAllRecadosDB();
+        try {
+            recados.clear();
+        }catch (Exception ignored){}
+    }
+
+    public void removeAllTestesDB() {
+        alumioBDHelper.deleteAllTestesDB();
+        try {
+            testes.clear();
+        }catch (Exception ignored){}
+    }
+
+    public void removeAllTpcsDB() {
+        alumioBDHelper.deleteAllTpcDB();
+        try {
+            tpcs.clear();
+        }catch (Exception ignored){}
+    }
+
     //TODO: Acabar a parte da API
 
-    public void getAllAlunosAPI(final Context context,boolean isConnected)
-    {
-        if(!isConnected)
-        {
-            //no access ->get books from DB
-            alunos = alumioBDHelper.getAllAlunosDB();
-            if (alunoListener != null){
-                alunoListener.onRefreshAlunoList(alunos);
-            }
-            else {
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URL_RECADOS, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        alunos = AlunoJsonParser.parserJsonAlunos(response, context);
-                        System.out.println("--> Resposta:" + alunos);
-                        //TODO: FAzer o metodo addAlunosDB
-                        addAlunosDB(alunos);
+    public void getAllAlunosAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
-                        if (alunoListener != null) {
-                            alunoListener.onRefreshAlunoList(alunos);
+        Log.i("Username: ",username);
+        Log.i("Password: ",password);
+
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_ALUNOS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    if (!response.toString().equals("[]")){
+                        ArrayList<Aluno> alunos = AlunoJsonParser.parserJsonAlunos(response, context);
+                        for (Aluno aluno : alunos) {
+                            addAlunoDB(aluno);
                         }
+                    }else{
+                        Toast.makeText(context, "Haha, vazio", Toast.LENGTH_SHORT).show();
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("--> Error Get AllAlunosAPI "+ error.getMessage());
-                    }
-                });
 
-                volleyQueue.add(request);
-            }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+
         }
     }
 
-    private void addAlunosDB(ArrayList<Aluno> alunos) {
+    public void getAllDisciplinaTurmasAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
+        Log.i("Username: ",username);
+        Log.i("Password: ",password);
+
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_DISCIPLINA_TURMAS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    if (!response.toString().equals("[]")){
+                        ArrayList<Disciplina_Turma> disciplina_turmas = DisciplinaTurmaJsonParser.parserJsonDisciplinaTurma(response, context);
+                        for (Disciplina_Turma disciplinaTurma : disciplina_turmas) {
+                            addDisciplinaTurmaDB(disciplinaTurma);
+                        }
+                    }else{
+                        Toast.makeText(context, "Haha, vazio", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+
+        }
     }
-    public void getAllRecados(final String username, final String password, final Context context, final boolean isConnected) {
+
+    public void getAllRecadosAPI(final String username, final String password, final Context context, final boolean isConnected) {
         if (!isConnected) {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
         } else {
@@ -400,5 +532,198 @@ public class AlumioSingleton {
         }
     }
 
+    public void getAllTestesAPI(final String username, final String password, final Context context, final boolean isConnected) {
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_TESTES, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    ArrayList<Teste> testes = TesteJsonParser.parserJsonTestes(response, context);
+                    for (Teste teste : testes) {
+                        addTesteDB(teste);
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+        }
+    }
+
+    public void getAllTpcsAPI(final String username, final String password, final Context context, final boolean isConnected) {
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_TPCS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    ArrayList<Tpc> tpcs = TpcJsonParser.parserJsonTpcs(response, context);
+                    for (Tpc tpc  : tpcs) {
+                        addTpcDB(tpc);
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+        }
+    }
+
+    // TODO: Fix
+    public void getAllTurmasAPI(final String username, final String password, final Context context, final boolean isConnected) {
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_TURMAS, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    ArrayList<Turma> turmas = TurmaJsonParser.parserJsonTurmas(response, context);
+                    for (Turma turma : turmas) {
+                        addTurmaDB(turma);
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+        }
+    }
+
+
+
+    public void loginWithAPI(final String username, final String password, final Context context, final boolean isConnected) {
+
+        Log.i("Username: ",username);
+        Log.i("Password: ",password);
+
+        if (!isConnected) {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            StringRequest request = new StringRequest(Request.Method.GET, URL_LOGIN_CHECK, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("On Response: ", response.toString());
+                    if (!response.toString().equals("[]")){
+                        context.getSharedPreferences("LoggedInUser", MODE_PRIVATE).edit().putString("username", username).apply();
+                        context.getSharedPreferences("LoggedInUser", MODE_PRIVATE).edit().putString("password", password).apply();
+                    }else{
+                        Toast.makeText(context, "Esta conta não pode fazer login.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Error: ", error.toString());
+                    Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                //            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "Bearer " + "professorToken");
+//                return params;
+//            }
+                @Override
+                public Map<String, String> getHeaders(){
+                    String credentials = username + ":" + password;
+                    String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.DEFAULT);
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", "Basic " + base64EncodedCredentials);
+                    return headers;
+                }
+            };
+            volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue.add(request);
+
+        }
+    }
 
 }

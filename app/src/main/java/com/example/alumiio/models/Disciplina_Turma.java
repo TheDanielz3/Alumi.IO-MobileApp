@@ -7,7 +7,7 @@ public class Disciplina_Turma {
     private int id_turma;
     private int id_professor;
 
-    public Disciplina_Turma(int id, int id_disciplina, int id_turma, int id_professor) {
+    public Disciplina_Turma(/*int id,*/ int id_disciplina, int id_turma, int id_professor) {
         //this.id = id;
         this.id_disciplina = id_disciplina;
         this.id_turma = id_turma;

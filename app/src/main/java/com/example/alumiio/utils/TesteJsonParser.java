@@ -15,14 +15,15 @@ import java.util.ArrayList;
 
 public class TesteJsonParser {
 
-    public static ArrayList<Teste> parserJsonTestes(JSONArray response, Context context){
+    public static ArrayList<Teste> parserJsonTestes(String response, Context context){
 
         ArrayList<Teste> tempTeste = new ArrayList<>();
 
         try {
-            for (int i = 0;i < response.length();i++)
+            JSONArray jsonArrayResponse = new JSONArray(response);
+            for (int i = 0;i < jsonArrayResponse.length();i++)
             {
-                JSONObject teste = (JSONObject) response.get(i);
+                JSONObject teste = (JSONObject) jsonArrayResponse.get(i);
                 int testeID = teste.getInt("id");
                 String testeDescricao = teste.getString("descricao");
                 int testeDataHora = teste.getInt("data_hora");

@@ -31,14 +31,13 @@ public class RecadoJsonParser {
                 int recadoID_DisciplinaTurma = recado.getInt("id_disciplina_turma");
 
                 String id_Recado = recado.getString("id_aluno");
-                int recadoID_Aluno = 55;
+                int recadoID_Aluno = -1;
 
-//                boolean digitsOnly = TextUtils.isDigitsOnly(id_Recado);
-//
-//                if (digitsOnly && id_Recado.length() > 0) {
-//                    recadoID_Aluno = recado.getInt("id_aluno");
-//                }
+                boolean digitsOnly = TextUtils.isDigitsOnly(id_Recado);
 
+                if (digitsOnly && id_Recado.length() > 0) {
+                    recadoID_Aluno = recado.getInt("id_aluno");
+                }
 
                 int recadoID_Professor = recado.getInt("id_professor");
 

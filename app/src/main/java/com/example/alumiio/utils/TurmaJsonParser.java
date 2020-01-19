@@ -14,21 +14,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TurmaJsonParser {
-    public static ArrayList<Turma> parserJsonTpcs(JSONArray response, Context context){
+    public static ArrayList<Turma> parserJsonTurmas(String response, Context context){
 
         ArrayList<Turma> tempTurma = new ArrayList<>();
 
         try {
-            for (int i= 0; i< response.length();i++) {
-                JSONObject turma = (JSONObject) response.get(i);
+            JSONArray jsonArrayResponse = new JSONArray(response);
+            for (int i= 0; i< jsonArrayResponse.length();i++) {
+                JSONObject turma = (JSONObject) jsonArrayResponse.get(i);
                 int turmaID = turma.getInt("id");
                 int turmaAno = turma.getInt("ano");
                 String turmaLetra = turma.getString("letra");
 
 
-             //   Turma auxTurma = new Turma(turmaID,turmaAno,turmaLetra);
+                Turma auxTurma = new Turma(/*turmaID,*/turmaAno,turmaLetra);
 
-             //   tempTurma.add(auxTurma);
+                tempTurma.add(auxTurma);
             }
 
         }catch (JSONException e)
@@ -39,7 +40,7 @@ public class TurmaJsonParser {
         }
         return tempTurma;
     }
-    public static Turma parserJsonTpc(String response,Context context)
+    public static Turma parserJsonTurma(String response,Context context)
     {
         Turma tempTurma = null;
 

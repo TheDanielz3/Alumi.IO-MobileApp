@@ -14,19 +14,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TpcJsonParser {
-    public static ArrayList<Tpc> parserJsonTpcs(JSONArray response, Context context){
+    public static ArrayList<Tpc> parserJsonTpcs(String response, Context context){
 
         ArrayList<Tpc> tempTpc = new ArrayList<>();
 
         try {
-            for (int i= 0; i< response.length();i++) {
-                JSONObject tpc = (JSONObject) response.get(i);
+            JSONArray jsonArrayResponse = new JSONArray(response);
+            for (int i= 0; i< jsonArrayResponse.length();i++) {
+                JSONObject tpc = (JSONObject) jsonArrayResponse.get(i);
                 int tpcID = tpc.getInt("id");
                 String tpcDescricao = tpc.optString("descricao");
                 int tpcID_DisciplinaTurma = tpc.getInt("id_disciplina_turma");
                 int tpcID_Professor = tpc.getInt("id_professor");
-
-
 
                 Tpc auxTpc = new Tpc(tpcDescricao,tpcID_DisciplinaTurma,tpcID_Professor);
 

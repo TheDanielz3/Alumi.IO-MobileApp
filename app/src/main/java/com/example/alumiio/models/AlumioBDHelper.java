@@ -171,14 +171,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public long addRecadoToDB(Recado recado) {
         ContentValues values = getValuesRecado(recado); // contentor de valores a manipular
 
-      return this.database.insert(TABLE_RECADO, null, values);
+        return this.database.insert(TABLE_RECADO, null, values);
     }
 
     public long addTpcToDB(Tpc tpc) {
 
         ContentValues values = getValuesTpc(tpc);
 
-       return this.database.insert(TABLE_TPC, null, values);
+        return this.database.insert(TABLE_TPC, null, values);
     }
 
     public long addAlunoToDB(Aluno aluno) {
@@ -191,7 +191,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public long addTesteToDB(Teste teste) {
         ContentValues values = getValuesTeste(teste);
 
-         return this.database.insert(TABLE_TESTE, null, values);
+        return this.database.insert(TABLE_TESTE, null, values);
     }
 
     public void addTurmaToDB(Turma turma) {
@@ -212,11 +212,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ArrayList<Tpc> tpcs = new ArrayList<>(); // instanciada por isso nunca null
 
         //Busca por querry ha base de dados
-        Cursor cursor = this.database.query(TABLE_TPC, new String[]{TPC_ID, TPC_DESCRICAO,TPC_ID_DISCIPLINA_TURMA,TPC_ID_PROFESSOR},
+        Cursor cursor = this.database.query(TABLE_TPC, new String[]{TPC_ID, TPC_DESCRICAO, TPC_ID_DISCIPLINA_TURMA, TPC_ID_PROFESSOR},
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) { //saber se há algum
             do {
-                Tpc auxTpc = new Tpc(cursor.getString(1),cursor.getInt(2),cursor.getInt(3));
+                Tpc auxTpc = new Tpc(cursor.getString(1), cursor.getInt(2), cursor.getInt(3));
                 //auxTpc.setID(cursor.getLong(0)); // we receive id
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
@@ -229,11 +229,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ArrayList<Recado> recados = new ArrayList<>(); //instaciada por isso que nunca vai returnar null
 
         //busca por querry ha base de dados
-        Cursor cursor = this.database.query(TABLE_RECADO, new String[]{RECADO_ID, RECADO_TOPICO, RECADO_DESCRICAO,RECADO_ASSINADO,RECADO_DATA_HORA,RECADO_ID_DISCIPLINA_TURMA,RECADO_ID_ALUNO,RECADO_ID_PROFESSOR},
+        Cursor cursor = this.database.query(TABLE_RECADO, new String[]{RECADO_ID, RECADO_TOPICO, RECADO_DESCRICAO, RECADO_ASSINADO, RECADO_DATA_HORA, RECADO_ID_DISCIPLINA_TURMA, RECADO_ID_ALUNO, RECADO_ID_PROFESSOR},
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Recado auxRecado = new Recado( cursor.getString(1), cursor.getString(2),cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getInt(6),cursor.getInt(7));
+                Recado auxRecado = new Recado(cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7));
                 //auxRecado.setID(cursor.getLong(0)); // we receive id
                 recados.add(auxRecado);
             } while (cursor.moveToNext());
@@ -252,7 +252,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //TODO:Acabar isto
-                Teste auxTeste = new Teste( cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4));
+                Teste auxTeste = new Teste(cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4));
                 //auxTeste.setID(cursor.getLong(0)); //we receive id
                 testes.add(auxTeste);
             } while (cursor.moveToNext());
@@ -265,11 +265,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public ArrayList<Aluno> getAllAlunosDB() {
         ArrayList<Aluno> alunos = new ArrayList<>();
         //busca por querry ha base de dados
-        Cursor cursor = this.database.query(TABLE_ALUNO, new String[]{ALUNO_ID, ALUNO_ID_ENCARREGADO_DE_EDUCACAO, ALUNO_ID_TURMA,ALUNO_NOME, ALUNO_NUMERO_ESTUDANTE},
+        Cursor cursor = this.database.query(TABLE_ALUNO, new String[]{ALUNO_ID, ALUNO_ID_ENCARREGADO_DE_EDUCACAO, ALUNO_ID_TURMA, ALUNO_NOME, ALUNO_NUMERO_ESTUDANTE},
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Aluno auxAluno = new Aluno(cursor.getInt(1), cursor.getInt(2),cursor.getString(3),cursor.getInt(4));
+                Aluno auxAluno = new Aluno(cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getInt(4));
                 // auxAluno.setId(cursor.getLong(0)); //we receive id
                 alunos.add(auxAluno);
             } while (cursor.moveToNext());
@@ -301,12 +301,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Disciplina_Turma auxDisciplinaTurma = new Disciplina_Turma(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2),cursor.getInt(3));
+                Disciplina_Turma auxDisciplinaTurma = new Disciplina_Turma(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2)/*,cursor.getInt(3)*/);
                 disciplinaTurmas.add(auxDisciplinaTurma);
             } while (cursor.moveToNext());
 
         }
-
 
         return disciplinaTurmas;
     }
@@ -344,13 +343,12 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         // return true;
     }
 
-    public boolean updateAlunoDB(Aluno aluno)
-    {
+    public boolean updateAlunoDB(Aluno aluno) {
         ContentValues values = getValuesAluno(aluno);
 
         return
-                (this.database.update(TABLE_ALUNO,values, "id=?", new String[]{ "" + aluno.getId()}))
-                        >0 ;
+                (this.database.update(TABLE_ALUNO, values, "id=?", new String[]{"" + aluno.getId()}))
+                        > 0;
 
         // return true;
     }
@@ -383,19 +381,11 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
-    public void deleteAllRecadosDB() {
-        this.database.delete(TABLE_RECADO, null, null);
-    }
-
 
     //deleteTpcs
     public boolean deleteTpcDB(long tpcId) {
         return (this.database.delete(TABLE_TPC, "id=?", new String[]{"" + tpcId})
         ) == 1;
-    }
-
-    public void deleteAllTpcDB() {
-        this.database.delete(TABLE_TPC, null, null);
     }
 
 
@@ -405,9 +395,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
-    public void deleteAllTestesDB() {
-        this.database.delete(TABLE_TESTE, null, null);
-    }
 
     //delete Alunos
     public boolean deleteAlunoDB(long alunoId) {
@@ -426,6 +413,25 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         this.database.delete(TABLE_ALUNO, null, null);
     }
 
+    public void deleteAllDisciplinaTurmaDB() {
+        this.database.delete(TABLE_DISCIPLINE_TURMA, null, null);
+    }
+
+    public void deleteAllRecadosDB() {
+        this.database.delete(TABLE_RECADO, null, null);
+    }
+
+    public void deleteAllTestesDB() {
+        this.database.delete(TABLE_TESTE, null, null);
+    }
+
+    public void deleteAllTpcDB() {
+        this.database.delete(TABLE_TPC, null, null);
+    }
+
+    public void deleteAllTurmaDB() {
+        this.database.delete(TABLE_TURMA, null, null);
+    }
 
     private ContentValues getValuesRecado(Recado recado) {
         ContentValues values = new ContentValues();
