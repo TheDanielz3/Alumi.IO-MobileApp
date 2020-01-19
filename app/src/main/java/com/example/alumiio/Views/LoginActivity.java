@@ -51,27 +51,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        String URL = "http://192.168.1.20:80/Alumi.IO-WebApp/api/web/v1/recado";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this );
-
-
-        //codigo de login
-        JsonObjectRequest objectRequest = new JsonObjectRequest(
-                Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.i("REST RESPONSE", response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("REST ERROR", error.toString());
-            }
-        });
-
-
-        requestQueue.add(objectRequest);
         SharedPreferences prefsFirstTime = getSharedPreferences("FirstTime", MODE_PRIVATE);
 
         EditText editName = (EditText) findViewById(R.id.editText);
@@ -96,12 +75,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     private void GetAllDBData() {
 
-        Disciplina_Turma disciplina_turma = new Disciplina_Turma(1,2,2,2);
-        AlumioSingleton.getInstance(getApplicationContext()).addDisciplinaTurmaDB(disciplina_turma);
+       // Disciplina_Turma disciplina_turma = new Disciplina_Turma(1,2,2,2);
+        //AlumioSingleton.getInstance(getApplicationContext()).addDisciplinaTurmaDB(disciplina_turma);
 
         EditText editName  = (EditText) findViewById(R.id.editText);
-        String name = editName.getText().toString();
-        EditText editName = (EditText) findViewById(R.id.editText);
         String username = editName.getText().toString();
 
         EditText editPassword = (EditText) findViewById(R.id.editText2);
@@ -165,9 +142,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
         }, 1500);
 
-        System.out.println("--> Click on Button on Login Activity called Login");
-        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
-        startActivity(myIntent);
 //        aluno.setId(id);
 //        System.out.println("--> Add Aluno: " + id);
 

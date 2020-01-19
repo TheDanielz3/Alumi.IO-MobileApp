@@ -700,8 +700,6 @@ public class AlumioSingleton {
         }
     }
 
-
-
     public void loginWithAPI(final String username, final String password, final Context context, final boolean isConnected) {
 
         Log.i("Username: ",username);

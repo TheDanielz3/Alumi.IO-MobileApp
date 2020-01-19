@@ -382,9 +382,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
-    public void deleteAllRecadosDB() {
-        this.database.delete(TABLE_RECADO, null, null);
-    }
 
 
     //deleteTpcs
@@ -393,9 +390,6 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
-    public void deleteAllTpcDB() {
-        this.database.delete(TABLE_TPC, null, null);
-    }
 
 
     //delete testes
@@ -404,9 +398,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
-    public void deleteAllTestesDB() {
-        this.database.delete(TABLE_TESTE, null, null);
-    }
+
 
     //delete Alunos
     public boolean deleteAlunoDB(long alunoId) {
