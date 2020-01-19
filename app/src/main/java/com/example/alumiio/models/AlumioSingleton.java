@@ -272,7 +272,7 @@ public class AlumioSingleton {
     }
 
     public void editAlunoDB(Aluno aluno){
-        if (!alunos.contains(aluno))
+        if (alunos.contains(aluno))
         {
             return;
         }
@@ -285,7 +285,7 @@ public class AlumioSingleton {
     }
 
     public void editRecadoDB(Recado recado){
-        if (!recados.contains(recado))
+        if (recados.contains(recado))
         {
             return;
         }
@@ -295,6 +295,19 @@ public class AlumioSingleton {
         auxRecado.setAssinado(recado.getAssinado());
 
         alumioBDHelper.updateRecadoDB(auxRecado);
+    }
+    public void editTpcDB(Tpc tpc) {
+        if (tpcs.contains(tpc))
+        {
+            return;
+        }
+
+        Tpc auxTpc  = getTpcById(tpc.getId());
+        auxTpc.setDescricao(tpc.getDescricao());
+        auxTpc.setId_disciplina_turma(tpc.getId_disciplina_turma());
+        auxTpc.setId_professor(tpc.getId_professor());
+
+        alumioBDHelper.updateTpcDB(auxTpc);
     }
 
     public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma){
@@ -350,6 +363,7 @@ public class AlumioSingleton {
     private void addAlunosDB(ArrayList<Aluno> alunos) {
 
     }
+
 
 
 }

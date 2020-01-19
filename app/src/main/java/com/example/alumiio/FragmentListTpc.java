@@ -77,7 +77,7 @@ public class FragmentListTpc extends Fragment {
 
         tpcArrayAdapter = new ArrayAdapter<Tpc> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, tpcs);
 
-        //TODO: ATERAR O ID DO FRAGMENTO
+
         listView.setAdapter(new TpcAdapter(getContext(), tpcs));
         return view;
     }

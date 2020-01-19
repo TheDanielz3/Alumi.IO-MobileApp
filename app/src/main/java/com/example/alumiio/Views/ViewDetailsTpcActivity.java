@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.alumiio.R;
+import com.example.alumiio.adapters.TpcAdapter;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Tpc;
 
@@ -15,6 +16,8 @@ public class ViewDetailsTpcActivity extends AppCompatActivity {
 
     private long id;
 
+
+    TpcAdapter tpcAdapter;
     private EditText editText;
 
     private Spinner spinner;
@@ -38,6 +41,10 @@ public class ViewDetailsTpcActivity extends AppCompatActivity {
 
     public void editarOnClick(View view) {
 
+        Tpc tpc = new Tpc(editText.getText().toString(),1,1);
+        tpc.setId(id);
+        AlumioSingleton.getInstance(getApplicationContext()).editTpcDB(tpc);
+        finish();
 
 
     }

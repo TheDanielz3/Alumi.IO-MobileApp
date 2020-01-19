@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.alumiio.R;
+import com.example.alumiio.adapters.TpcAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +44,7 @@ public class TpcActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         System.out.println("--> Activity tpc on Resume");
+
     }
 
     public void criarTPCClick(View view) {

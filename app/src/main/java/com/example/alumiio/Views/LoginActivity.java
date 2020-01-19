@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         RequestQueue requestQueue = Volley.newRequestQueue(this );
 
+
+        //codigo de login
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 Log.e("REST ERROR", error.toString());
             }
         });
+
 
         requestQueue.add(objectRequest);
 
@@ -101,15 +104,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         editor.putString("password", password);
         editor.apply();
 
-//        aluno.setId(id);
-//        System.out.println("--> Add Aluno: " + id);
-
-
-//        aluno = new Aluno(2,"daniel1",1233214);
-//        long id1 = AlumioSingleton.getInstance(getApplicationContext()).addAlunoDB(aluno);
-//        aluno.setId(id1);
-//        System.out.println("--> Add Aluno: " + id1);
-//
         System.out.println("--> Click on Button on Login Activity called Login");
         Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(myIntent);
