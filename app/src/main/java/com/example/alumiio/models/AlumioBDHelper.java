@@ -171,14 +171,14 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public long addRecadoToDB(Recado recado) {
         ContentValues values = getValuesRecado(recado); // contentor de valores a manipular
 
-        return this.database.insert(TABLE_RECADO, null, values);
+      return this.database.insert(TABLE_RECADO, null, values);
     }
 
     public long addTpcToDB(Tpc tpc) {
 
         ContentValues values = getValuesTpc(tpc);
 
-        return this.database.insert(TABLE_TPC, null, values);
+       return this.database.insert(TABLE_TPC, null, values);
     }
 
     public long addAlunoToDB(Aluno aluno) {
@@ -191,7 +191,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
     public long addTesteToDB(Teste teste) {
         ContentValues values = getValuesTeste(teste);
 
-        return this.database.insert(TABLE_TESTE, null, values);
+         return this.database.insert(TABLE_TESTE, null, values);
     }
 
     public void addTurmaToDB(Turma turma) {
@@ -216,8 +216,8 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) { //saber se há algum
             do {
-                Tpc auxTpc = new Tpc(cursor.getString(1), cursor.getInt(2), cursor.getInt(3));
-                //auxTpc.setID(cursor.getLong(0)); // we receive id
+                Tpc auxTpc = new Tpc(cursor.getString(1),cursor.getInt(2),cursor.getInt(3));
+                auxTpc.setId(cursor.getLong(0)); // we receive id
                 tpcs.add(auxTpc);
             } while (cursor.moveToNext());
         }
@@ -307,6 +307,7 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
         }
 
+
         return disciplinaTurmas;
     }
 
@@ -362,15 +363,15 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
 
     }
 
-//    public boolean updateDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
-//    {
-//        ContentValues values = getValuesDisciplinaTurma(disciplinaTurma);
-//
-//        return
-//                (this.database.update(TABLE_DISCIPLINE_TURMA,values,"id=?", new String[]{"" + disciplinaTurma.getId()}))
-//                        >0;
-//
-//    }
+    public boolean updateDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma)
+    {
+        ContentValues values = getValuesDisciplinaTurma(disciplinaTurma);
+
+        return
+                (this.database.update(TABLE_DISCIPLINE_TURMA,values,"id=?", new String[]{"" + disciplinaTurma.getId()}))
+                        >0;
+
+    }
 
 
     //DELETE
@@ -381,11 +382,19 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
+    public void deleteAllRecadosDB() {
+        this.database.delete(TABLE_RECADO, null, null);
+    }
+
 
     //deleteTpcs
     public boolean deleteTpcDB(long tpcId) {
         return (this.database.delete(TABLE_TPC, "id=?", new String[]{"" + tpcId})
         ) == 1;
+    }
+
+    public void deleteAllTpcDB() {
+        this.database.delete(TABLE_TPC, null, null);
     }
 
 
@@ -395,6 +404,9 @@ public class AlumioBDHelper extends SQLiteOpenHelper {
         ) == 1;
     }
 
+    public void deleteAllTestesDB() {
+        this.database.delete(TABLE_TESTE, null, null);
+    }
 
     //delete Alunos
     public boolean deleteAlunoDB(long alunoId) {

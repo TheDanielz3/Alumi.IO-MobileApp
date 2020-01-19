@@ -20,7 +20,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Authenticator;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -29,6 +28,7 @@ import com.example.alumiio.R;
 import com.example.alumiio.models.AlumioBDHelper;
 import com.example.alumiio.models.AlumioSingleton;
 import com.example.alumiio.models.Aluno;
+import com.example.alumiio.models.Disciplina_Turma;
 import com.example.alumiio.models.Turma;
 import com.example.alumiio.utils.AlunoJsonParser;
 import com.example.alumiio.utils.DisciplinaTurmaJsonParser;
@@ -51,6 +51,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        String URL = "http://192.168.1.20:80/Alumi.IO-WebApp/api/web/v1/recado";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this );
+
+
+        //codigo de login
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("REST RESPONSE", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("REST ERROR", error.toString());
+            }
+        });
+
+
+        requestQueue.add(objectRequest);
         SharedPreferences prefsFirstTime = getSharedPreferences("FirstTime", MODE_PRIVATE);
 
         EditText editName = (EditText) findViewById(R.id.editText);
@@ -75,6 +96,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     private void GetAllDBData() {
 
+        Disciplina_Turma disciplina_turma = new Disciplina_Turma(1,2,2,2);
+        AlumioSingleton.getInstance(getApplicationContext()).addDisciplinaTurmaDB(disciplina_turma);
+
+        EditText editName  = (EditText) findViewById(R.id.editText);
+        String name = editName.getText().toString();
         EditText editName = (EditText) findViewById(R.id.editText);
         String username = editName.getText().toString();
 
@@ -139,6 +165,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
         }, 1500);
 
+        System.out.println("--> Click on Button on Login Activity called Login");
+        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(myIntent);
 //        aluno.setId(id);
 //        System.out.println("--> Add Aluno: " + id);
 

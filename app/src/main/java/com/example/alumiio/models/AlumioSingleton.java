@@ -154,19 +154,19 @@ public class AlumioSingleton {
         return disciplinaTurmas;
     }
 
-//
-//    public Aluno getAlunoById(long id)
-//    {
-//        for(Aluno aluno: alunos)
-//        {
-//            if (aluno.getId() == id)
-//            {
-//                return aluno;
-//            }
-//        }
-//
-//        return null;
-//    }
+
+    public Aluno getAlunoById(long id)
+    {
+        for(Aluno aluno: alunos)
+        {
+            if (aluno.getId() == id)
+            {
+                return aluno;
+            }
+        }
+
+        return null;
+    }
 
     public Recado getRecadoById(long id)
     {
@@ -216,17 +216,17 @@ public class AlumioSingleton {
         return null;
     }
 
-//    public Disciplina_Turma getDisciplinaTurmaById(long id)
-//    {
-//        for (Disciplina_Turma disciplinaTurma:disciplinaTurmas)
-//        {
-//            if (disciplinaTurma.getId() == id)
-//            {
-//                return  disciplinaTurma;
-//            }
-//        }
-//        return null;
-//    }
+    public Disciplina_Turma getDisciplinaTurmaById(long id)
+    {
+        for (Disciplina_Turma disciplinaTurma:disciplinaTurmas)
+        {
+            if (disciplinaTurma.getId() == id)
+            {
+                return  disciplinaTurma;
+            }
+        }
+        return null;
+    }
 
     public long addAlunoDB (Aluno aluno)
     {
@@ -256,16 +256,16 @@ public class AlumioSingleton {
         alumioBDHelper.addDisciplinaTurmaToDB(disciplinaTurma);
     }
 
-//    public void removeAlunoDB(long alunoId)
-//    {
-//        if(alumioBDHelper.deleteAlunoDB(alunoId))
-//        {
-//            Aluno aluno = getAlunoById(alunoId);
-//            alunos.remove(aluno);
-//        }
-//    }
+    public void removeAlunoDB(long alunoId)
+    {
+        if(alumioBDHelper.deleteAlunoDB(alunoId))
+        {
+            Aluno aluno = getAlunoById(alunoId);
+            alunos.remove(aluno);
+        }
+    }
 
-    public void removeRecadoDB(long recadoId)
+    public void removeRecadoDB (long recadoId)
     {
         if(alumioBDHelper.deleteRecadoDB(recadoId))
         {
@@ -281,6 +281,23 @@ public class AlumioSingleton {
             testes.remove(teste);
         }
     }
+    public void removeTpcDB(long tpcId)
+    {
+        if(alumioBDHelper.deleteTpcDB(tpcId))
+        {
+            Tpc tpc = getTpcById(tpcId);
+            tpcs.remove(tpc);
+        }
+    }
+
+    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
+    {
+        if(alumioBDHelper.deleteDisciplinaTurmaDB(disciplinaTurmaId))
+        {
+            Disciplina_Turma disciplinaTurma = getDisciplinaTurmaById(disciplinaTurmaId);
+            disciplinaTurmas.remove(disciplinaTurma);
+        }
+    }
 
 
 //    public void removeDisciplinaTurmaDB(long disciplinaTurmaId)
@@ -291,22 +308,21 @@ public class AlumioSingleton {
 //            disciplinaTurmas.remove(disciplinaTurma);
 //        }
 //    }
+    public void editAlunoDB(Aluno aluno){
+        if (alunos.contains(aluno))
+        {
+            return;
+        }
 
-//    public void editAlunoDB(Aluno aluno){
-//        if (!alunos.contains(aluno))
-//        {
-//            return;
-//        }
-//
-//        Aluno auxAluno = getAlunoById(aluno.getId());
-//        auxAluno.setNome(aluno.getNome());
-//        auxAluno.setNumeroDeEstudante(aluno.getNumeroDeEstudante());
-//
-//        alumioBDHelper.updateAlunoDB(auxAluno);
-//    }
+        Aluno auxAluno = getAlunoById(aluno.getId());
+        auxAluno.setNome(aluno.getNome());
+        auxAluno.setNumeroDeEstudante(aluno.getNumeroDeEstudante());
+
+        alumioBDHelper.updateAlunoDB(auxAluno);
+    }
 
     public void editRecadoDB(Recado recado){
-        if (!recados.contains(recado))
+        if (recados.contains(recado))
         {
             return;
         }
@@ -317,20 +333,33 @@ public class AlumioSingleton {
 
         alumioBDHelper.updateRecadoDB(auxRecado);
     }
+    public void editTpcDB(Tpc tpc) {
+        if (tpcs.contains(tpc))
+        {
+            return;
+        }
 
-//    public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma){
-//        if (!disciplinaTurmas.contains(disciplinaTurma))
-//        {
-//            return;
-//        }
-//
-//        Disciplina_Turma auxDisciplinaTurma = getDisciplinaTurmaById(disciplinaTurma.getId());
-//        auxDisciplinaTurma.setId_disciplina(disciplinaTurma.getId_disciplina());
-//        auxDisciplinaTurma.setId_turma(disciplinaTurma.getId_turma());
-//        auxDisciplinaTurma.setId_professor(disciplinaTurma.getId_professor());
-//
-//        alumioBDHelper.updateDisciplinaTurmaDB(auxDisciplinaTurma);
-//    }
+        Tpc auxTpc  = getTpcById(tpc.getId());
+        auxTpc.setDescricao(tpc.getDescricao());
+        auxTpc.setId_disciplina_turma(tpc.getId_disciplina_turma());
+        auxTpc.setId_professor(tpc.getId_professor());
+
+        alumioBDHelper.updateTpcDB(auxTpc);
+    }
+
+    public void editDisciplinaTurmaDB(Disciplina_Turma disciplinaTurma){
+        if (!disciplinaTurmas.contains(disciplinaTurma))
+        {
+            return;
+        }
+
+        Disciplina_Turma auxDisciplinaTurma = getDisciplinaTurmaById(disciplinaTurma.getId());
+        auxDisciplinaTurma.setId_disciplina(disciplinaTurma.getId_disciplina());
+        auxDisciplinaTurma.setId_turma(disciplinaTurma.getId_turma());
+        auxDisciplinaTurma.setId_professor(disciplinaTurma.getId_professor());
+
+        alumioBDHelper.updateDisciplinaTurmaDB(auxDisciplinaTurma);
+    }
 
     public void removeAllDisciplinaTurmasDB() {
         alumioBDHelper.deleteAllDisciplinaTurmaDB();
@@ -725,5 +754,6 @@ public class AlumioSingleton {
 
         }
     }
+
 
 }

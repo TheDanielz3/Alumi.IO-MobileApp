@@ -55,5 +55,6 @@ public class CreateRecadoActivity extends AppCompatActivity {
     System.out.println("--> Recado: " + recado.getDescricao());
        long id = AlumioSingleton.getInstance(getApplicationContext()).addRecadoDB(recado);
        recado.setId(id);
+       finish();
     }
 }
