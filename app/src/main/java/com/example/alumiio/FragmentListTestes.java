@@ -74,6 +74,7 @@ public class FragmentListTestes extends Fragment {
         testeArrayAdapter = new ArrayAdapter<Teste> (Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_2, testes);
 
 
+        //HHR
         //TODO: ATERAR O ID DO FRAGMENTO
         listView.setAdapter(new TesteAdapter(getContext(), testes));
         return view;
