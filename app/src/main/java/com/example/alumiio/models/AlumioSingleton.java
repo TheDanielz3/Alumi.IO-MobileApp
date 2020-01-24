@@ -57,14 +57,15 @@ public class AlumioSingleton {
     //Acesso API
     private static RequestQueue volleyQueue = null;
     private static String IP_API = "192.168.1.20"; // Colocar Aqui o IP da Máquina
-    private String URL_ALUNOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/aluno";
-    private String URL_DISCIPLINA_TURMAS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/disciplinaturma";
-    private String URL_RECADOS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/recado";
-    private String URL_TESTES = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/teste";
-    private String URL_TPCS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/tpc";
-    private String URL_TURMAS = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/turma";
+    private static String NOME_PROJETO = "Alumi.IO-WebApp"; // Colocar Aqui o nome do Projeto
+    private String URL_ALUNOS = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/aluno";
+    private String URL_DISCIPLINA_TURMAS = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/disciplinaturma";
+    private String URL_RECADOS = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/recado";
+    private String URL_TESTES = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/teste";
+    private String URL_TPCS = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/tpc";
+    private String URL_TURMAS = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/turma";
 
-    private String URL_LOGIN_CHECK = "http://" + IP_API + "/Alumi.IO-WebApp/api/web/v1/disciplinaturma/turmaspessoais";
+    private String URL_LOGIN_CHECK = "http://" + IP_API + "/"+ NOME_PROJETO + "/api/web/v1/disciplinaturma/turmaspessoais";
     private String tokenAPI = "AMSI-TOKEN"; //Adicionar o token aqui
 
     private ProfessorListener professorListener;
@@ -88,7 +89,7 @@ public class AlumioSingleton {
     public static synchronized AlumioSingleton getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = new AlumioSingleton(context);
-            //volleyQueue = Volley.newRequestQueue(context);
+            volleyQueue = Volley.newRequestQueue(context);
         }
 
         return INSTANCE;
@@ -427,7 +428,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
 
         }
@@ -482,7 +482,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
 
         }
@@ -529,7 +528,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
         }
     }
@@ -575,7 +573,7 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
+
             volleyQueue.add(request);
         }
     }
@@ -621,7 +619,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
         }
     }
@@ -668,7 +665,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
         }
     }
@@ -720,7 +716,6 @@ public class AlumioSingleton {
                     return headers;
                 }
             };
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
 
         }
@@ -782,7 +777,6 @@ public class AlumioSingleton {
 
             request.setRetryPolicy(mRetryPolicy);
 
-            volleyQueue = Volley.newRequestQueue(context);
             volleyQueue.add(request);
         }
     }

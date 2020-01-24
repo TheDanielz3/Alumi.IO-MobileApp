@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        AlumioSingleton.getInstance(getApplicationContext());
         SharedPreferences prefsFirstTime = getSharedPreferences("FirstTime", MODE_PRIVATE);
 
         EditText editName = (EditText) findViewById(R.id.editText);
